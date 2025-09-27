@@ -1507,18 +1507,39 @@
 				progress.sessions = progress.sessions.slice(-7);
 			}
 			
-			// Set attempts to match session count (max 7)
 			progress.attempts = progress.sessions.length;
-			
 			saveSkillProgress(area, skillIndex, progress);
 			
 			// Reset for next rating
 			skillItem.dataset.pendingRating = 0;
-			resetRating(skillIndex);
+			
+			// Move to next session (if not at max)
+			let nextSession = progress.sessions.length; // This would be the next empty session
+			if (nextSession > 7) nextSession = 7;
+			
+			skillItem.dataset.current = nextSession - 1; // Current session index
+			skillItem.querySelector('.session-counter').textContent = nextSession;
+			
+			// Clear stars for next rating
+			const stars = skillItem.querySelectorAll('.star');
+			stars.forEach(star => {
+				star.textContent = '☆';
+				star.style.color = '#e2e8f0';
+			});
 			
 			// Update session count display
 			const sessionText = skillItem.querySelector('div:last-child');
 			sessionText.innerHTML = `Sessions: ${progress.attempts}/7 | <span onclick="saveCurrentRating('${area}', ${skillIndex})" style="color: #ff6b6b; cursor: pointer;">Save</span> | <span onclick="resetRating(${skillIndex})" style="color: #4a5568; cursor: pointer;">Reset</span>`;
+			
+			// Update arrows - left should be enabled now that we have sessions
+			const leftBtn = skillItem.querySelector('button:first-child');
+			const rightBtn = skillItem.querySelector('button:last-child');
+			
+			leftBtn.disabled = false;
+			leftBtn.style.color = '#667eea';
+			
+			rightBtn.disabled = progress.sessions.length >= 7;
+			rightBtn.style.color = progress.sessions.length >= 7 ? '#ccc' : '#667eea';
 		}
 	}
 
