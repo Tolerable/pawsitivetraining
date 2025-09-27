@@ -617,13 +617,14 @@
 
 		.skill-item {
 			background: white;
-			padding: 2rem;
-			margin: 1.5rem 0;
-			border-radius: 15px;
-			border-left: 6px solid #667eea;
-			box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+			padding: 3rem;
+			margin: 2rem 0;
+			border-radius: 20px;
+			border-left: 8px solid #667eea;
+			box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+			text-align: center;
 		}
-
+		
 		.skill-header {
 			display: flex;
 			justify-content: space-between;
@@ -651,19 +652,27 @@
 
 		.star-rating {
 			display: flex;
-			gap: 0.2rem;
+			gap: 1rem;
+			justify-content: center;
 		}
 
 		.star {
 			cursor: pointer;
-			font-size: 3rem;
+			font-size: 4rem;
 			color: #e2e8f0;
-			transition: color 0.2s;
+			transition: all 0.2s;
 			user-select: none;
-			padding: 0 0.5rem;
+			padding: 0.5rem;
+			border-radius: 10px;
 		}
 
-		.star.active, .star:hover {
+		.star:hover {
+			color: #ffd700;
+			background: rgba(255, 215, 0, 0.1);
+			transform: scale(1.1);
+		}
+
+		.star.active {
 			color: #ffd700;
 		}
 
@@ -1510,15 +1519,17 @@
 		
 		container.innerHTML = skills.map((skill, index) => {
 			const progress = getSkillProgress(area, index);
+			const lastRating = progress.sessions.length > 0 ? progress.sessions[progress.sessions.length - 1].rating : 0;
 			
 			return `
 				<div class="skill-item">
-					<h4 style="margin: 0 0 1rem 0;">${skill}</h4>
-					<div class="star-rating" style="justify-content: flex-start;">
-						${[1,2,3,4,5].map(i => `<span class="star" onclick="rateSkill('${area}', ${index}, ${i})">☆</span>`).join('')}
+					<h3 style="margin: 0 0 1rem 0; font-size: 1.4rem; color: #2d3748;">${skill}</h3>
+					<div class="star-rating" style="justify-content: center; margin: 1.5rem 0;">
+						${[1,2,3,4,5].map(i => `<span class="star ${i <= lastRating ? 'active' : ''}" onclick="rateSkill('${area}', ${index}, ${i})">★</span>`).join('')}
 					</div>
-					<div style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">
+					<div style="text-align: center; font-size: 1.1rem; color: #4a5568;">
 						Practiced ${progress.attempts} times
+						${lastRating > 0 ? `<br>Last session: ${lastRating} stars` : ''}
 					</div>
 				</div>
 			`;
