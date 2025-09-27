@@ -1402,64 +1402,136 @@
 		container.innerHTML = skills.map((skill, index) => {
 			const progress = getSkillProgress(area, index);
 			const sessions = progress.sessions;
-			const currentSessionIndex = sessions.length > 0 ? sessions.length - 1 : -1;
+			const maxSessions = 7;
+			const currentSessionIndex = 0; // Always start at session 1
 			
 			return `
-				<div class="skill-item" data-skill="${index}" data-current="0">
+				<div class="skill-item" data-skill="${index}" data-current="${currentSessionIndex}" data-pending-rating="0">
 					<div style="display: flex; align-items: center; justify-content: space-between;">
-						<button onclick="navigateSession('${area}', ${index}, -1)" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: #ccc;" disabled>&lt;</button>
+						<button onclick="navigateSession('${area}', ${index}, -1)" 
+								style="background: #667eea; color: white; border: none; font-size: 1.5rem; cursor: pointer; padding: 0.5rem 1rem; border-radius: 8px; min-width: 50px;" 
+								${currentSessionIndex <= 0 ? 'disabled style="background: #ccc;"' : ''}>◀</button>
 						
-						<div style="text-align: center; flex: 1;">
+						<div style="text-align: center; flex: 1; padding: 0 1rem;">
 							<div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
-								<span style="background: #667eea; color: white; padding: 0.2rem 0.6rem; border-radius: 15px; font-size: 0.8rem; font-weight: bold;" class="session-counter">1</span>
-								<h4 style="margin: 0; font-size: 1rem;">${skill}</h4>
+								<span style="background: #667eea; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.9rem; font-weight: bold;" class="session-counter">${currentSessionIndex + 1}</span>
+								<h4 style="margin: 0; font-size: 1.1rem;">${skill}</h4>
 							</div>
-							<div class="star-rating">
-								${[1,2,3,4,5].map(i => `<span class="star" onclick="rateSkill('${area}', ${index}, ${i})">★</span>`).join('')}
+							<div class="star-rating" onmouseleave="resetStarDisplay('${area}', ${index})">
+								${[1,2,3,4,5].map(i => `<span class="star" onmouseover="previewStars(${index}, ${i})" onclick="setStarRating('${area}', ${index}, ${i})">☆</span>`).join('')}
 							</div>
-							<div style="font-size: 0.8rem; color: #666; margin-top: 0.3rem;">Sessions: ${progress.attempts}</div>
+							<div style="margin-top: 0.5rem;">
+								<button onclick="saveCurrentRating('${area}', ${index})" 
+										style="background: #ff6b6b; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 5px; font-size: 0.8rem; margin-right: 0.5rem;">Save</button>
+								<button onclick="resetRating(${index})" 
+										style="background: #4a5568; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 5px; font-size: 0.8rem;">Reset</button>
+							</div>
+							<div style="font-size: 0.8rem; color: #666; margin-top: 0.3rem;">Sessions: ${progress.attempts}/${maxSessions}</div>
 						</div>
 						
-						<button onclick="navigateSession('${area}', ${index}, 1)" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: ${sessions.length > 1 ? '#667eea' : '#ccc'};" ${sessions.length <= 1 ? 'disabled' : ''}>&gt;</button>
+						<button onclick="navigateSession('${area}', ${index}, 1)" 
+								style="background: #667eea; color: white; border: none; font-size: 1.5rem; cursor: pointer; padding: 0.5rem 1rem; border-radius: 8px; min-width: 50px;" 
+								${currentSessionIndex >= maxSessions - 1 ? 'disabled style="background: #ccc;"' : ''}>▶</button>
 					</div>
 				</div>
 			`;
 		}).join('');
 	}
 
+	function previewStars(skillIndex, rating) {
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		const stars = skillItem.querySelectorAll('.star');
+		stars.forEach((star, i) => {
+			star.textContent = i < rating ? '★' : '☆';
+			star.style.color = i < rating ? '#ffd700' : '#e2e8f0';
+		});
+	}
+
+	function setStarRating(area, skillIndex, rating) {
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		skillItem.dataset.pendingRating = rating;
+		previewStars(skillIndex, rating);
+	}
+
+	function resetStarDisplay(area, skillIndex) {
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		const pendingRating = parseInt(skillItem.dataset.pendingRating) || 0;
+		if (pendingRating > 0) {
+			previewStars(skillIndex, pendingRating);
+		} else {
+			const stars = skillItem.querySelectorAll('.star');
+			stars.forEach(star => {
+				star.textContent = '☆';
+				star.style.color = '#e2e8f0';
+			});
+		}
+	}
+
+	function resetRating(skillIndex) {
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		skillItem.dataset.pendingRating = 0;
+		const stars = skillItem.querySelectorAll('.star');
+		stars.forEach(star => {
+			star.textContent = '☆';
+			star.style.color = '#e2e8f0';
+		});
+	}
+
+	function saveCurrentRating(area, skillIndex) {
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		const rating = parseInt(skillItem.dataset.pendingRating);
+		
+		if (rating > 0) {
+			const progress = getSkillProgress(area, skillIndex);
+			progress.attempts++;
+			progress.sessions.push({
+				date: new Date().toISOString(),
+				rating: rating
+			});
+			
+			// Keep only last 7 sessions
+			if (progress.sessions.length > 7) {
+				progress.sessions = progress.sessions.slice(-7);
+			}
+			
+			saveSkillProgress(area, skillIndex, progress);
+			
+			// Reset for next rating
+			skillItem.dataset.pendingRating = 0;
+			loadSkillsInterface(area);
+		}
+	}
+
 	function navigateSession(area, skillIndex, direction) {
 		const progress = getSkillProgress(area, skillIndex);
 		const sessions = progress.sessions;
-		if (sessions.length <= 1) return;
+		if (sessions.length === 0) return;
 		
 		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
 		let current = parseInt(skillItem.dataset.current);
 		
 		current += direction;
 		if (current < 0) current = 0;
-		if (current >= sessions.length) current = sessions.length - 1;
+		if (current >= Math.min(sessions.length, 7)) current = Math.min(sessions.length, 7) - 1;
 		
 		skillItem.dataset.current = current;
 		
-		// Update session counter (1-based display)
+		// Update session counter
 		skillItem.querySelector('.session-counter').textContent = current + 1;
 		
-		// Update stars to show the rating for this session
+		// Show stars for this session (read-only)
 		const session = sessions[current];
-		const stars = skillItem.querySelectorAll('.star');
-		stars.forEach((star, i) => {
-			star.className = i < session.rating ? 'star active' : 'star';
-		});
+		previewStars(skillIndex, session.rating);
 		
 		// Update arrow states
 		const leftBtn = skillItem.querySelector('button:first-child');
 		const rightBtn = skillItem.querySelector('button:last-child');
 		
 		leftBtn.disabled = current <= 0;
-		leftBtn.style.color = current <= 0 ? '#ccc' : '#667eea';
+		leftBtn.style.background = current <= 0 ? '#ccc' : '#667eea';
 		
-		rightBtn.disabled = current >= sessions.length - 1;
-		rightBtn.style.color = current >= sessions.length - 1 ? '#ccc' : '#667eea';
+		rightBtn.disabled = current >= Math.min(sessions.length, 7) - 1;
+		rightBtn.style.background = current >= Math.min(sessions.length, 7) - 1 ? '#ccc' : '#667eea';
 	}
 
 	function rateSkill(area, skillIndex, rating) {
