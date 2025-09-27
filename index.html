@@ -437,6 +437,71 @@
             border: 1px solid #f6ad55;
         }
 
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 1000;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.7);
+		}
+
+		.modal-content {
+			background-color: #2d3748;
+			margin: 15% auto;
+			padding: 20px;
+			border: 2px solid #667eea;
+			border-radius: 10px;
+			width: 300px;
+			position: relative;
+			color: white;
+		}
+
+		.modal-content input {
+			width: 100%;
+			padding: 8px;
+			margin: 10px 0;
+			background: #4a5568;
+			border: 1px solid #667eea;
+			border-radius: 4px;
+			color: white;
+		}
+
+		.modal-content button {
+			background: #667eea;
+			color: white;
+			border: none;
+			padding: 8px 20px;
+			border-radius: 4px;
+			cursor: pointer;
+			width: 100%;
+			margin-top: 10px;
+		}
+
+		.secondary-btn {
+			background: #4a5568;
+			border: 1px solid #667eea;
+		}
+
+		.premium-info {
+			background: rgba(102, 126, 234, 0.1);
+			border-left: 3px solid #667eea;
+			padding: 10px;
+			margin: 10px 0;
+			border-radius: 5px;
+		}
+
+		.premium-features {
+			list-style: none;
+			padding: 0;
+		}
+
+		.premium-features li {
+			margin: 5px 0;
+		}
+
         /* Footer */
         footer {
             background: #2d3748;
@@ -446,72 +511,7 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-		
-			.modal {
-				display: none;
-				position: fixed;
-				z-index: 1000;
-				left: 0;
-				top: 0;
-				width: 100%;
-				height: 100%;
-				background-color: rgba(0, 0, 0, 0.7);
-			}
-
-			.modal-content {
-				background-color: #2d3748;
-				margin: 15% auto;
-				padding: 20px;
-				border: 2px solid #667eea;
-				border-radius: 10px;
-				width: 300px;
-				position: relative;
-				color: white;
-			}
-
-			.modal-content input {
-				width: 100%;
-				padding: 8px;
-				margin: 10px 0;
-				background: #4a5568;
-				border: 1px solid #667eea;
-				border-radius: 4px;
-				color: white;
-			}
-
-			.modal-content button {
-				background: #667eea;
-				color: white;
-				border: none;
-				padding: 8px 20px;
-				border-radius: 4px;
-				cursor: pointer;
-				width: 100%;
-				margin-top: 10px;
-			}
-
-			.secondary-btn {
-				background: #4a5568;
-				border: 1px solid #667eea;
-			}
-
-			.premium-info {
-				background: rgba(102, 126, 234, 0.1);
-				border-left: 3px solid #667eea;
-				padding: 10px;
-				margin: 10px 0;
-				border-radius: 5px;
-			}
-
-			.premium-features {
-				list-style: none;
-				padding: 0;
-			}
-
-			.premium-features li {
-				margin: 5px 0;
-			}		
+        @media (max-width: 768px) {		
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -1128,22 +1128,6 @@
 			});
 		}
 
-		// Modal event handlers
-		document.addEventListener('DOMContentLoaded', function() {
-			const modal = document.getElementById('training-modal');
-			const closeBtn = modal?.querySelector('.close');
-			
-			if (closeBtn) {
-				closeBtn.onclick = closeTrainingModal;
-			}
-			
-			window.onclick = function(event) {
-				if (event.target === modal) {
-					closeTrainingModal();
-				}
-			};
-		});
-
 				// Page navigation system
         function showPage(pageId) {
             // Hide all pages
@@ -1198,15 +1182,6 @@
                 observer.observe(card);
             });
         }
-
-		// Modal functionality
-		function showRegistrationModal() {
-			document.getElementById('training-modal').style.display = 'block';
-		}
-
-		function closeTrainingModal() {
-			document.getElementById('training-modal').style.display = 'none';
-		}
 
 		// Modal event handlers
 		document.addEventListener('DOMContentLoaded', function() {
@@ -1276,14 +1251,6 @@
 		const closeBtn = document.querySelector('#training-modal .close');
 		const submitBtn = document.querySelector('#training-modal button[onclick="submitTrainingCode()"]');
 		const codeInput = document.getElementById('training-unlock-code');
-
-		function showRegistrationModal() {
-			modal.style.display = 'block';
-		}
-
-		function closeTrainingModal() {
-			modal.style.display = 'none';
-		}
 
 		// Close modal when clicking X or outside
 		if (closeBtn) {
