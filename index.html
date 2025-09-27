@@ -1513,12 +1513,12 @@
 			// Reset for next rating
 			skillItem.dataset.pendingRating = 0;
 			
-			// Move to next session (if not at max)
-			let nextSession = progress.sessions.length; // This would be the next empty session
-			if (nextSession > 7) nextSession = 7;
+			// Move to next empty session
+			let nextSessionNumber = progress.sessions.length + 1;
+			if (nextSessionNumber > 7) nextSessionNumber = 7;
 			
-			skillItem.dataset.current = nextSession - 1; // Current session index
-			skillItem.querySelector('.session-counter').textContent = nextSession;
+			skillItem.dataset.current = progress.sessions.length; // This is the next empty slot
+			skillItem.querySelector('.session-counter').textContent = nextSessionNumber;
 			
 			// Clear stars for next rating
 			const stars = skillItem.querySelectorAll('.star');
@@ -1531,15 +1531,15 @@
 			const sessionText = skillItem.querySelector('div:last-child');
 			sessionText.innerHTML = `Sessions: ${progress.attempts}/7 | <span onclick="saveCurrentRating('${area}', ${skillIndex})" style="color: #ff6b6b; cursor: pointer;">Save</span> | <span onclick="resetRating(${skillIndex})" style="color: #4a5568; cursor: pointer;">Reset</span>`;
 			
-			// Update arrows - left should be enabled now that we have sessions
+			// Arrow logic: left enabled if we have saved sessions, right disabled (no future sessions exist yet)
 			const leftBtn = skillItem.querySelector('button:first-child');
 			const rightBtn = skillItem.querySelector('button:last-child');
 			
-			leftBtn.disabled = false;
+			leftBtn.disabled = false; // Can go back to see saved sessions
 			leftBtn.style.color = '#667eea';
 			
-			rightBtn.disabled = progress.sessions.length >= 7;
-			rightBtn.style.color = progress.sessions.length >= 7 ? '#ccc' : '#667eea';
+			rightBtn.disabled = true; // No future sessions exist
+			rightBtn.style.color = '#ccc';
 		}
 	}
 
