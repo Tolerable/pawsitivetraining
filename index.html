@@ -1276,7 +1276,7 @@
 			
 			if (unlockBtn) {
 				if (isRegistered) {
-					unlockBtn.textContent = 'UNREGISTER';
+					unlockBtn.textContent = '✅ REGISTERED';
 					unlockBtn.style.background = '#4fd1c7';
 				} else {
 					unlockBtn.textContent = '🔓 UNLOCK';
@@ -1377,9 +1377,15 @@
 			if (code.length === 6) {
 				localStorage.setItem('dogTrainingRegistered', 'true');
 				localStorage.setItem('dogTrainingCode', code);
-				closeTrainingModal();
+				// closeTrainingModal(); // DELETE THIS LINE
 				updateUnlockButton();
 				initializeTrainingAreas();
+				
+				// Clear the input and show success
+				document.getElementById('training-unlock-code').value = '';
+				document.getElementById('training-unlock-code').placeholder = 'Features unlocked!';
+				document.getElementById('training-unlock-code').style.borderColor = '#4fd1c7';
+				
 			} else {
 				document.getElementById('training-unlock-code').style.borderColor = '#ff6b6b';
 				document.getElementById('training-unlock-code').placeholder = 'Enter 6 characters';
