@@ -1199,6 +1199,31 @@
             });
         }
 
+		// Modal functionality
+		function showRegistrationModal() {
+			document.getElementById('training-modal').style.display = 'block';
+		}
+
+		function closeTrainingModal() {
+			document.getElementById('training-modal').style.display = 'none';
+		}
+
+		// Modal event handlers
+		document.addEventListener('DOMContentLoaded', function() {
+			const modal = document.getElementById('training-modal');
+			const closeBtn = modal?.querySelector('.close');
+			
+			if (closeBtn) {
+				closeBtn.onclick = closeTrainingModal;
+			}
+			
+			window.onclick = function(event) {
+				if (event.target === modal) {
+					closeTrainingModal();
+				}
+			};
+		});
+
         // Initialize animations when page loads
         document.addEventListener('DOMContentLoaded', initAnimations);
 
