@@ -1310,63 +1310,16 @@
 		function showRegistrationModal() {
 			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
 			const modal = document.getElementById('training-modal');
-			const modalContent = modal.querySelector('.modal-content');
 			
 			if (isRegistered) {
 				const currentCode = localStorage.getItem('dogTrainingCode') || 'Unknown';
-				modalContent.innerHTML = `
-					<span class="close" onclick="closeTrainingModal()">&times;</span>
-					<h2>Registration Status</h2>
-					<div class="premium-info">
-						<p class="premium-header">✅ Currently Registered</p>
-						<p style="text-align: center; font-family: monospace; font-size: 18px; background: #4a5568; padding: 10px; border-radius: 5px; margin: 10px 0;">${currentCode}</p>
-					</div>
-					<button onclick="generateFreeCode(); restoreUnlockModal();" class="secondary-btn">Get New Code</button>
-					<button onclick="unregister();" style="background: #ff6b6b;">Unregister</button>
-					<button onclick="openDonation()" class="secondary-btn">❤️ Support Development</button>
-				`;
-			} else {
-				// Restore original modal content
-				restoreUnlockModal();
+				const codeInput = document.getElementById('training-unlock-code');
+				if (codeInput) {
+					codeInput.value = currentCode;
+				}
 			}
+			
 			modal.style.display = 'block';
-		}
-
-		function restoreUnlockModal() {
-			const modalContent = document.querySelector('.modal-content');
-			modalContent.innerHTML = `
-				<span class="close" onclick="closeTrainingModal()">&times;</span>
-				<h2>Unlock Premium Training</h2>
-				<div class="premium-info">
-					<p class="premium-header">🔓 Get Access To:</p>
-					<ul class="premium-features">
-						<li>✨ 6 Additional Training Areas</li>
-						<li>😰 Separation Anxiety Training</li>
-						<li>⚠️ Reactivity & Aggression Guide</li>
-						<li>📞 Recall Training Program</li>
-						<li>🦴 Resource Guarding Solutions</li>
-						<li>📚 Complete Training Library</li>
-					</ul>
-				</div>
-				<input type="text" id="training-unlock-code" maxlength="6" placeholder="Enter 6-character code">
-				<button onclick="submitTrainingCode()">Unlock Now</button>
-				<button onclick="generateFreeCode()" class="secondary-btn">Get Free Code</button>
-				<button onclick="openDonation()" class="secondary-btn">❤️ Support Development</button>
-			`;
-		}
-
-		function unregister() {
-			localStorage.removeItem('dogTrainingRegistered');
-			localStorage.removeItem('dogTrainingCode');
-			
-			const unlockBtn = document.querySelector('.nav-links a[onclick*="showRegistrationModal"]');
-			if (unlockBtn) {
-				unlockBtn.textContent = '🔓 UNLOCK';
-				unlockBtn.style.background = '#ff6b6b';
-			}
-			
-			initializeTrainingAreas();
-			closeTrainingModal();
 		}
 
 		function closeTrainingModal() {
