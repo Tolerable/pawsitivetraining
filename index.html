@@ -1322,6 +1322,20 @@
 			modal.style.display = 'block';
 		}
 
+		function unregister() {
+			localStorage.removeItem('dogTrainingRegistered');
+			localStorage.removeItem('dogTrainingCode');
+			
+			const unlockBtn = document.querySelector('.nav-links a[onclick*="showRegistrationModal"]');
+			if (unlockBtn) {
+				unlockBtn.textContent = '🔓 UNLOCK';
+				unlockBtn.style.background = '#ff6b6b';
+			}
+			
+			initializeTrainingAreas();
+			closeTrainingModal();
+		}
+
 		function closeTrainingModal() {
 			document.getElementById('training-modal').style.display = 'none';
 		}
