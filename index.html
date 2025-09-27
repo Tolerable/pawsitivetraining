@@ -1512,11 +1512,12 @@
 			// Reset for next rating
 			skillItem.dataset.pendingRating = 0;
 			
-			// Move to next session number (but stay at the end of actual sessions)
+			// Show we're on the next session number for new entry
 			let nextSessionNumber = progress.sessions.length + 1;
 			if (nextSessionNumber > 7) nextSessionNumber = 7;
 			
-			skillItem.dataset.current = progress.sessions.length - 1; // Stay at the last saved session
+			// Set current to point to the next empty slot
+			skillItem.dataset.current = progress.sessions.length;
 			skillItem.querySelector('.session-counter').textContent = nextSessionNumber;
 			
 			// Clear stars for next rating
@@ -1530,22 +1531,66 @@
 			const sessionText = skillItem.querySelector('div:last-child');
 			sessionText.innerHTML = `Sessions: ${progress.attempts}/7 | <span onclick="saveCurrentRating('${area}', ${skillIndex})" style="color: #ff6b6b; cursor: pointer;">Save</span> | <span onclick="resetRating(${skillIndex})" style="color: #4a5568; cursor: pointer;">Reset</span>`;
 			
-			// Arrow logic: Only enable arrows if there are multiple saved sessions
+			// Arrow logic: left should be enabled after first save
 			const leftBtn = skillItem.querySelector('button:first-child');
 			const rightBtn = skillItem.querySelector('button:last-child');
 			
-			if (progress.sessions.length > 1) {
-				leftBtn.disabled = false;
-				leftBtn.style.color = '#667eea';
-				rightBtn.disabled = true; // At newest session
-				rightBtn.style.color = '#ccc';
-			} else {
-				leftBtn.disabled = true;
-				leftBtn.style.color = '#ccc';
-				rightBtn.disabled = true;
-				rightBtn.style.color = '#ccc';
-			}
+			leftBtn.disabled = false; // Can go back to see the saved session
+			leftBtn.style.color = '#667eea';
+			
+			rightBtn.disabled = true; // Can't go forward from empty session
+			rightBtn.style.color = '#ccc';
 		}
+	}
+
+	function navigateSession(area, skillIndex, direction) {
+		const progress = getSkillProgress(area, skillIndex);
+		const sessions = progress.sessions;
+		if (sessions.length === 0) return;
+		
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		let current = parseInt(skillItem.dataset.current);
+		
+		current += direction;
+		
+		// Bounds: can go from 0 to sessions.length (where sessions.length is the next empty slot)
+		if (current < 0) current = 0;
+		if (current > sessions.length) current = sessions.length;
+		
+		skillItem.dataset.current = current;
+		skillItem.querySelector('.session-counter').textContent = current + 1;
+		
+		// Show stars: if we're at a saved session, show those stars; if at empty slot, show empty
+		if (current < sessions.length) {
+			const session = sessions[current];
+			const stars = skillItem.querySelectorAll('.star');
+			stars.forEach((star, i) => {
+				if (i < session.rating) {
+					star.textContent = '★';
+					star.style.color = '#ffd700';
+				} else {
+					star.textContent = '☆';
+					star.style.color = '#e2e8f0';
+				}
+			});
+		} else {
+			// At empty slot - clear stars
+			const stars = skillItem.querySelectorAll('.star');
+			stars.forEach(star => {
+				star.textContent = '☆';
+				star.style.color = '#e2e8f0';
+			});
+		}
+		
+		// Update arrows
+		const leftBtn = skillItem.querySelector('button:first-child');
+		const rightBtn = skillItem.querySelector('button:last-child');
+		
+		leftBtn.disabled = current <= 0;
+		leftBtn.style.color = current <= 0 ? '#ccc' : '#667eea';
+		
+		rightBtn.disabled = current >= sessions.length;
+		rightBtn.style.color = current >= sessions.length ? '#ccc' : '#667eea';
 	}
 
 	function previewStars(skillIndex, rating) {
@@ -1570,45 +1615,6 @@
 				star.style.color = '#e2e8f0';
 			});
 		}
-	}
-
-	function navigateSession(area, skillIndex, direction) {
-		const progress = getSkillProgress(area, skillIndex);
-		const sessions = progress.sessions;
-		if (sessions.length <= 1) return; // Can't navigate if only 1 or no sessions
-		
-		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
-		let current = parseInt(skillItem.dataset.current);
-		
-		current += direction;
-		if (current < 0) current = 0;
-		if (current >= sessions.length) current = sessions.length - 1;
-		
-		skillItem.dataset.current = current;
-		skillItem.querySelector('.session-counter').textContent = current + 1;
-		
-		// Show saved stars for this session
-		const session = sessions[current];
-		const stars = skillItem.querySelectorAll('.star');
-		stars.forEach((star, i) => {
-			if (i < session.rating) {
-				star.textContent = '★';
-				star.style.color = '#ffd700';
-			} else {
-				star.textContent = '☆';
-				star.style.color = '#e2e8f0';
-			}
-		});
-		
-		// Update arrows
-		const leftBtn = skillItem.querySelector('button:first-child');
-		const rightBtn = skillItem.querySelector('button:last-child');
-		
-		leftBtn.disabled = current <= 0;
-		leftBtn.style.color = current <= 0 ? '#ccc' : '#667eea';
-		
-		rightBtn.disabled = current >= sessions.length - 1;
-		rightBtn.style.color = current >= sessions.length - 1 ? '#ccc' : '#667eea';
 	}
 
 	function rateSkill(area, skillIndex, rating) {
