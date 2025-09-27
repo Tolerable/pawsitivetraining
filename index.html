@@ -177,11 +177,16 @@
         }
 
         /* Training Areas */
-        .training-areas {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 4rem 0;
-            color: white;
-        }
+		.training-areas {
+			background: linear-gradient(135deg, #667eea, #764ba2);
+			padding: 4rem 0;
+			color: white;
+		}
+
+		.training-page .training-areas {
+			background: white;
+			color: #333;
+		}
 
         .training-areas h2 {
             text-align: center;
@@ -195,21 +200,44 @@
             gap: 1.5rem;
         }
 
-        .area-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-        }
+		.area-card {
+			background: rgba(255, 255, 255, 0.1);
+			backdrop-filter: blur(10px);
+			padding: 1.5rem;
+			border-radius: 15px;
+			text-align: center;
+			transition: transform 0.3s ease;
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			cursor: pointer;
+		}
 
-        .area-card:hover {
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.2);
-        }
+		.area-card:hover {
+			transform: translateY(-3px);
+			background: rgba(255, 255, 255, 0.2);
+		}
+
+		.training-page .area-card {
+			background: linear-gradient(135deg, #f7fafc, #edf2f7);
+			border: 1px solid rgba(102, 126, 234, 0.2);
+			box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+			color: #2d3748;
+			backdrop-filter: none;
+		}
+
+		.training-page .area-card:hover {
+			background: linear-gradient(135deg, #edf2f7, #e2e8f0);
+			box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+			transform: translateY(-5px);
+		}
+
+		.training-page .area-card h4 {
+			color: #2d3748;
+		}
+
+		.training-page .area-card p {
+			color: #4a5568;
+			opacity: 1;
+		}
 
         .area-card h4 {
             font-size: 1.2rem;
