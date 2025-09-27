@@ -1315,7 +1315,7 @@
 		function showRegistrationModal() {
 			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
 			const modal = document.getElementById('training-modal');
-			const unlockButton = document.querySelector('#training-modal button[onclick*="submitTrainingCode"], #training-modal button[onclick*="unregister"]');
+			const unlockButton = modal.querySelector('button[onclick="submitTrainingCode()"]') || modal.querySelector('button[onclick="unregister()"]');
 			const codeInput = document.getElementById('training-unlock-code');
 			
 			if (isRegistered) {
@@ -1324,14 +1324,12 @@
 					codeInput.value = currentCode;
 				}
 				
-				// Change to unregister button
 				if (unlockButton) {
 					unlockButton.textContent = 'Unregister';
 					unlockButton.style.background = '#ff6b6b';
-					unlockButton.setAttribute('onclick', 'unregister()');
+					unlockButton.onclick = unregister;
 				}
 			} else {
-				// Reset to unlock button
 				if (codeInput) {
 					codeInput.value = '';
 					codeInput.placeholder = 'Enter 6-character code';
@@ -1340,7 +1338,7 @@
 				if (unlockButton) {
 					unlockButton.textContent = 'Unlock Now';
 					unlockButton.style.background = '#667eea';
-					unlockButton.setAttribute('onclick', 'submitTrainingCode()');
+					unlockButton.onclick = submitTrainingCode;
 				}
 			}
 			
