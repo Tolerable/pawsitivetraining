@@ -663,6 +663,65 @@
 			border-bottom: 1px solid #e2e8f0;
 		}
 
+		.training-steps-tracker {
+			margin-top: 2rem;
+			padding-top: 2rem;
+			border-top: 2px solid #667eea;
+		}
+
+		.step-tracker-item {
+			background: #f8f9ff;
+			border: 1px solid #d1d9ff;
+			border-radius: 8px;
+			padding: 1rem;
+			margin: 0.5rem 0;
+		}
+
+		.step-header {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.step-header .step-number {
+			background: #667eea;
+			color: white;
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 0.8rem;
+			font-weight: bold;
+		}
+
+		.step-header h5 {
+			flex: 1;
+			margin: 0;
+			font-size: 0.9rem;
+		}
+
+		.step-rating {
+			font-weight: bold;
+			color: #667eea;
+			font-size: 0.8rem;
+		}
+
+		.step-actions {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 0.8rem;
+		}
+
+		.recent-ratings {
+			margin-top: 0.5rem;
+			font-size: 0.7rem;
+			color: #666;
+		}
+
         /* Footer */
         footer {
             background: #2d3748;
@@ -1455,24 +1514,27 @@
 		container.innerHTML = skills.map((skill, index) => {
 			const progress = getSkillProgress(area, index);
 			const status = getSkillStatus(progress);
+			const avgRating = progress.sessions.length > 0 
+				? (progress.sessions.reduce((sum, s) => sum + s.rating, 0) / progress.sessions.length).toFixed(1)
+				: 0;
 			
 			return `
 				<div class="skill-item">
 					<div class="skill-header">
-						<h4>${skill}</h4>
+						<h4 style="margin: 0; flex: 1;">${skill}</h4>
 						<span class="skill-status status-${status.toLowerCase()}">${status}</span>
 					</div>
 					<div class="progress-bar">
 						<div class="progress-fill" style="width: ${getProgressPercentage(progress)}%"></div>
 					</div>
 					<div class="attempts-container">
-						<span>Attempts: ${progress.attempts}</span>
+						<span>Attempts: ${progress.attempts} ${avgRating > 0 ? `(Avg: ${avgRating}★)` : ''}</span>
 						<button onclick="logAttempt('${area}', ${index})" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Log Practice</button>
 					</div>
 					${progress.sessions.length > 0 ? `
 						<div class="session-log">
 							<h5>Recent Sessions:</h5>
-							${progress.sessions.slice(-5).map(session => `
+							${progress.sessions.slice(-5).reverse().map(session => `
 								<div class="session-entry">
 									<span>${new Date(session.date).toLocaleDateString()}</span>
 									<span>${'★'.repeat(session.rating)}${'☆'.repeat(5-session.rating)}</span>
