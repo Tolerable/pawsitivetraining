@@ -1406,22 +1406,26 @@
 				<div class="skill-item" data-skill="${index}" data-current="0" data-pending-rating="0">
 					<div style="display: flex; align-items: center; justify-content: space-between;">
 						<button onclick="navigateSession('${area}', ${index}, -1)" 
-								style="background: #ccc; color: white; border: none; font-size: 1.8rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 6px;" 
+								style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #ccc; padding: 0.2rem;" 
 								disabled>◀</button>
 						
-						<div style="text-align: center; flex: 1; padding: 0 1rem;">
-							<div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 0.3rem;">
-								<span style="background: #667eea; color: white; padding: 0.2rem 0.5rem; border-radius: 12px; font-size: 0.8rem; font-weight: bold;" class="session-counter">1</span>
-								<h4 style="margin: 0; font-size: 1rem; color: #2d3748;">${skill}</h4>
+						<div style="text-align: center; flex: 1;">
+							<div style="margin-bottom: 0.3rem;">
+								<span style="background: #667eea; color: white; padding: 0.1rem 0.4rem; border-radius: 10px; font-size: 0.7rem; margin-right: 0.5rem;" class="session-counter">1</span>
+								<span style="font-size: 0.9rem; color: #2d3748; font-weight: bold;">${skill}</span>
 							</div>
-							<div class="star-rating" style="margin: 0.3rem 0;" onmouseleave="resetStarDisplay('${area}', ${index})">
-								${[1,2,3,4,5].map(i => `<span class="star" onmouseover="previewStars(${index}, ${i})" onclick="setStarRating('${area}', ${index}, ${i})" style="font-size: 2rem; margin: 0 0.1rem;">☆</span>`).join('')}
+							<div class="star-rating" style="margin: 0.2rem 0;" onmouseleave="resetStarDisplay('${area}', ${index})">
+								${[1,2,3,4,5].map(i => `<span class="star" onmouseover="previewStars(${index}, ${i})" onclick="setStarRating('${area}', ${index}, ${i})" style="font-size: 2.2rem; margin: 0 0.3rem;">☆</span>`).join('')}
 							</div>
-							<div style="font-size: 0.7rem; color: #666;">Sessions: ${progress.attempts}/7 | <span onclick="saveCurrentRating('${area}', ${index})" style="color: #ff6b6b; cursor: pointer; text-decoration: underline;">Save</span> | <span onclick="resetRating(${index})" style="color: #4a5568; cursor: pointer; text-decoration: underline;">Reset</span></div>
+							<div style="font-size: 0.7rem; color: #666;">
+								Sessions: ${progress.attempts}/7 | 
+								<span onclick="saveCurrentRating('${area}', ${index})" style="color: #ff6b6b; cursor: pointer;">Save</span> | 
+								<span onclick="resetRating(${index})" style="color: #4a5568; cursor: pointer;">Reset</span>
+							</div>
 						</div>
 						
 						<button onclick="navigateSession('${area}', ${index}, 1)" 
-								style="background: #667eea; color: white; border: none; font-size: 1.8rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 6px;">▶</button>
+								style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #667eea; padding: 0.2rem;">▶</button>
 					</div>
 				</div>
 			`;
