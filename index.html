@@ -678,8 +678,69 @@
 			padding: 2rem 0;
 		}
 
-		/* Responsive */
+		#cookie-banner {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: #2d3748;
+			color: white;
+			padding: 15px 20px;
+			z-index: 10000;
+			border-top: 2px solid #667eea;
+			display: none;
+		}
+
+		#cookie-banner.show {
+			display: block;
+		}
+
+		.cookie-content {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 20px;
+		}
+
+		.cookie-text {
+			flex: 1;
+			font-size: 14px;
+			line-height: 1.4;
+		}
+
+		.cookie-buttons {
+			display: flex;
+			gap: 10px;
+		}
+
+		.cookie-btn {
+			padding: 8px 16px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: bold;
+		}
+
+		.cookie-accept {
+			background: #667eea;
+			color: white;
+		}
+
+		.cookie-decline {
+			background: #4a5568;
+			color: white;
+			border: 1px solid #667eea;
+		}
+
 		@media (max-width: 768px) {
+			.cookie-content {
+				flex-direction: column;
+				text-align: center;
+			}
+
 			.hero h1 {
 				font-size: 2.5rem;
 			}
@@ -2375,8 +2436,55 @@
 		// Show email when page loads
 		document.addEventListener('DOMContentLoaded', showEmail);
 		
-    </script>
+
+		// Cookie banner functionality
+		function showCookieBanner() {
+			const consent = localStorage.getItem('cookieConsent');
+			if (!consent) {
+				document.getElementById('cookie-banner').classList.add('show');
+			}
+		}
+
+		function acceptCookies() {
+			localStorage.setItem('cookieConsent', 'accepted');
+			document.getElementById('cookie-banner').classList.remove('show');
+			// Google Analytics is already loaded, so just note consent
+			gtag('consent', 'update', {
+				'analytics_storage': 'granted'
+			});
+		}
+
+		function declineCookies() {
+			localStorage.setItem('cookieConsent', 'declined');
+			document.getElementById('cookie-banner').classList.remove('show');
+			// Disable Google Analytics
+			gtag('consent', 'update', {
+				'analytics_storage': 'denied'
+			});
+			// Optionally redirect or just disable tracking
+			console.log('Analytics disabled per user request');
+		}
+
+		function showPrivacyInfo() {
+			alert('We only use Google Analytics to track page views and improve our content. No personal information is collected or shared. You can opt out anytime by clearing your browser data.');
+		}
+
+		// Show banner on page load
+		document.addEventListener('DOMContentLoaded', showCookieBanner);
+		</script>
 	
+	<div id="cookie-banner">
+		<div class="cookie-content">
+			<div class="cookie-text">
+				We use Google Analytics to understand how visitors use our site and improve your experience. 
+				<a href="#" onclick="showPrivacyInfo()" style="color: #667eea;">Learn more</a>
+			</div>
+			<div class="cookie-buttons">
+				<button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+				<button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+			</div>
+		</div>
+	</div>
 	
 </body>
 </html>
