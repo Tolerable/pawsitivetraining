@@ -1239,29 +1239,29 @@
 
 	<div id="ai-modal" class="modal">
 		<div class="modal-content" style="width: 90vw; max-width: 800px; height: 80vh; max-height: 600px; display: flex; flex-direction: column;">
-			<div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 20px 10px 20px; border-bottom: 1px solid #667eea;">
-				<h2 style="margin: 0;">🤖 AI Training Assistant</h2>
-				<span class="close" onclick="closeAIModal()" style="position: static; margin: 0;">&times;</span>
+			<div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #667eea; background: white;">
+				<h2 style="margin: 0; color: #667eea; font-size: 18px;">🤖 AI Training Assistant</h2>
+				<span class="close" onclick="closeAIModal()" style="position: static; margin: 0; width: 28px; height: 28px; font-size: 18px;">&times;</span>
 			</div>
 			
-			<div id="chat-container" style="flex: 1; overflow-y: auto; border: none; padding: 20px; background: #f7fafc; margin: 0;">
-				<div class="ai-message">
+			<div id="chat-container" style="flex: 1; overflow-y: auto; padding: 20px; background: #f7fafc; margin: 0; min-height: 300px;">
+				<div class="ai-message" style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #667eea;">
 					<strong>AI Assistant:</strong> Hello! I'm here to help with your dog training questions using science-based LIMA methods. What training challenge can I help you with today?
 				</div>
 			</div>
 			
-			<div style="padding: 20px; border-top: 1px solid #667eea; background: white;">
-				<div style="display: flex; gap: 10px; margin-bottom: 10px;">
-					<input type="text" id="user-input" placeholder="Ask about your dog's training..." style="flex: 1; padding: 12px; border: 1px solid #667eea; border-radius: 5px; font-size: 16px;">
-					<button onclick="sendMessage()" style="padding: 12px 24px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; white-space: nowrap;">Send</button>
+			<div style="padding: 15px 20px; border-top: 1px solid #667eea; background: white; flex-shrink: 0;">
+				<div style="display: flex; gap: 10px; align-items: stretch;">
+					<input type="text" id="user-input" placeholder="Ask about your dog's training..." style="flex: 1; padding: 12px; border: 1px solid #667eea; border-radius: 5px; font-size: 14px; min-width: 0;">
+					<button onclick="sendMessage()" style="padding: 12px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; white-space: nowrap; flex-shrink: 0;">Send</button>
 				</div>
-				<div style="font-size: 11px; color: #666; text-align: center;">
+				<div style="font-size: 11px; color: #666; text-align: center; margin-top: 8px;">
 					AI by <a href="https://pollinations.ai" target="_blank" style="color: #667eea;">Pollinations.ai</a> • AI can make mistakes • Consult professionals for serious issues
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
     <footer>
         <div class="container">
             <p>&copy; 2025 Pawsitive Training. Building better relationships through science-based methods.</p>
