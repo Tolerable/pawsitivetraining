@@ -1256,13 +1256,13 @@
 			// Initialize training areas
 			initializeTrainingAreas();
 			
-			// Update unlock button if already registered
+			// Update unlock button appearance if registered, but keep it clickable
 			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
 			const unlockBtn = document.querySelector('.nav-links a[onclick*="showRegistrationModal"]');
 			if (isRegistered && unlockBtn) {
 				unlockBtn.textContent = '✅ REGISTERED';
 				unlockBtn.style.background = '#4fd1c7';
-				unlockBtn.onclick = null;
+				// Keep onclick functional - don't remove it
 			}
 			
 			// Modal event handlers
