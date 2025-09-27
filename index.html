@@ -1400,7 +1400,7 @@
 		const container = document.getElementById('skills-container');
 		
 		container.innerHTML = skills.map((skill, index) => {
-			const progress = getSkillProgress(area, skillIndex);
+			const progress = getSkillProgress(area, index);
 			
 			return `
 				<div class="skill-item" data-skill="${index}" data-current="0" data-pending-rating="0">
