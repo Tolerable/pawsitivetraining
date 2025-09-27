@@ -1402,22 +1402,25 @@
 		container.innerHTML = skills.map((skill, index) => {
 			const progress = getSkillProgress(area, index);
 			const sessions = progress.sessions;
-			const currentIndex = sessions.length > 0 ? sessions.length - 1 : -1;
+			const currentSessionIndex = sessions.length > 0 ? sessions.length - 1 : -1;
 			
 			return `
-				<div class="skill-item">
+				<div class="skill-item" data-skill="${index}" data-current="0">
 					<div style="display: flex; align-items: center; justify-content: space-between;">
-						<button onclick="navigateSession('${area}', ${index}, -1)" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: #667eea;" ${sessions.length <= 1 ? 'disabled style="color: #ccc;"' : ''}>&lt;</button>
+						<button onclick="navigateSession('${area}', ${index}, -1)" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: #ccc;" disabled>&lt;</button>
 						
 						<div style="text-align: center; flex: 1;">
-							<h4 style="margin: 0 0 0.5rem 0; font-size: 1rem;">${skill}</h4>
+							<div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
+								<span style="background: #667eea; color: white; padding: 0.2rem 0.6rem; border-radius: 15px; font-size: 0.8rem; font-weight: bold;" class="session-counter">1</span>
+								<h4 style="margin: 0; font-size: 1rem;">${skill}</h4>
+							</div>
 							<div class="star-rating">
 								${[1,2,3,4,5].map(i => `<span class="star" onclick="rateSkill('${area}', ${index}, ${i})">★</span>`).join('')}
 							</div>
 							<div style="font-size: 0.8rem; color: #666; margin-top: 0.3rem;">Sessions: ${progress.attempts}</div>
 						</div>
 						
-						<button onclick="navigateSession('${area}', ${index}, 1)" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: #667eea;" ${sessions.length <= 1 ? 'disabled style="color: #ccc;"' : ''}>&gt;</button>
+						<button onclick="navigateSession('${area}', ${index}, 1)" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: ${sessions.length > 1 ? '#667eea' : '#ccc'};" ${sessions.length <= 1 ? 'disabled' : ''}>&gt;</button>
 					</div>
 				</div>
 			`;
@@ -1426,26 +1429,37 @@
 
 	function navigateSession(area, skillIndex, direction) {
 		const progress = getSkillProgress(area, skillIndex);
-		const navigator = document.querySelector(`[data-skill="${skillIndex}"]`);
-		let current = parseInt(navigator.dataset.current);
+		const sessions = progress.sessions;
+		if (sessions.length <= 1) return;
+		
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		let current = parseInt(skillItem.dataset.current);
 		
 		current += direction;
 		if (current < 0) current = 0;
-		if (current >= progress.sessions.length) current = progress.sessions.length - 1;
+		if (current >= sessions.length) current = sessions.length - 1;
 		
-		navigator.dataset.current = current;
+		skillItem.dataset.current = current;
 		
-		const session = progress.sessions[current];
-		navigator.querySelector('.session-stars').innerHTML = 
-			[1,2,3,4,5].map(i => `<span class="star ${i <= session.rating ? 'active' : ''}">★</span>`).join('');
-		navigator.querySelector('.session-date').textContent = new Date(session.date).toLocaleDateString();
-		navigator.querySelector('.nav-arrows span').textContent = `Session ${current + 1} of ${progress.sessions.length}`;
+		// Update session counter (1-based display)
+		skillItem.querySelector('.session-counter').textContent = current + 1;
+		
+		// Update stars to show the rating for this session
+		const session = sessions[current];
+		const stars = skillItem.querySelectorAll('.star');
+		stars.forEach((star, i) => {
+			star.className = i < session.rating ? 'star active' : 'star';
+		});
 		
 		// Update arrow states
-		const prevBtn = navigator.querySelector('.nav-arrows button:first-child');
-		const nextBtn = navigator.querySelector('.nav-arrows button:last-child');
-		prevBtn.disabled = current <= 0;
-		nextBtn.disabled = current >= progress.sessions.length - 1;
+		const leftBtn = skillItem.querySelector('button:first-child');
+		const rightBtn = skillItem.querySelector('button:last-child');
+		
+		leftBtn.disabled = current <= 0;
+		leftBtn.style.color = current <= 0 ? '#ccc' : '#667eea';
+		
+		rightBtn.disabled = current >= sessions.length - 1;
+		rightBtn.style.color = current >= sessions.length - 1 ? '#ccc' : '#667eea';
 	}
 
 	function rateSkill(area, skillIndex, rating) {
