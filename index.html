@@ -1185,7 +1185,7 @@
 			const areaCards = document.querySelectorAll('.area-card');
 			
 			areaCards.forEach(card => {
-				const onclick = card.getAttribute('onclick');
+				const onclick = card.getAttribute('onclick') || card.dataset.originalOnclick;
 				if (!onclick) return;
 				
 				const areaName = onclick.match(/showTrainingPage\('([^']+)'\)/)?.[1];
@@ -1193,16 +1193,21 @@
 				
 				if (!isRegistered && !DEMO_TRAINING_AREAS.includes(areaName)) {
 					card.classList.add('locked');
-					card.dataset.originalOnclick = onclick;
+					if (!card.dataset.originalOnclick) {
+						card.dataset.originalOnclick = onclick;
+					}
 					card.removeAttribute('onclick');
 					card.addEventListener('click', function(e) {
 						e.preventDefault();
 						e.stopPropagation();
 						showRegistrationModal();
 					});
-				} else if (isRegistered && card.dataset.originalOnclick) {
+				} else if (isRegistered) {
 					card.classList.remove('locked');
-					card.setAttribute('onclick', card.dataset.originalOnclick);
+					const originalOnclick = card.dataset.originalOnclick || onclick;
+					card.setAttribute('onclick', originalOnclick);
+					// Remove the modal click listener
+					card.replaceWith(card.cloneNode(true));
 				}
 			});
 		}
