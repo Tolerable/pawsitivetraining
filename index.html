@@ -450,34 +450,76 @@
 
 		.modal-content {
 			background-color: #2d3748;
-			margin: 15% auto;
-			padding: 20px;
+			margin: 10% auto;
+			padding: 30px;
 			border: 2px solid #667eea;
-			border-radius: 10px;
-			width: 300px;
+			border-radius: 15px;
+			width: 450px;
+			max-width: 90vw;
 			position: relative;
 			color: white;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+		}
+
+		.close {
+			position: absolute;
+			top: 15px;
+			right: 20px;
+			color: #aaa;
+			font-size: 24px;
+			font-weight: bold;
+			cursor: pointer;
+			background: rgba(255,255,255,0.1);
+			border: 1px solid rgba(255,255,255,0.2);
+			border-radius: 6px;
+			width: 32px;
+			height: 32px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.3s ease;
+		}
+
+		.close:hover {
+			color: white;
+			background: rgba(255,255,255,0.2);
+			border-color: #667eea;
+		}
+
+		.modal-content h2 {
+			color: #667eea;
+			margin-bottom: 20px;
+			font-size: 24px;
 		}
 
 		.modal-content input {
 			width: 100%;
-			padding: 8px;
-			margin: 10px 0;
+			padding: 12px;
+			margin: 15px 0;
 			background: #4a5568;
 			border: 1px solid #667eea;
-			border-radius: 4px;
+			border-radius: 8px;
 			color: white;
+			font-size: 16px;
+			text-align: center;
+			letter-spacing: 2px;
 		}
 
 		.modal-content button {
 			background: #667eea;
 			color: white;
 			border: none;
-			padding: 8px 20px;
-			border-radius: 4px;
+			padding: 12px 20px;
+			border-radius: 8px;
 			cursor: pointer;
 			width: 100%;
 			margin-top: 10px;
+			font-size: 16px;
+			transition: background 0.3s ease;
+		}
+
+		.modal-content button:hover {
+			background: #5a67d8;
 		}
 
 		.secondary-btn {
@@ -485,21 +527,27 @@
 			border: 1px solid #667eea;
 		}
 
+		.secondary-btn:hover {
+			background: #667eea;
+		}
+
 		.premium-info {
 			background: rgba(102, 126, 234, 0.1);
 			border-left: 3px solid #667eea;
-			padding: 10px;
-			margin: 10px 0;
-			border-radius: 5px;
+			padding: 15px;
+			margin: 15px 0;
+			border-radius: 8px;
 		}
 
 		.premium-features {
 			list-style: none;
 			padding: 0;
+			margin: 10px 0;
 		}
 
 		.premium-features li {
-			margin: 5px 0;
+			margin: 8px 0;
+			padding-left: 5px;
 		}
 
         /* Footer */
@@ -532,6 +580,12 @@
             .areas-grid {
                 grid-template-columns: 1fr;
             }
+			
+			.modal-content {
+				width: 350px;
+				padding: 25px;
+			}			
+			
         }
     </style>
 </head>
@@ -1148,19 +1202,18 @@
             showPage(trainingType);
         }
 
-        // Add smooth scrolling for anchor links within pages
-        document.addEventListener('click', function(e) {
-            if (e.target.matches('a[href^="#"]')) {
-                e.preventDefault();
-                const target = document.querySelector(e.target.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
+		document.addEventListener('click', function(e) {
+			if (e.target.tagName === 'A' && e.target.getAttribute('href') && e.target.getAttribute('href').startsWith('#')) {
+				e.preventDefault();
+				const target = document.querySelector(e.target.getAttribute('href'));
+				if (target) {
+					target.scrollIntoView({
+						behavior: 'smooth',
+						block: 'start'
+					});
+				}
+			}
+		});
 
         // Add animation triggers on page load
         function initAnimations() {
