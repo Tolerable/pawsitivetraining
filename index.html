@@ -1451,7 +1451,16 @@
 
 	function resetRating(skillIndex) {
 		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		
+		// Clear pending rating
 		skillItem.dataset.pendingRating = 0;
+		
+		// Reset navigation to session 1
+		skillItem.dataset.current = 0;
+		
+		// Update session counter to show 1
+		const sessionCounter = skillItem.querySelector('.session-counter');
+		sessionCounter.textContent = '1';
 		
 		// Clear all stars
 		const stars = skillItem.querySelectorAll('.star');
@@ -1459,6 +1468,20 @@
 			star.textContent = '☆';
 			star.style.color = '#e2e8f0';
 		});
+		
+		// Reset arrow states
+		const leftBtn = skillItem.querySelector('button:first-child');
+		const rightBtn = skillItem.querySelector('button:last-child');
+		
+		leftBtn.disabled = true;
+		leftBtn.style.color = '#ccc';
+		
+		// Check if there are sessions to navigate to
+		const progress = getSkillProgress(skillItem.closest('.skill-item').dataset.area || 'housebreaking', skillIndex);
+		if (progress.sessions.length > 1) {
+			rightBtn.disabled = false;
+			rightBtn.style.color = '#667eea';
+		}
 	}
 
 	function saveCurrentRating(area, skillIndex) {
@@ -1528,26 +1551,35 @@
 		
 		current += direction;
 		if (current < 0) current = 0;
-		if (current >= Math.min(sessions.length, 7)) current = Math.min(sessions.length, 7) - 1;
+		if (current >= sessions.length) current = sessions.length - 1;
 		
 		skillItem.dataset.current = current;
 		
-		// Update session counter
+		// Update session counter (1-based display)
 		skillItem.querySelector('.session-counter').textContent = current + 1;
 		
-		// Show stars for this session (read-only)
+		// Show stars for this session (read-only when navigating)
 		const session = sessions[current];
-		previewStars(skillIndex, session.rating);
+		const stars = skillItem.querySelectorAll('.star');
+		stars.forEach((star, i) => {
+			if (i < session.rating) {
+				star.textContent = '★';
+				star.style.color = '#ffd700';
+			} else {
+				star.textContent = '☆';
+				star.style.color = '#e2e8f0';
+			}
+		});
 		
 		// Update arrow states
 		const leftBtn = skillItem.querySelector('button:first-child');
 		const rightBtn = skillItem.querySelector('button:last-child');
 		
 		leftBtn.disabled = current <= 0;
-		leftBtn.style.background = current <= 0 ? '#ccc' : '#667eea';
+		leftBtn.style.color = current <= 0 ? '#ccc' : '#667eea';
 		
-		rightBtn.disabled = current >= Math.min(sessions.length, 7) - 1;
-		rightBtn.style.background = current >= Math.min(sessions.length, 7) - 1 ? '#ccc' : '#667eea';
+		rightBtn.disabled = current >= sessions.length - 1;
+		rightBtn.style.color = current >= sessions.length - 1 ? '#ccc' : '#667eea';
 	}
 
 	function rateSkill(area, skillIndex, rating) {
