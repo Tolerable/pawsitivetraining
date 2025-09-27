@@ -24,6 +24,15 @@
             padding: 0 20px;
         }
 
+        /* Page visibility */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
         /* Header */
         header {
             background: rgba(255, 255, 255, 0.95);
@@ -49,6 +58,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
         }
 
         .logo::before {
@@ -67,6 +77,7 @@
             color: #4a5568;
             font-weight: 500;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -107,6 +118,8 @@
             font-size: 1.1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            cursor: pointer;
+            border: none;
         }
 
         .cta-button:hover {
@@ -178,7 +191,7 @@
 
         .areas-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
         }
 
@@ -265,6 +278,97 @@
             backdrop-filter: blur(5px);
         }
 
+        /* Training Page Styles */
+        .training-page {
+            background: white;
+            padding: 6rem 0 4rem 0;
+            min-height: 100vh;
+        }
+
+        .training-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .training-header h1 {
+            font-size: 2.8rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .training-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            background: #667eea;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #5a67d8;
+        }
+
+        .training-steps {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .step {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .step h3 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+
+        .tips-section {
+            background: linear-gradient(135deg, #e6fffa, #f0fff4);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid #4fd1c7;
+        }
+
+        .troubleshooting {
+            background: linear-gradient(135deg, #fef5e7, #fefcbf);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid #f6ad55;
+        }
+
         /* Footer */
         footer {
             background: #2d3748;
@@ -291,45 +395,34 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+            .areas-grid {
+                grid-template-columns: 1fr;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out;
         }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
-            <div class="logo">Pawsitive Training</div>
+            <div class="logo" onclick="showPage('home')">Pawsitive Training</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#training">Training Areas</a></li>
-                <li><a href="#about">About LIMA</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('training-list')">Training Areas</a></li>
+                <li><a onclick="showPage('about')">About LIMA</a></li>
+                <li><a onclick="showPage('resources')">Resources</a></li>
+                <li><a onclick="showPage('contact')">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section class="hero" id="home">
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
             <div class="container">
-                <h1 class="fade-in">Science-Based Dog Training</h1>
-                <p class="fade-in">Build a stronger bond with your dog using proven, humane training methods</p>
-                <a href="#training" class="cta-button fade-in">Start Training Now</a>
+                <h1>Science-Based Dog Training</h1>
+                <p>Build a stronger bond with your dog using proven, humane training methods</p>
+                <button class="cta-button" onclick="showPage('training-list')">Start Training Now</button>
             </div>
         </section>
 
@@ -371,47 +464,51 @@
             </div>
         </section>
 
-        <section class="training-areas" id="training">
+        <section class="training-areas">
             <div class="container">
                 <h2>Common Training Areas</h2>
                 <div class="areas-grid">
-                    <div class="area-card" onclick="handleTrainingArea('housebreaking')">
+                    <div class="area-card" onclick="showTrainingPage('housebreaking')">
                         <h4>🏠 Housebreaking</h4>
                         <p>Establish reliable potty habits with positive reinforcement techniques</p>
                     </div>
-                    <div class="area-card" onclick="handleTrainingArea('leash')">
+                    <div class="area-card" onclick="showTrainingPage('leash')">
                         <h4>🚶‍♂️ Leash Training</h4>
                         <p>Enjoy peaceful walks without pulling or reactivity</p>
                     </div>
-                    <div class="area-card" onclick="handleTrainingArea('jumping')">
+                    <div class="area-card" onclick="showTrainingPage('jumping')">
                         <h4>🐕 Jumping on People</h4>
                         <p>Teach polite greetings and appropriate social behavior</p>
                     </div>
-                    <div class="area-card" onclick="handleTrainingArea('barking')">
+                    <div class="area-card" onclick="showTrainingPage('barking')">
                         <h4>🔊 Excessive Barking</h4>
                         <p>Address barking with positive alternatives and management</p>
                     </div>
-                    <div class="area-card" onclick="handleTrainingArea('separation')">
+                    <div class="area-card" onclick="showTrainingPage('separation')">
                         <h4>😰 Separation Anxiety</h4>
                         <p>Build confidence and reduce stress when left alone</p>
                     </div>
-                    <div class="area-card" onclick="handleTrainingArea('aggression')">
+                    <div class="area-card" onclick="showTrainingPage('aggression')">
                         <h4>⚠️ Reactivity & Aggression</h4>
                         <p>Safe, systematic approaches to behavioral challenges</p>
                     </div>
-                    <div class="area-card" onclick="handleTrainingArea('recall')">
+                    <div class="area-card" onclick="showTrainingPage('recall')">
                         <h4>📞 Recall Training</h4>
                         <p>Reliable come-when-called for safety and freedom</p>
                     </div>
-                    <div class="area-card" onclick="handleTrainingArea('basic')">
+                    <div class="area-card" onclick="showTrainingPage('basic')">
                         <h4>📚 Basic Obedience</h4>
                         <p>Sit, stay, down, and essential life skills</p>
+                    </div>
+                    <div class="area-card" onclick="showTrainingPage('resource-guarding')">
+                        <h4>🦴 Resource Guarding</h4>
+                        <p>Teach your dog to share food, toys, and spaces safely</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="lima-section" id="about">
+        <section class="lima-section">
             <div class="container">
                 <div class="lima-content">
                     <div class="lima-text">
@@ -440,7 +537,403 @@
                 </div>
             </div>
         </section>
-    </main>
+    </div>
+
+    <!-- TRAINING LIST PAGE -->
+    <div id="training-list" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+                <div class="training-header">
+                    <h1>Training Areas</h1>
+                    <p>Choose your training focus area to get detailed, step-by-step guidance using proven LIMA methods.</p>
+                </div>
+                <div class="areas-grid">
+                    <div class="area-card" onclick="showTrainingPage('housebreaking')">
+                        <h4>🏠 Housebreaking</h4>
+                        <p>Establish reliable potty habits with positive reinforcement techniques</p>
+                    </div>
+                    <div class="area-card" onclick="showTrainingPage('leash')">
+                        <h4>🚶‍♂️ Leash Training</h4>
+                        <p>Enjoy peaceful walks without pulling or reactivity</p>
+                    </div>
+                    <div class="area-card" onclick="showTrainingPage('jumping')">
+                        <h4>🐕 Jumping on People</h4>
+                        <p>Teach polite greetings and appropriate social behavior</p>
+                    </div>
+                    <div class="area-card" onclick="showTrainingPage('barking')">
+                        <h4>🔊 Excessive Barking</h4>
+                        <p>Address barking with positive alternatives and management</p>
+                    </div>
+                    <div class="area-card" onclick="showTrainingPage('separation')">
+                        <h4>😰 Separation Anxiety</h4>
+                        <p>Build confidence and reduce stress when left alone</p>
+                    </div>
+                    <div class="area-card" onclick="showTrainingPage('aggression')">
+                        <h4>⚠️ Reactivity & Aggression</h4>
+                        <p>Safe, systematic approaches to behavioral challenges</p>
+                    </div>
+                    <div class="area-card" onclick="showTrainingPage('recall')">
+                        <h4>📞 Recall Training</h4>
+                        <p>Reliable come-when-called for safety and freedom</p>
+                    </div>
+                    <div class="area-card" onclick="showTrainingPage('basic')">
+                        <h4>📚 Basic Obedience</h4>
+                        <p>Sit, stay, down, and essential life skills</p>
+                    </div>
+                    <div class="area-card" onclick="showTrainingPage('resource-guarding')">
+                        <h4>🦴 Resource Guarding</h4>
+                        <p>Teach your dog to share food, toys, and spaces safely</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOUSEBREAKING TRAINING PAGE -->
+    <div id="housebreaking" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+                <div class="training-header">
+                    <h1>🏠 Housebreaking Training</h1>
+                    <p>Build reliable potty habits using positive reinforcement and consistent management.</p>
+                </div>
+
+                <div class="training-steps">
+                    <h2>Step-by-Step Training Plan</h2>
+                    
+                    <div class="step">
+                        <h3><span class="step-number">1</span>Establish a Schedule</h3>
+                        <p>Take your dog outside first thing in the morning, after meals, after naps, after play sessions, and last thing at night. Puppies need to go out every 1-2 hours.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">2</span>Choose a Potty Spot</h3>
+                        <p>Take your dog to the same area each time. Stay with them and wait quietly. The familiar scent will help trigger the behavior.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">3</span>Use a Cue Word</h3>
+                        <p>While your dog is eliminating, quietly say a cue word like "potty" or "go bathroom." Eventually, they'll associate this word with the action.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">4</span>Reward Immediately</h3>
+                        <p>The moment your dog finishes going potty outside, give enthusiastic praise and a high-value treat. Make it the best thing that happens all day!</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">5</span>Supervise Indoors</h3>
+                        <p>Watch for signs like sniffing, circling, or heading to the door. Immediately take them outside if you see these behaviors.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">6</span>Manage When You Can't Watch</h3>
+                        <p>Use a crate, playpen, or tether your dog to you. Dogs naturally avoid soiling their sleeping area when properly sized.</p>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <h3>💡 Pro Tips</h3>
+                    <ul>
+                        <li>Clean accidents with enzymatic cleaner to remove odor completely</li>
+                        <li>Never punish accidents - just clean up and increase supervision</li>
+                        <li>Gradually increase freedom as success rate improves</li>
+                        <li>Adult dogs should be able to hold it for their age in months + 1 hour</li>
+                    </ul>
+                </div>
+
+                <div class="troubleshooting">
+                    <h3>🔧 Troubleshooting Common Issues</h3>
+                    <p><strong>Still having accidents after weeks:</strong> Check with your vet to rule out medical issues. Increase supervision and return to more frequent potty breaks.</p>
+                    <p><strong>Goes outside but also inside:</strong> You may be giving too much freedom too soon. Restrict access to areas where accidents happen.</p>
+                    <p><strong>Won't go outside:</strong> Make sure the outdoor area feels safe and comfortable. Try different locations or times of day.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEASH TRAINING PAGE -->
+    <div id="leash" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+                <div class="training-header">
+                    <h1>🚶‍♂️ Leash Training</h1>
+                    <p>Teach your dog to walk politely on leash without pulling using positive methods.</p>
+                </div>
+
+                <div class="training-steps">
+                    <h2>Step-by-Step Training Plan</h2>
+                    
+                    <div class="step">
+                        <h3><span class="step-number">1</span>Choose the Right Equipment</h3>
+                        <p>Use a standard 6-foot leash and a properly fitted flat collar or front-clip harness. Avoid retractable leashes during training.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">2</span>Start Indoors</h3>
+                        <p>Practice walking with the leash attached inside your home. Let your dog get comfortable with the feeling before going outside.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">3</span>Be a Tree</h3>
+                        <p>When your dog pulls, immediately stop moving and stand still. Don't move forward until the leash is loose. No jerking or pulling back.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">4</span>Reward Position</h3>
+                        <p>The moment your dog returns to your side or the leash becomes loose, praise and reward with treats. Mark the position you want.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">5</span>Use Direction Changes</h3>
+                        <p>When your dog pulls, turn and walk in the opposite direction. Reward when they catch up and the leash is loose.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">6</span>Practice "Check-ins"</h3>
+                        <p>Reward your dog whenever they look at you during the walk. This builds attention and connection.</p>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <h3>💡 Pro Tips</h3>
+                    <ul>
+                        <li>Keep training sessions short (5-10 minutes) to prevent frustration</li>
+                        <li>Use high-value treats that your dog only gets during leash training</li>
+                        <li>Practice in low-distraction areas before increasing difficulty</li>
+                        <li>Be patient - loose leash walking takes time to master</li>
+                    </ul>
+                </div>
+
+                <div class="troubleshooting">
+                    <h3>🔧 Troubleshooting Common Issues</h3>
+                    <p><strong>Still pulls after weeks:</strong> Make sure you're being 100% consistent. Any forward movement while the leash is tight rewards the pulling.</p>
+                    <p><strong>Gets too excited outside:</strong> Practice more indoors and in your yard before tackling walks in stimulating environments.</p>
+                    <p><strong>Pulls toward other dogs:</strong> Increase distance from triggers and work on the "look at me" command for redirecting attention.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+                <div class="training-header">
+                    <h1>About LIMA Training</h1>
+                    <p>Learn about the science-based approach that prioritizes your dog's well-being while achieving reliable results.</p>
+                </div>
+
+                <div class="lima-content">
+                    <div class="lima-text">
+                        <h2>What is LIMA?</h2>
+                        <p><strong>LIMA</strong> stands for <strong>Least Intrusive, Minimally Aversive</strong>. It's a training philosophy endorsed by leading animal behavior organizations worldwide, including the International Association of Animal Behavior Consultants (IAABC) and the Association of Professional Dog Trainers (APDT).</p>
+                        
+                        <h2>The Science Behind LIMA</h2>
+                        <p>Modern research shows that dogs learn best through positive reinforcement. Studies consistently demonstrate that reward-based training:</p>
+                        <ul class="lima-principles">
+                            <li>Creates stronger human-dog bonds</li>
+                            <li>Reduces stress and anxiety</li>
+                            <li>Leads to more reliable behavior</li>
+                            <li>Prevents fear-based aggression</li>
+                            <li>Results in happier, more confident dogs</li>
+                        </ul>
+
+                        <h2>Why Not Dominance Training?</h2>
+                        <p>The old "alpha dog" theory has been thoroughly debunked by modern science. Dominance-based training can actually increase aggression, anxiety, and fear while damaging the trust between you and your dog.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESOURCES PAGE -->
+    <div id="resources" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+                <div class="training-header">
+                    <h1>Training Resources</h1>
+                    <p>Additional tools and information to support your training journey.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Recommended Reading</h3>
+                        <p>Essential books on positive reinforcement training and canine behavior science.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎥</div>
+                        <h3>Training Videos</h3>
+                        <p>Step-by-step video demonstrations of key training techniques and exercises.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛍️</div>
+                        <h3>Equipment Guide</h3>
+                        <p>Recommended training tools, treats, and equipment for effective positive training.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👨‍⚕️</div>
+                        <h3>Find a Trainer</h3>
+                        <p>Locate LIMA-certified trainers and behavior consultants in your area.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Behavior Science</h3>
+                        <p>Learn about the science behind how dogs learn and why positive methods work best.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">❓</div>
+                        <h3>FAQ</h3>
+                        <p>Answers to the most common questions about positive reinforcement training.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+                <div class="training-header">
+                    <h1>Contact Us</h1>
+                    <p>Get in touch for personalized training support and guidance.</p>
+                </div>
+
+                <div class="lima-content">
+                    <div class="lima-text">
+                        <h2>Get Help With Your Training</h2>
+                        <p>Every dog is unique, and sometimes you need personalized guidance to address specific challenges. Our team of LIMA-certified trainers is here to help.</p>
+                        
+                        <div class="tips-section">
+                            <h3>📧 Email Support</h3>
+                            <p>Send us a detailed description of your training challenge and we'll provide personalized guidance within 24 hours.</p>
+                            <p><strong>Email:</strong> help@pawsitive-training.com</p>
+                        </div>
+
+                        <div class="tips-section">
+                            <h3>💬 Live Chat</h3>
+                            <p>Get instant answers to your training questions during business hours (9 AM - 6 PM EST).</p>
+                        </div>
+
+                        <div class="tips-section">
+                            <h3>🎥 Virtual Consultations</h3>
+                            <p>Book a one-on-one video session with a certified trainer for complex behavioral issues.</p>
+                        </div>
+                    </div>
+                    <div class="lima-visual">
+                        <div class="hierarchy-pyramid">
+                            <h3>Emergency Situations</h3>
+                            <div class="pyramid-level">If your dog shows signs of aggression, contact a professional immediately</div>
+                            <div class="pyramid-level">Always prioritize safety for both humans and dogs</div>
+                            <div class="pyramid-level">Don't attempt to train aggressive behaviors on your own</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add more training pages for other topics -->
+    <div id="jumping" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+                <div class="training-header">
+                    <h1>🐕 Jumping on People</h1>
+                    <p>Teach your dog to greet people politely without jumping up.</p>
+                </div>
+
+                <div class="training-steps">
+                    <h2>Step-by-Step Training Plan</h2>
+                    
+                    <div class="step">
+                        <h3><span class="step-number">1</span>Ignore the Jumping</h3>
+                        <p>When your dog jumps, immediately turn away, fold your arms, and avoid eye contact. Don't push them down or say "no" - this can be rewarding attention.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">2</span>Reward Four Paws on Floor</h3>
+                        <p>The moment all four paws are on the ground, immediately give attention, praise, and treats. Make keeping paws down more rewarding than jumping.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">3</span>Teach an Alternative Behavior</h3>
+                        <p>Train your dog to sit for greetings. Practice having them sit before you pet them, before meals, and before going outside.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">4</span>Practice with Family</h3>
+                        <p>Have family members practice the same routine. Everyone must be consistent - no exceptions or the behavior will continue.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">5</span>Gradually Add Strangers</h3>
+                        <p>Once your dog reliably sits for family greetings, practice with friends and neighbors. Ask them to follow the same protocol.</p>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <h3>💡 Pro Tips</h3>
+                    <ul>
+                        <li>Keep greetings calm and low-key to prevent over-excitement</li>
+                        <li>Practice when your dog is not overly excited for better success</li>
+                        <li>Use a leash during training to prevent jumping on guests</li>
+                        <li>Reward calm behavior throughout the day, not just during greetings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional training pages can be added similarly -->
+    <div id="barking" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+                <div class="training-header">
+                    <h1>🔊 Excessive Barking</h1>
+                    <p>Address barking issues by understanding the cause and providing positive alternatives.</p>
+                </div>
+
+                <div class="training-steps">
+                    <h2>Step-by-Step Training Plan</h2>
+                    
+                    <div class="step">
+                        <h3><span class="step-number">1</span>Identify the Trigger</h3>
+                        <p>Determine what causes the barking: boredom, alerting, attention-seeking, fear, or excitement. The solution depends on the cause.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">2</span>Manage the Environment</h3>
+                        <p>Remove or reduce exposure to triggers when possible. Use curtains to block visual triggers, provide mental stimulation for boredom barking.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">3</span>Teach "Quiet" Command</h3>
+                        <p>When your dog barks, wait for a natural pause, then say "quiet" and immediately reward the silence with treats and praise.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">4</span>Increase Mental Stimulation</h3>
+                        <p>Provide puzzle toys, training sessions, and adequate exercise to reduce boredom-related barking.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">5</span>Don't Reinforce Attention Barking</h3>
+                        <p>If your dog barks for attention, completely ignore them until they're quiet. Any attention (even negative) can reinforce the behavior.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -450,45 +943,63 @@
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Page navigation system
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showTrainingPage(trainingType) {
+            showPage(trainingType);
+        }
+
+        // Add smooth scrolling for anchor links within pages
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('a[href^="#"]')) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(e.target.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
                 }
-            });
+            }
         });
 
-        // Handle training area clicks
-        function handleTrainingArea(area) {
-            // This would navigate to specific training area pages
-            alert(`You selected: ${area} training. This would navigate to a dedicated training page with step-by-step guidance!`);
-            // In a real implementation: window.location.href = `training/${area}.html`;
+        // Add animation triggers on page load
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards for animation
+            document.querySelectorAll('.feature-card, .area-card, .step').forEach(card => {
+                observer.observe(card);
+            });
         }
 
-        // Add animation triggers on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards for animation
-        document.querySelectorAll('.feature-card, .area-card').forEach(card => {
-            observer.observe(card);
-        });
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', initAnimations);
 
         // Add interactive hover effects
         document.querySelectorAll('.area-card').forEach(card => {
@@ -500,6 +1011,22 @@
                 this.style.transform = 'translateY(0) scale(1)';
             });
         });
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
