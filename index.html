@@ -1400,38 +1400,28 @@
 		const container = document.getElementById('skills-container');
 		
 		container.innerHTML = skills.map((skill, index) => {
-			const progress = getSkillProgress(area, index);
-			const sessions = progress.sessions;
-			const maxSessions = 7;
-			const currentSessionIndex = 0; // Always start at session 1
+			const progress = getSkillProgress(area, skillIndex);
 			
 			return `
-				<div class="skill-item" data-skill="${index}" data-current="${currentSessionIndex}" data-pending-rating="0">
+				<div class="skill-item" data-skill="${index}" data-current="0" data-pending-rating="0">
 					<div style="display: flex; align-items: center; justify-content: space-between;">
 						<button onclick="navigateSession('${area}', ${index}, -1)" 
-								style="background: #667eea; color: white; border: none; font-size: 1.5rem; cursor: pointer; padding: 0.5rem 1rem; border-radius: 8px; min-width: 50px;" 
-								${currentSessionIndex <= 0 ? 'disabled style="background: #ccc;"' : ''}>◀</button>
+								style="background: #ccc; color: white; border: none; font-size: 1.8rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 6px;" 
+								disabled>◀</button>
 						
 						<div style="text-align: center; flex: 1; padding: 0 1rem;">
-							<div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
-								<span style="background: #667eea; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.9rem; font-weight: bold;" class="session-counter">${currentSessionIndex + 1}</span>
-								<h4 style="margin: 0; font-size: 1.1rem;">${skill}</h4>
+							<div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 0.3rem;">
+								<span style="background: #667eea; color: white; padding: 0.2rem 0.5rem; border-radius: 12px; font-size: 0.8rem; font-weight: bold;" class="session-counter">1</span>
+								<h4 style="margin: 0; font-size: 1rem; color: #2d3748;">${skill}</h4>
 							</div>
-							<div class="star-rating" onmouseleave="resetStarDisplay('${area}', ${index})">
-								${[1,2,3,4,5].map(i => `<span class="star" onmouseover="previewStars(${index}, ${i})" onclick="setStarRating('${area}', ${index}, ${i})">☆</span>`).join('')}
+							<div class="star-rating" style="margin: 0.3rem 0;" onmouseleave="resetStarDisplay('${area}', ${index})">
+								${[1,2,3,4,5].map(i => `<span class="star" onmouseover="previewStars(${index}, ${i})" onclick="setStarRating('${area}', ${index}, ${i})" style="font-size: 2rem; margin: 0 0.1rem;">☆</span>`).join('')}
 							</div>
-							<div style="margin-top: 0.5rem;">
-								<button onclick="saveCurrentRating('${area}', ${index})" 
-										style="background: #ff6b6b; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 5px; font-size: 0.8rem; margin-right: 0.5rem;">Save</button>
-								<button onclick="resetRating(${index})" 
-										style="background: #4a5568; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 5px; font-size: 0.8rem;">Reset</button>
-							</div>
-							<div style="font-size: 0.8rem; color: #666; margin-top: 0.3rem;">Sessions: ${progress.attempts}/${maxSessions}</div>
+							<div style="font-size: 0.7rem; color: #666;">Sessions: ${progress.attempts}/7 | <span onclick="saveCurrentRating('${area}', ${index})" style="color: #ff6b6b; cursor: pointer; text-decoration: underline;">Save</span> | <span onclick="resetRating(${index})" style="color: #4a5568; cursor: pointer; text-decoration: underline;">Reset</span></div>
 						</div>
 						
 						<button onclick="navigateSession('${area}', ${index}, 1)" 
-								style="background: #667eea; color: white; border: none; font-size: 1.5rem; cursor: pointer; padding: 0.5rem 1rem; border-radius: 8px; min-width: 50px;" 
-								${currentSessionIndex >= maxSessions - 1 ? 'disabled style="background: #ccc;"' : ''}>▶</button>
+								style="background: #667eea; color: white; border: none; font-size: 1.8rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 6px;">▶</button>
 					</div>
 				</div>
 			`;
