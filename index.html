@@ -722,6 +722,19 @@
 			color: #666;
 		}
 
+		.star {
+			cursor: pointer;
+			font-size: 2rem;
+			color: #e2e8f0;
+			transition: color 0.2s;
+			padding: 0 0.2rem;
+			user-select: none;
+		}
+
+		.star:hover {
+			color: #ffd700;
+		}
+
         /* Footer */
         footer {
             background: #2d3748;
@@ -1576,20 +1589,67 @@
 	}
 
 	function logAttempt(area, skillIndex) {
-		const rating = prompt('Rate this practice session (1-5 stars):');
-		const stars = parseInt(rating);
+		// Create inline star rating in the modal
+		const container = document.getElementById('skills-container');
+		const skillItem = container.children[skillIndex];
 		
-		if (stars >= 1 && stars <= 5) {
-			const progress = getSkillProgress(area, skillIndex);
-			progress.attempts++;
-			progress.sessions.push({
-				date: new Date().toISOString(),
-				rating: stars
+		// Remove any existing rating interface
+		const existingRating = skillItem.querySelector('.inline-rating');
+		if (existingRating) existingRating.remove();
+		
+		// Add star rating interface
+		const ratingDiv = document.createElement('div');
+		ratingDiv.className = 'inline-rating';
+		ratingDiv.innerHTML = `
+			<div style="background: #667eea; color: white; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+				<p style="margin: 0 0 1rem 0; text-align: center;">Rate this practice session:</p>
+				<div class="star-rating" style="justify-content: center; font-size: 2rem;">
+					${[1,2,3,4,5].map(i => `<span class="star" data-rating="${i}" onclick="submitRating('${area}', ${skillIndex}, ${i})">☆</span>`).join('')}
+				</div>
+				<div style="text-align: center; margin-top: 1rem;">
+					<button onclick="cancelRating(${skillIndex})" style="background: #4a5568; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Cancel</button>
+				</div>
+			</div>
+		`;
+		
+		skillItem.appendChild(ratingDiv);
+		
+		// Add hover effects
+		const stars = ratingDiv.querySelectorAll('.star');
+		stars.forEach((star, index) => {
+			star.addEventListener('mouseover', () => {
+				stars.forEach((s, i) => {
+					s.textContent = i <= index ? '★' : '☆';
+					s.style.color = i <= index ? '#ffd700' : '#e2e8f0';
+				});
 			});
 			
-			saveSkillProgress(area, skillIndex, progress);
-			loadSkillsInterface(area);
-		}
+			star.addEventListener('mouseout', () => {
+				stars.forEach(s => {
+					s.textContent = '☆';
+					s.style.color = '#e2e8f0';
+				});
+			});
+		});
+	}
+
+	function submitRating(area, skillIndex, rating) {
+		const progress = getSkillProgress(area, skillIndex);
+		progress.attempts++;
+		progress.sessions.push({
+			date: new Date().toISOString(),
+			rating: rating
+		});
+		
+		saveSkillProgress(area, skillIndex, progress);
+		loadSkillsInterface(area);
+	}
+
+	function cancelRating(skillIndex) {
+		const container = document.getElementById('skills-container');
+		const skillItem = container.children[skillIndex];
+		const ratingDiv = skillItem.querySelector('.inline-rating');
+		if (ratingDiv) ratingDiv.remove();
 	}
 
 	// Close modal when clicking outside
