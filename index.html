@@ -1224,6 +1224,32 @@
 			document.getElementById('training-modal').style.display = 'none';
 		}
 
+		// Modal functionality
+		const modal = document.getElementById('training-modal');
+		const unlockBtn = document.querySelector('.nav-links a[onclick="showRegistrationModal()"]');
+		const closeBtn = document.querySelector('#training-modal .close');
+		const submitBtn = document.querySelector('#training-modal button[onclick="submitTrainingCode()"]');
+		const codeInput = document.getElementById('training-unlock-code');
+
+		function showRegistrationModal() {
+			modal.style.display = 'block';
+		}
+
+		function closeTrainingModal() {
+			modal.style.display = 'none';
+		}
+
+		// Close modal when clicking X or outside
+		if (closeBtn) {
+			closeBtn.onclick = closeTrainingModal;
+		}
+
+		window.onclick = (event) => {
+			if (event.target === modal) {
+				closeTrainingModal();
+			}
+		};
+
 		function generateFreeCode() {
 			const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 			let code = '';
