@@ -1031,8 +1031,9 @@
 						</div>
 
 						<div class="tips-section">
-							<h3>❤️ Support This Project</h3>
-							<p>Help keep this educational resource free and accessible to all dog owners.</p>
+							<h3>🐕 Website Issues or Suggestions</h3>
+							<p>Found a bug, broken link, or have ideas for additional training content?</p>
+							<p><strong>Email:</strong> <span id="email-address"></span></p>
 						</div>
 					</div>
 					<div class="lima-visual">
@@ -1443,6 +1444,16 @@
 		function openDonation() {
 			window.open('https://paypal.me/ReverendDrTolerant?country.x=US&locale.x=en_US', '_blank');
 		}
+
+		// Obfuscated email
+		function showEmail() {
+			const user = 'support';
+			const domain = 'pawsitivetraining.app';
+			document.getElementById('email-address').innerHTML = user + '@' + domain;
+		}
+
+		// Show email when page loads
+		document.addEventListener('DOMContentLoaded', showEmail);
 		
     </script>
 	
