@@ -1318,7 +1318,7 @@
 			const unlockButton = modal.querySelector('button[onclick="submitTrainingCode()"]') || modal.querySelector('button[onclick="unregister()"]');
 			const codeInput = document.getElementById('training-unlock-code');
 			
-			if (isRegistered) {
+			if (!isRegistered) {
 				const currentCode = localStorage.getItem('dogTrainingCode') || 'Unknown';
 				if (codeInput) {
 					codeInput.value = currentCode;
