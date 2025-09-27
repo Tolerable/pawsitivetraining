@@ -1327,11 +1327,16 @@
 			const chatContainer = document.getElementById('chat-container');
 			
 			// Add user message
-			chatContainer.innerHTML += `<div class="user-message" style="margin: 10px 0; text-align: right;"><strong>You:</strong> ${message}</div>`;
+			const userDiv = document.createElement('div');
+			userDiv.innerHTML = `<div style="background: #667eea; color: white; padding: 15px; border-radius: 8px; margin: 10px 0; max-width: 80%; margin-left: auto;"><strong>You:</strong> ${message}</div>`;
+			chatContainer.appendChild(userDiv);
 			input.value = '';
 			
 			// Add loading indicator
-			chatContainer.innerHTML += `<div id="loading" style="margin: 10px 0;"><strong>AI Assistant:</strong> <em>Thinking...</em></div>`;
+			const loadingDiv = document.createElement('div');
+			loadingDiv.id = 'loading';
+			loadingDiv.innerHTML = `<div style="background: #4a5568; padding: 15px; border-radius: 8px; margin-bottom: 15px; color: white; max-width: 80%;"><strong style="color: #667eea;">AI Assistant:</strong> <em>Thinking...</em></div>`;
+			chatContainer.appendChild(loadingDiv);
 			chatContainer.scrollTop = chatContainer.scrollHeight;
 			
 			try {
@@ -1348,12 +1353,16 @@
 				});
 				
 				const data = await response.json();
-				document.getElementById('loading').remove();
+				loadingDiv.remove();
 				
-				chatContainer.innerHTML += `<div class="ai-message" style="margin: 10px 0;"><strong>AI Assistant:</strong> ${data.choices[0].message.content}</div>`;
+				const responseDiv = document.createElement('div');
+				responseDiv.innerHTML = `<div style="background: #4a5568; padding: 15px; border-radius: 8px; margin-bottom: 15px; color: white; max-width: 80%;"><strong style="color: #667eea;">AI Assistant:</strong> ${data.choices[0].message.content}</div>`;
+				chatContainer.appendChild(responseDiv);
 			} catch (error) {
-				document.getElementById('loading').remove();
-				chatContainer.innerHTML += `<div class="ai-message" style="margin: 10px 0; color: #ff6b6b;"><strong>AI Assistant:</strong> Sorry, I'm having trouble connecting right now. Please try again.</div>`;
+				loadingDiv.remove();
+				const errorDiv = document.createElement('div');
+				errorDiv.innerHTML = `<div style="background: #4a5568; padding: 15px; border-radius: 8px; margin-bottom: 15px; color: #ff6b6b; max-width: 80%;"><strong>AI Assistant:</strong> Sorry, I'm having trouble connecting right now. Please try again.</div>`;
+				chatContainer.appendChild(errorDiv);
 			}
 			
 			chatContainer.scrollTop = chatContainer.scrollHeight;
