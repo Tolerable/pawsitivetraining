@@ -1450,15 +1450,21 @@
 	}
 
 	function resetRating(skillIndex) {
+		// Get the area from the modal title
+		const area = document.getElementById('progress-title').textContent.toLowerCase().split(' ')[0];
+		
+		// Reset ONLY this specific skill's data
+		const key = `progress_${area}_${skillIndex}`;
+		const emptyProgress = { attempts: 0, sessions: [] };
+		localStorage.setItem(key, JSON.stringify(emptyProgress));
+		
 		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
 		
-		// Clear pending rating
+		// Reset display elements
 		skillItem.dataset.pendingRating = 0;
-		
-		// Reset navigation to session 1
 		skillItem.dataset.current = 0;
 		
-		// Update session counter to show 1
+		// Reset session counter to 1
 		const sessionCounter = skillItem.querySelector('.session-counter');
 		sessionCounter.textContent = '1';
 		
@@ -1469,19 +1475,18 @@
 			star.style.color = '#e2e8f0';
 		});
 		
-		// Reset arrow states
+		// Update session count display to 0/7
+		const sessionText = skillItem.querySelector('div:last-child');
+		sessionText.innerHTML = `Sessions: 0/7 | <span onclick="saveCurrentRating('${area}', ${skillIndex})" style="color: #ff6b6b; cursor: pointer;">Save</span> | <span onclick="resetRating(${skillIndex})" style="color: #4a5568; cursor: pointer;">Reset</span>`;
+		
+		// Disable arrows
 		const leftBtn = skillItem.querySelector('button:first-child');
 		const rightBtn = skillItem.querySelector('button:last-child');
 		
 		leftBtn.disabled = true;
 		leftBtn.style.color = '#ccc';
-		
-		// Check if there are sessions to navigate to
-		const progress = getSkillProgress(skillItem.closest('.skill-item').dataset.area || 'housebreaking', skillIndex);
-		if (progress.sessions.length > 1) {
-			rightBtn.disabled = false;
-			rightBtn.style.color = '#667eea';
-		}
+		rightBtn.disabled = true;
+		rightBtn.style.color = '#ccc';
 	}
 
 	function saveCurrentRating(area, skillIndex) {
