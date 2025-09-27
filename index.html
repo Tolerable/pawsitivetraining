@@ -1315,23 +1315,28 @@
 		function showRegistrationModal() {
 			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
 			const modal = document.getElementById('training-modal');
-			const unlockButton = document.querySelector('#training-modal button[onclick="submitTrainingCode()"]');
+			const unlockButton = document.querySelector('#training-modal button[onclick*="submitTrainingCode"], #training-modal button[onclick*="unregister"]');
+			const codeInput = document.getElementById('training-unlock-code');
 			
 			if (isRegistered) {
 				const currentCode = localStorage.getItem('dogTrainingCode') || 'Unknown';
-				const codeInput = document.getElementById('training-unlock-code');
 				if (codeInput) {
 					codeInput.value = currentCode;
 				}
 				
-				// Change the button text and function for registered users
+				// Change to unregister button
 				if (unlockButton) {
 					unlockButton.textContent = 'Unregister';
 					unlockButton.style.background = '#ff6b6b';
 					unlockButton.setAttribute('onclick', 'unregister()');
 				}
 			} else {
-				// Reset button for unregistered users
+				// Reset to unlock button
+				if (codeInput) {
+					codeInput.value = '';
+					codeInput.placeholder = 'Enter 6-character code';
+				}
+				
 				if (unlockButton) {
 					unlockButton.textContent = 'Unlock Now';
 					unlockButton.style.background = '#667eea';
@@ -1398,7 +1403,21 @@
 			localStorage.removeItem('dogTrainingCode');
 			updateUnlockButton();
 			initializeTrainingAreas();
-			closeTrainingModal();
+			
+			// Update the modal content without closing it
+			const codeInput = document.getElementById('training-unlock-code');
+			const unlockButton = document.querySelector('#training-modal button[onclick*="unregister"]');
+			
+			if (codeInput) {
+				codeInput.value = '';
+				codeInput.placeholder = 'Enter 6-character code';
+			}
+			
+			if (unlockButton) {
+				unlockButton.textContent = 'Unlock Now';
+				unlockButton.style.background = '#667eea';
+				unlockButton.setAttribute('onclick', 'submitTrainingCode()');
+			}
 		}
 
 		function openDonation() {
