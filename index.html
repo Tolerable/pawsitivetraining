@@ -1247,12 +1247,38 @@
         document.addEventListener('DOMContentLoaded', initAnimations);
 
 		document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.area-card').forEach(card => {
-                const onclick = card.getAttribute('onclick');
-                if (onclick) card.dataset.originalOnclick = onclick;
-            });
-            initializeTrainingAreas();
-        });
+			// Store original onclick attributes
+			document.querySelectorAll('.area-card').forEach(card => {
+				const onclick = card.getAttribute('onclick');
+				if (onclick) card.dataset.originalOnclick = onclick;
+			});
+			
+			// Initialize training areas
+			initializeTrainingAreas();
+			
+			// Update unlock button if already registered
+			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
+			const unlockBtn = document.querySelector('.nav-links a[onclick*="showRegistrationModal"]');
+			if (isRegistered && unlockBtn) {
+				unlockBtn.textContent = '✅ REGISTERED';
+				unlockBtn.style.background = '#4fd1c7';
+				unlockBtn.onclick = null;
+			}
+			
+			// Modal event handlers
+			const modal = document.getElementById('training-modal');
+			const closeBtn = modal?.querySelector('.close');
+			
+			if (closeBtn) {
+				closeBtn.onclick = closeTrainingModal;
+			}
+			
+			window.onclick = function(event) {
+				if (event.target === modal) {
+					closeTrainingModal();
+				}
+			};
+		});
 		
         // Add interactive hover effects
         document.querySelectorAll('.area-card').forEach(card => {
