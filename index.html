@@ -574,6 +574,95 @@
 			padding-left: 5px;
 		}
 
+		.progress-tracker {
+			background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+			border: 2px solid #667eea;
+			border-radius: 15px;
+			padding: 2rem;
+			margin: 2rem 0;
+		}
+
+		.skill-item {
+			background: white;
+			border-radius: 10px;
+			padding: 1.5rem;
+			margin: 1rem 0;
+			border-left: 4px solid #667eea;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+		}
+
+		.skill-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 1rem;
+		}
+
+		.skill-status {
+			font-weight: bold;
+			padding: 0.3rem 0.8rem;
+			border-radius: 20px;
+			font-size: 0.8rem;
+		}
+
+		.status-learning { background: #fed7d7; color: #c53030; }
+		.status-improving { background: #feebc8; color: #dd6b20; }
+		.status-mastered { background: #c6f6d5; color: #38a169; }
+
+		.attempts-container {
+			display: flex;
+			gap: 1rem;
+			align-items: center;
+			margin: 1rem 0;
+		}
+
+		.star-rating {
+			display: flex;
+			gap: 0.2rem;
+		}
+
+		.star {
+			cursor: pointer;
+			font-size: 1.2rem;
+			color: #e2e8f0;
+			transition: color 0.2s;
+		}
+
+		.star.active, .star:hover {
+			color: #ffd700;
+		}
+
+		.progress-bar {
+			width: 100%;
+			height: 8px;
+			background: #e2e8f0;
+			border-radius: 4px;
+			overflow: hidden;
+			margin: 0.5rem 0;
+		}
+
+		.progress-fill {
+			height: 100%;
+			background: linear-gradient(45deg, #667eea, #764ba2);
+			transition: width 0.3s ease;
+		}
+
+		.session-log {
+			max-height: 200px;
+			overflow-y: auto;
+			background: #f7fafc;
+			padding: 1rem;
+			border-radius: 8px;
+			margin-top: 1rem;
+		}
+
+		.session-entry {
+			display: flex;
+			justify-content: space-between;
+			padding: 0.5rem 0;
+			border-bottom: 1px solid #e2e8f0;
+		}
+
         /* Footer */
         footer {
             background: #2d3748;
@@ -811,6 +900,15 @@
                     <h1>🏠 Housebreaking Training</h1>
                     <p>Build reliable potty habits using positive reinforcement and consistent management.</p>
                 </div>
+
+				<div style="text-align: center; margin: 2rem 0;">
+					<button class="cta-button" onclick="showProgressTracker('housebreaking')">
+						📊 Track My Progress
+					</button>
+					<p style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">
+						Log practice sessions and track skill mastery
+					</p>
+				</div>
 
                 <div class="training-steps">
                     <h2>Step-by-Step Training Plan</h2>
@@ -1236,6 +1334,13 @@
 			<button onclick="openDonation()" class="secondary-btn">❤️ Support Development</button>
 		</div>
 	</div>
+	
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pawsitive Training. Building better relationships through science-based methods.</p>
+            <p>LIMA is Endorsed by veterinary behaviorists • No force, fear, or intimidation</p>
+        </div>
+    </footer>
 
 	<div id="ai-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8);">
 		<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #2d3748; z-index: 2001;">
@@ -1266,15 +1371,172 @@
 			</div>
 		</div>
 	</div>
-	
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Pawsitive Training. Building better relationships through science-based methods.</p>
-            <p>LIMA is Endorsed by veterinary behaviorists • No force, fear, or intimidation</p>
-        </div>
-    </footer>
+
+	<div id="progress-modal" class="modal">
+		<div class="modal-content" style="width: 700px; max-width: 90vw;">
+			<span class="close" onclick="closeProgressModal()">&times;</span>
+			<h2 id="progress-title">Track Your Progress</h2>
+			<div id="skills-container"></div>
+		</div>
+	</div>
 
     <script>
+
+	const TRAINING_SKILLS = {
+		'housebreaking': [
+			'Goes to designated potty spot',
+			'Uses verbal cue reliably', 
+			'7 consecutive days accident-free'
+		],
+		'leash': [
+			'Walks 50 steps without pulling',
+			'Stops when handler stops',
+			'Makes eye contact during walk'
+		],
+		'basic': [
+			'Sits on first command',
+			'Stays for 30 seconds',
+			'Comes when called from 10 feet'
+		],
+		'jumping': [
+			'Sits for greetings',
+			'Keeps paws down for 10 seconds',
+			'Greets 3 people politely'
+		],
+		'barking': [
+			'Responds to "quiet" command',
+			'Calm for 5 minutes alone',
+			'Ignores trigger for 30 seconds'
+		],
+		'separation': [
+			'Calm when left for 5 minutes',
+			'No destructive behavior for 1 hour',
+			'Relaxed when owner returns'
+		],
+		'aggression': [
+			'Calm around trigger at distance',
+			'Responds to redirect command',
+			'Shows relaxed body language'
+		],
+		'recall': [
+			'Comes when called from 10 feet',
+			'Returns despite distractions',
+			'Reliable recall in new locations'
+		],
+		'resource-guarding': [
+			'Allows approach during meals',
+			'Trades objects willingly',
+			'Calm when toys are touched'
+		]
+	};
+
+	function showProgressTracker(area) {
+		const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
+		const isDemo = DEMO_TRAINING_AREAS.includes(area);
+		
+		if (!isRegistered && !isDemo) {
+			showRegistrationModal();
+			return;
+		}
+		
+		document.getElementById('progress-title').textContent = `${area.charAt(0).toUpperCase() + area.slice(1)} Progress Tracker`;
+		loadSkillsInterface(area);
+		document.getElementById('progress-modal').style.display = 'block';
+	}
+
+	function closeProgressModal() {
+		document.getElementById('progress-modal').style.display = 'none';
+	}
+
+	function loadSkillsInterface(area) {
+		const skills = TRAINING_SKILLS[area];
+		const container = document.getElementById('skills-container');
+		
+		container.innerHTML = skills.map((skill, index) => {
+			const progress = getSkillProgress(area, index);
+			const status = getSkillStatus(progress);
+			
+			return `
+				<div class="skill-item">
+					<div class="skill-header">
+						<h4>${skill}</h4>
+						<span class="skill-status status-${status.toLowerCase()}">${status}</span>
+					</div>
+					<div class="progress-bar">
+						<div class="progress-fill" style="width: ${getProgressPercentage(progress)}%"></div>
+					</div>
+					<div class="attempts-container">
+						<span>Attempts: ${progress.attempts}</span>
+						<button onclick="logAttempt('${area}', ${index})" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Log Practice</button>
+					</div>
+					${progress.sessions.length > 0 ? `
+						<div class="session-log">
+							<h5>Recent Sessions:</h5>
+							${progress.sessions.slice(-5).map(session => `
+								<div class="session-entry">
+									<span>${new Date(session.date).toLocaleDateString()}</span>
+									<span>${'★'.repeat(session.rating)}${'☆'.repeat(5-session.rating)}</span>
+								</div>
+							`).join('')}
+						</div>
+					` : ''}
+				</div>
+			`;
+		}).join('');
+	}
+
+	function getSkillProgress(area, skillIndex) {
+		const key = `progress_${area}_${skillIndex}`;
+		const saved = localStorage.getItem(key);
+		return saved ? JSON.parse(saved) : { attempts: 0, sessions: [] };
+	}
+
+	function saveSkillProgress(area, skillIndex, progress) {
+		const key = `progress_${area}_${skillIndex}`;
+		localStorage.setItem(key, JSON.stringify(progress));
+	}
+
+	function getSkillStatus(progress) {
+		const avgRating = progress.sessions.length > 0 
+			? progress.sessions.reduce((sum, s) => sum + s.rating, 0) / progress.sessions.length 
+			: 0;
+		
+		if (progress.attempts >= 5 && avgRating >= 4) return 'MASTERED';
+		if (progress.attempts >= 3 && avgRating >= 3) return 'IMPROVING';
+		return 'LEARNING';
+	}
+
+	function getProgressPercentage(progress) {
+		const avgRating = progress.sessions.length > 0 
+			? progress.sessions.reduce((sum, s) => sum + s.rating, 0) / progress.sessions.length 
+			: 0;
+		return Math.min(100, (progress.attempts * 10) + (avgRating * 15));
+	}
+
+	function logAttempt(area, skillIndex) {
+		const rating = prompt('Rate this practice session (1-5 stars):');
+		const stars = parseInt(rating);
+		
+		if (stars >= 1 && stars <= 5) {
+			const progress = getSkillProgress(area, skillIndex);
+			progress.attempts++;
+			progress.sessions.push({
+				date: new Date().toISOString(),
+				rating: stars
+			});
+			
+			saveSkillProgress(area, skillIndex, progress);
+			loadSkillsInterface(area);
+		}
+	}
+
+	// Close modal when clicking outside
+	window.addEventListener('click', function(event) {
+		const modal = document.getElementById('progress-modal');
+		if (event.target === modal) {
+			closeProgressModal();
+		}
+	});
 	
 		const DEMO_TRAINING_AREAS = ['housebreaking', 'leash', 'basic'];
 
