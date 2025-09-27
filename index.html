@@ -615,13 +615,21 @@
 			margin: 2rem 0;
 		}
 
+		#progress-modal .modal-content {
+			width: 600px;
+			max-width: 90vw;
+			max-height: 85vh;
+			overflow-y: auto;
+			padding: 20px;
+		}
+
 		.skill-item {
 			background: white;
-			padding: 3rem;
-			margin: 2rem 0;
-			border-radius: 20px;
-			border-left: 8px solid #667eea;
-			box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+			padding: 1.5rem;
+			margin: 1rem 0;
+			border-radius: 15px;
+			border-left: 6px solid #667eea;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 			text-align: center;
 		}
 		
@@ -765,6 +773,49 @@
 			font-size: 0.7rem;
 			color: #666;
 		}
+		
+		.session-navigator {
+			background: #f7fafc;
+			padding: 1rem;
+			border-radius: 10px;
+			margin-bottom: 1.5rem;
+		}
+
+		.nav-arrows {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 1rem;
+		}
+
+		.nav-arrows button {
+			background: #667eea;
+			color: white;
+			border: none;
+			padding: 0.5rem 1rem;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		.nav-arrows button:disabled {
+			background: #cbd5e0;
+			cursor: not-allowed;
+		}
+
+		.session-stars .star {
+			font-size: 1.5rem;
+			margin: 0 0.2rem;
+		}
+
+		.new-session {
+			border-top: 2px solid #e2e8f0;
+			padding-top: 1.5rem;
+		}
+
+		.star-rating .star {
+			font-size: 2.5rem;
+			margin: 0 0.3rem;
+		}		
     </style>
 </head>
 <body>
@@ -1519,21 +1570,66 @@
 		
 		container.innerHTML = skills.map((skill, index) => {
 			const progress = getSkillProgress(area, index);
-			const lastRating = progress.sessions.length > 0 ? progress.sessions[progress.sessions.length - 1].rating : 0;
+			const sessions = progress.sessions;
+			const currentSession = sessions.length > 0 ? sessions.length - 1 : -1;
 			
 			return `
 				<div class="skill-item">
-					<h3 style="margin: 0 0 1rem 0; font-size: 1.4rem; color: #2d3748;">${skill}</h3>
-					<div class="star-rating" style="justify-content: center; margin: 1.5rem 0;">
-						${[1,2,3,4,5].map(i => `<span class="star ${i <= lastRating ? 'active' : ''}" onclick="rateSkill('${area}', ${index}, ${i})">★</span>`).join('')}
+					<h3 style="margin: 0 0 1rem 0; font-size: 1.2rem; color: #2d3748;">${skill}</h3>
+					
+					${sessions.length > 0 ? `
+						<div class="session-navigator" data-skill="${index}" data-current="${currentSession}">
+							<div class="nav-arrows">
+								<button onclick="navigateSession('${area}', ${index}, -1)" ${currentSession <= 0 ? 'disabled' : ''}>←</button>
+								<span>Session ${currentSession + 1} of ${sessions.length}</span>
+								<button onclick="navigateSession('${area}', ${index}, 1)" ${currentSession >= sessions.length - 1 ? 'disabled' : ''}>→</button>
+							</div>
+							<div class="current-session">
+								<div class="session-stars">
+									${[1,2,3,4,5].map(i => `<span class="star ${i <= sessions[currentSession].rating ? 'active' : ''}">★</span>`).join('')}
+								</div>
+								<div class="session-date">${new Date(sessions[currentSession].date).toLocaleDateString()}</div>
+							</div>
+						</div>
+					` : ''}
+					
+					<div class="new-session">
+						<h4>Rate New Practice Session:</h4>
+						<div class="star-rating">
+							${[1,2,3,4,5].map(i => `<span class="star" onclick="rateSkill('${area}', ${index}, ${i})">★</span>`).join('')}
+						</div>
 					</div>
-					<div style="text-align: center; font-size: 1.1rem; color: #4a5568;">
-						Practiced ${progress.attempts} times
-						${lastRating > 0 ? `<br>Last session: ${lastRating} stars` : ''}
+					
+					<div style="margin-top: 1rem; font-size: 0.9rem; color: #4a5568;">
+						Total Sessions: ${progress.attempts}
 					</div>
 				</div>
 			`;
 		}).join('');
+	}
+
+	function navigateSession(area, skillIndex, direction) {
+		const progress = getSkillProgress(area, skillIndex);
+		const navigator = document.querySelector(`[data-skill="${skillIndex}"]`);
+		let current = parseInt(navigator.dataset.current);
+		
+		current += direction;
+		if (current < 0) current = 0;
+		if (current >= progress.sessions.length) current = progress.sessions.length - 1;
+		
+		navigator.dataset.current = current;
+		
+		const session = progress.sessions[current];
+		navigator.querySelector('.session-stars').innerHTML = 
+			[1,2,3,4,5].map(i => `<span class="star ${i <= session.rating ? 'active' : ''}">★</span>`).join('');
+		navigator.querySelector('.session-date').textContent = new Date(session.date).toLocaleDateString();
+		navigator.querySelector('.nav-arrows span').textContent = `Session ${current + 1} of ${progress.sessions.length}`;
+		
+		// Update arrow states
+		const prevBtn = navigator.querySelector('.nav-arrows button:first-child');
+		const nextBtn = navigator.querySelector('.nav-arrows button:last-child');
+		prevBtn.disabled = current <= 0;
+		nextBtn.disabled = current >= progress.sessions.length - 1;
 	}
 
 	function rateSkill(area, skillIndex, rating) {
