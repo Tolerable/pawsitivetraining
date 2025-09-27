@@ -1467,7 +1467,8 @@
 		
 		if (rating > 0) {
 			const progress = getSkillProgress(area, skillIndex);
-			progress.attempts++;
+			
+			// Add new session
 			progress.sessions.push({
 				date: new Date().toISOString(),
 				rating: rating
@@ -1478,6 +1479,9 @@
 				progress.sessions = progress.sessions.slice(-7);
 			}
 			
+			// Set attempts to match session count (max 7)
+			progress.attempts = progress.sessions.length;
+			
 			saveSkillProgress(area, skillIndex, progress);
 			
 			// Reset for next rating
@@ -1485,7 +1489,7 @@
 			resetRating(skillIndex);
 			
 			// Update session count display
-			const sessionText = skillItem.querySelector('.skill-item div:last-child');
+			const sessionText = skillItem.querySelector('div:last-child');
 			sessionText.innerHTML = `Sessions: ${progress.attempts}/7 | <span onclick="saveCurrentRating('${area}', ${skillIndex})" style="color: #ff6b6b; cursor: pointer;">Save</span> | <span onclick="resetRating(${skillIndex})" style="color: #4a5568; cursor: pointer;">Reset</span>`;
 		}
 	}
@@ -1561,7 +1565,16 @@
 	function getSkillProgress(area, skillIndex) {
 		const key = `progress_${area}_${skillIndex}`;
 		const saved = localStorage.getItem(key);
-		return saved ? JSON.parse(saved) : { attempts: 0, sessions: [] };
+		let progress = saved ? JSON.parse(saved) : { attempts: 0, sessions: [] };
+		
+		// Fix any data over the 7 session limit
+		if (progress.sessions.length > 7) {
+			progress.sessions = progress.sessions.slice(-7);
+			progress.attempts = progress.sessions.length;
+			saveSkillProgress(area, skillIndex, progress);
+		}
+		
+		return progress;
 	}
 
 	function saveSkillProgress(area, skillIndex, progress) {
