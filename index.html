@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawsitive Training - Science-Based Dog Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "🐕";
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d3748;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .feature-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Training Areas */
+        .training-areas {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .training-areas h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .area-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .area-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .area-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .area-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* LIMA Section */
+        .lima-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .lima-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .lima-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .lima-text p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+
+        .lima-principles {
+            list-style: none;
+        }
+
+        .lima-principles li {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .lima-visual {
+            text-align: center;
+        }
+
+        .hierarchy-pyramid {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .pyramid-level {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .lima-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Pawsitive Training</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#training">Training Areas</a></li>
+                <li><a href="#about">About LIMA</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <h1 class="fade-in">Science-Based Dog Training</h1>
+                <p class="fade-in">Build a stronger bond with your dog using proven, humane training methods</p>
+                <a href="#training" class="cta-button fade-in">Start Training Now</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose Pawsitive Training?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>LIMA Methodology</h3>
+                        <p>We use Least Intrusive, Minimally Aversive methods endorsed by veterinary behaviorists worldwide. No fear, force, or intimidation—just positive results.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Science-Based</h3>
+                        <p>Our training methods are grounded in the latest behavioral science and learning theory, ensuring effective and humane approaches to dog training.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Stronger Bonds</h3>
+                        <p>Positive reinforcement builds trust, confidence, and a deeper connection between you and your dog that lasts a lifetime.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>AI-Powered Help</h3>
+                        <p>Get personalized training plans and instant guidance through our AI assistant that understands your specific situation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Step-by-Step Plans</h3>
+                        <p>Break down complex behaviors into simple, manageable steps that lead to lasting results and success.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">❤️</div>
+                        <h3>Stress-Free Learning</h3>
+                        <p>Create a positive learning environment where your dog feels safe, confident, and eager to participate in training.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="training-areas" id="training">
+            <div class="container">
+                <h2>Common Training Areas</h2>
+                <div class="areas-grid">
+                    <div class="area-card" onclick="handleTrainingArea('housebreaking')">
+                        <h4>🏠 Housebreaking</h4>
+                        <p>Establish reliable potty habits with positive reinforcement techniques</p>
+                    </div>
+                    <div class="area-card" onclick="handleTrainingArea('leash')">
+                        <h4>🚶‍♂️ Leash Training</h4>
+                        <p>Enjoy peaceful walks without pulling or reactivity</p>
+                    </div>
+                    <div class="area-card" onclick="handleTrainingArea('jumping')">
+                        <h4>🐕 Jumping on People</h4>
+                        <p>Teach polite greetings and appropriate social behavior</p>
+                    </div>
+                    <div class="area-card" onclick="handleTrainingArea('barking')">
+                        <h4>🔊 Excessive Barking</h4>
+                        <p>Address barking with positive alternatives and management</p>
+                    </div>
+                    <div class="area-card" onclick="handleTrainingArea('separation')">
+                        <h4>😰 Separation Anxiety</h4>
+                        <p>Build confidence and reduce stress when left alone</p>
+                    </div>
+                    <div class="area-card" onclick="handleTrainingArea('aggression')">
+                        <h4>⚠️ Reactivity & Aggression</h4>
+                        <p>Safe, systematic approaches to behavioral challenges</p>
+                    </div>
+                    <div class="area-card" onclick="handleTrainingArea('recall')">
+                        <h4>📞 Recall Training</h4>
+                        <p>Reliable come-when-called for safety and freedom</p>
+                    </div>
+                    <div class="area-card" onclick="handleTrainingArea('basic')">
+                        <h4>📚 Basic Obedience</h4>
+                        <p>Sit, stay, down, and essential life skills</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lima-section" id="about">
+            <div class="container">
+                <div class="lima-content">
+                    <div class="lima-text">
+                        <h2>The LIMA Approach</h2>
+                        <p><strong>Least Intrusive, Minimally Aversive</strong> training is the gold standard endorsed by professional organizations worldwide.</p>
+                        <p>Instead of using fear, force, or dominance, we follow a humane hierarchy that prioritizes your dog's well-being while achieving reliable results.</p>
+                        <ul class="lima-principles">
+                            <li><strong>Health First:</strong> Rule out medical causes</li>
+                            <li><strong>Management:</strong> Prevent practice of unwanted behaviors</li>
+                            <li><strong>Positive Reinforcement:</strong> Reward desired behaviors</li>
+                            <li><strong>Negative Punishment:</strong> Remove privileges when needed</li>
+                            <li><strong>Force-Free:</strong> No shock collars, choke chains, or intimidation</li>
+                        </ul>
+                    </div>
+                    <div class="lima-visual">
+                        <div class="hierarchy-pyramid">
+                            <h3>LIMA Hierarchy</h3>
+                            <div class="pyramid-level">🩺 Health & Environment</div>
+                            <div class="pyramid-level">🚧 Management & Prevention</div>
+                            <div class="pyramid-level">✅ Positive Reinforcement</div>
+                            <div class="pyramid-level">⏸️ Negative Punishment</div>
+                            <div class="pyramid-level">↗️ Negative Reinforcement</div>
+                            <div class="pyramid-level">⚠️ Positive Punishment (Last Resort)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pawsitive Training. Building better relationships through science-based methods.</p>
+            <p>Endorsed by veterinary behaviorists • No force, fear, or intimidation</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Handle training area clicks
+        function handleTrainingArea(area) {
+            // This would navigate to specific training area pages
+            alert(`You selected: ${area} training. This would navigate to a dedicated training page with step-by-step guidance!`);
+            // In a real implementation: window.location.href = `training/${area}.html`;
+        }
+
+        // Add animation triggers on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.feature-card, .area-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.area-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
