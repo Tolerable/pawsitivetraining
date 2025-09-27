@@ -1203,19 +1203,6 @@
             showPage(trainingType);
         }
 
-		document.addEventListener('click', function(e) {
-			if (e.target.tagName === 'A' && e.target.getAttribute('href') && e.target.getAttribute('href').startsWith('#')) {
-				e.preventDefault();
-				const target = document.querySelector(e.target.getAttribute('href'));
-				if (target) {
-					target.scrollIntoView({
-						behavior: 'smooth',
-						block: 'start'
-					});
-				}
-			}
-		});
-
         // Add animation triggers on page load
         function initAnimations() {
             const observerOptions = {
