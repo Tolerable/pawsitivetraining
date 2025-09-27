@@ -1318,7 +1318,8 @@
 			const unlockButton = modal.querySelector('button[onclick="submitTrainingCode()"]') || modal.querySelector('button[onclick="unregister()"]');
 			const codeInput = document.getElementById('training-unlock-code');
 			
-			if (!isRegistered) {
+			if (isRegistered) {
+				// Show current code and unregister option
 				const currentCode = localStorage.getItem('dogTrainingCode') || 'Unknown';
 				if (codeInput) {
 					codeInput.value = currentCode;
@@ -1330,6 +1331,7 @@
 					unlockButton.onclick = unregister;
 				}
 			} else {
+				// Show empty field and unlock option
 				if (codeInput) {
 					codeInput.value = '';
 					codeInput.placeholder = 'Enter 6-character code';
@@ -1381,15 +1383,17 @@
 			if (code.length === 6) {
 				localStorage.setItem('dogTrainingRegistered', 'true');
 				localStorage.setItem('dogTrainingCode', code);
-				// closeTrainingModal(); // DELETE THIS LINE
 				updateUnlockButton();
 				initializeTrainingAreas();
 				
-				// Clear the input and show success
-				document.getElementById('training-unlock-code').value = '';
+				// Update modal to show unregister state
+				const unlockButton = document.querySelector('#training-modal button');
+				unlockButton.textContent = 'Unregister';
+				unlockButton.style.background = '#ff6b6b';
+				unlockButton.onclick = unregister;
+				
 				document.getElementById('training-unlock-code').placeholder = 'Features unlocked!';
 				document.getElementById('training-unlock-code').style.borderColor = '#4fd1c7';
-				
 			} else {
 				document.getElementById('training-unlock-code').style.borderColor = '#ff6b6b';
 				document.getElementById('training-unlock-code').placeholder = 'Enter 6 characters';
@@ -1402,20 +1406,17 @@
 			updateUnlockButton();
 			initializeTrainingAreas();
 			
-			// Update the modal content without closing it
+			// Reset modal to unlock state
 			const codeInput = document.getElementById('training-unlock-code');
-			const unlockButton = document.querySelector('#training-modal button[onclick*="unregister"]');
+			const unlockButton = document.querySelector('#training-modal button');
 			
-			if (codeInput) {
-				codeInput.value = '';
-				codeInput.placeholder = 'Enter 6-character code';
-			}
+			codeInput.value = '';
+			codeInput.placeholder = 'Enter 6-character code';
+			codeInput.style.borderColor = '';
 			
-			if (unlockButton) {
-				unlockButton.textContent = 'Unlock Now';
-				unlockButton.style.background = '#667eea';
-				unlockButton.setAttribute('onclick', 'submitTrainingCode()');
-			}
+			unlockButton.textContent = 'Unlock Now';
+			unlockButton.style.background = '#667eea';
+			unlockButton.onclick = submitTrainingCode;
 		}
 
 		function openDonation() {
