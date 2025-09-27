@@ -1332,10 +1332,19 @@
 				localStorage.setItem('dogTrainingRegistered', 'true');
 				localStorage.setItem('dogTrainingCode', code);
 				closeTrainingModal();
-				alert('Premium features unlocked!');
-				location.reload();
+				
+				// Update the unlock button
+				const unlockBtn = document.querySelector('.nav-links a[onclick*="showRegistrationModal"]');
+				if (unlockBtn) {
+					unlockBtn.textContent = '✅ REGISTERED';
+					unlockBtn.style.background = '#4fd1c7';
+					unlockBtn.onclick = null;
+				}
+				
+				initializeTrainingAreas();
 			} else {
-				alert('Please enter a 6-character code');
+				document.getElementById('training-unlock-code').style.borderColor = '#ff6b6b';
+				document.getElementById('training-unlock-code').placeholder = 'Enter 6 characters';
 			}
 		}
 
