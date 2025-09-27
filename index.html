@@ -206,14 +206,52 @@
 			padding: 1.5rem;
 			border-radius: 15px;
 			text-align: center;
-			transition: transform 0.3s ease;
-			border: 1px solid rgba(255, 255, 255, 0.2);
+			transition: all 0.3s ease;
+			border: 2px solid rgba(255, 255, 255, 0.2);
 			cursor: pointer;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.area-card::after {
+			content: "Click to Start →";
+			position: absolute;
+			bottom: 8px;
+			right: 12px;
+			font-size: 11px;
+			color: rgba(255, 255, 255, 0.7);
+			opacity: 0;
+			transition: opacity 0.3s ease;
 		}
 
 		.area-card:hover {
 			transform: translateY(-3px);
 			background: rgba(255, 255, 255, 0.2);
+			border-color: rgba(255, 255, 255, 0.4);
+			box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+		}
+
+		.area-card:hover::after {
+			opacity: 1;
+		}
+
+		.area-card.locked {
+			background: rgba(255, 255, 255, 0.05);
+			border: 2px dashed rgba(255, 107, 107, 0.5);
+			cursor: not-allowed;
+		}
+
+		.area-card.locked::after {
+			content: "🔒 PREMIUM";
+			opacity: 1;
+			color: #ff6b6b;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.area-card.locked h4,
+		.area-card.locked p {
+			opacity: 0.5;
 		}
 
 		.training-page .area-card {
@@ -407,6 +445,71 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+		
+			.modal {
+				display: none;
+				position: fixed;
+				z-index: 1000;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.7);
+			}
+
+			.modal-content {
+				background-color: #2d3748;
+				margin: 15% auto;
+				padding: 20px;
+				border: 2px solid #667eea;
+				border-radius: 10px;
+				width: 300px;
+				position: relative;
+				color: white;
+			}
+
+			.modal-content input {
+				width: 100%;
+				padding: 8px;
+				margin: 10px 0;
+				background: #4a5568;
+				border: 1px solid #667eea;
+				border-radius: 4px;
+				color: white;
+			}
+
+			.modal-content button {
+				background: #667eea;
+				color: white;
+				border: none;
+				padding: 8px 20px;
+				border-radius: 4px;
+				cursor: pointer;
+				width: 100%;
+				margin-top: 10px;
+			}
+
+			.secondary-btn {
+				background: #4a5568;
+				border: 1px solid #667eea;
+			}
+
+			.premium-info {
+				background: rgba(102, 126, 234, 0.1);
+				border-left: 3px solid #667eea;
+				padding: 10px;
+				margin: 10px 0;
+				border-radius: 5px;
+			}
+
+			.premium-features {
+				list-style: none;
+				padding: 0;
+			}
+
+			.premium-features li {
+				margin: 5px 0;
+			}		
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -963,6 +1066,27 @@
         </div>
     </div>
 
+	<div id="training-modal" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeTrainingModal()">&times;</span>
+			<h2>Unlock Premium Training</h2>
+			<div class="premium-info">
+				<p class="premium-header">🔓 Get Access To:</p>
+				<ul class="premium-features">
+					<li>✨ 9 Complete Training Programs</li>
+					<li>🎤 AI Voice Assistant (Coming Soon)</li>
+					<li>📊 Progress Tracking</li>
+					<li>🔄 Unlimited Training Plans</li>
+					<li>📱 Mobile-Optimized Guides</li>
+				</ul>
+			</div>
+			<input type="text" id="training-unlock-code" maxlength="6" placeholder="Enter 6-character code">
+			<button onclick="submitTrainingCode()">Unlock Now</button>
+			<button onclick="generateFreeCode()" class="secondary-btn">Get Free Code</button>
+			<button onclick="openDonation()" class="secondary-btn">❤️ Support Development</button>
+		</div>
+	</div>
+
     <footer>
         <div class="container">
             <p>&copy; 2025 Pawsitive Training. Building better relationships through science-based methods.</p>
@@ -971,7 +1095,28 @@
     </footer>
 
     <script>
-        // Page navigation system
+	
+		const DEMO_TRAINING_AREAS = ['housebreaking', 'basic', 'leash'];
+
+		function initializeTrainingAreas() {
+			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
+			const areaCards = document.querySelectorAll('.area-card');
+			
+			areaCards.forEach(card => {
+				const onclick = card.getAttribute('onclick');
+				if (!onclick) return;
+				
+				const areaName = onclick.match(/showTrainingPage\('([^']+)'\)/)?.[1];
+				if (!areaName) return;
+				
+				if (!isRegistered && !DEMO_TRAINING_AREAS.includes(areaName)) {
+					card.classList.add('locked');
+					card.removeAttribute('onclick');
+					card.onclick = () => showRegistrationModal();
+				}
+			});
+		}	
+				// Page navigation system
         function showPage(pageId) {
             // Hide all pages
             const pages = document.querySelectorAll('.page');
@@ -1029,6 +1174,14 @@
         // Initialize animations when page loads
         document.addEventListener('DOMContentLoaded', initAnimations);
 
+		document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.area-card').forEach(card => {
+                const onclick = card.getAttribute('onclick');
+                if (onclick) card.dataset.originalOnclick = onclick;
+            });
+            initializeTrainingAreas();
+        });
+		
         // Add interactive hover effects
         document.querySelectorAll('.area-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
@@ -1055,6 +1208,46 @@
             }
         `;
         document.head.appendChild(style);
+		
+		function showRegistrationModal() {
+			document.getElementById('training-modal').style.display = 'block';
+		}
+
+		function closeTrainingModal() {
+			document.getElementById('training-modal').style.display = 'none';
+		}
+
+		function generateFreeCode() {
+			const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			let code = '';
+			for(let i = 0; i < 6; i++) {
+				code += chars[Math.floor(Math.random() * chars.length)];
+			}
+			document.getElementById('training-unlock-code').value = code;
+		}
+
+		function submitTrainingCode() {
+			const code = document.getElementById('training-unlock-code').value;
+			if (code.length === 6) {
+				localStorage.setItem('dogTrainingRegistered', 'true');
+				localStorage.setItem('dogTrainingCode', code);
+				document.querySelectorAll('.area-card.locked').forEach(card => {
+					card.classList.remove('locked');
+					const onclick = card.dataset.originalOnclick;
+					if (onclick) card.setAttribute('onclick', onclick);
+				});
+				closeTrainingModal();
+				alert('Premium features unlocked!');
+				location.reload();
+			}
+		}
+
+		function openDonation() {
+			window.open('https://paypal.me/YourPayPalLink', '_blank');
+		}
+		
     </script>
+	
+	
 </body>
 </html>
