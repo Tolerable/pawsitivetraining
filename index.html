@@ -1258,6 +1258,7 @@
 				<div style="display: flex; gap: 15px; max-width: 1200px; margin: 0 auto;">
 					<input type="text" id="user-input" placeholder="Type your dog training question here..." style="flex: 1; padding: 15px; border: 2px solid #667eea; border-radius: 8px; font-size: 16px; background: white; color: #333;">
 					<button onclick="sendMessage()" style="background: #667eea; color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold;">Send</button>
+					<button onclick="clearChat()" style="background: #4a5568; color: white; border: 1px solid #667eea; padding: 15px 20px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-left: 10px;">Clear</button>
 				</div>
 				<div style="text-align: center; margin-top: 10px; font-size: 12px; color: #a0aec0;">
 					AI by Pollinations.ai • Press Enter to send • AI can make mistakes • Consult professionals for serious issues
@@ -1376,6 +1377,16 @@
 				}
 			});
 		});
+
+		function clearChat() {
+			const chatContainer = document.getElementById('chat-container');
+			chatContainer.innerHTML = `
+				<div style="background: #4a5568; padding: 15px; border-radius: 8px; margin-bottom: 15px; color: white; max-width: 80%;">
+					<strong style="color: #667eea;">AI Assistant:</strong><br>
+					Hello! I'm here to help with your dog training questions using science-based LIMA methods. What training challenge can I help you with today?
+				</div>
+			`;
+		}
 
 				// Page navigation system
         function showPage(pageId) {
