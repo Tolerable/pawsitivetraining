@@ -1114,8 +1114,12 @@
 				
 				if (!isRegistered && !DEMO_TRAINING_AREAS.includes(areaName)) {
 					card.classList.add('locked');
+					card.dataset.originalOnclick = onclick;
 					card.removeAttribute('onclick');
 					card.onclick = () => showRegistrationModal();
+				} else if (isRegistered && card.dataset.originalOnclick) {
+					card.classList.remove('locked');
+					card.setAttribute('onclick', card.dataset.originalOnclick);
 				}
 			});
 		}	
@@ -1234,14 +1238,11 @@
 			if (code.length === 6) {
 				localStorage.setItem('dogTrainingRegistered', 'true');
 				localStorage.setItem('dogTrainingCode', code);
-				document.querySelectorAll('.area-card.locked').forEach(card => {
-					card.classList.remove('locked');
-					const onclick = card.dataset.originalOnclick;
-					if (onclick) card.setAttribute('onclick', onclick);
-				});
 				closeTrainingModal();
 				alert('Premium features unlocked!');
 				location.reload();
+			} else {
+				alert('Please enter a 6-character code');
 			}
 		}
 
