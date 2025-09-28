@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://pawsitivetraining.app/sitemap.xml
+
+# Allow all crawlers to access all content
+# This tells search engines they can index your entire site
