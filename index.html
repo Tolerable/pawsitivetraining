@@ -123,9 +123,10 @@
 			padding: 1rem 0;
 			position: fixed;
 			width: 100%;
-			top: 0;
+			top: 40px;
 			z-index: 1000;
 			box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+			transition: top 0.3s ease; /* added safely */
 		}
 
 		nav {
@@ -770,6 +771,14 @@
     </style>
 </head>
 <body>
+	<div id="cat-banner" style="background:#f3e8ff;color:#3b0764;text-align:center;
+	  padding:10px 12px;font-weight:600;position:fixed;top:0;left:0;right:0;
+	  z-index:2000;box-shadow:0 2px 5px rgba(0,0,0,0.1);
+	  transform:translateY(0);transition:transform 0.3s ease;">
+	  Check out our new <a href="/cats/index.html" style="color:#7e22ce;text-decoration:underline;">Purrfect Training for Cats</a>!
+	  <span id="close-cat-banner" style="float:right;margin-right:10px;cursor:pointer;">✕</span>
+	</div>
+	
     <header>
         <nav class="container">
             <div class="logo" onclick="showPage('home')">Pawsitive Training</div>
@@ -785,30 +794,35 @@
         </nav>
     </header>
 
-	<div id="cat-banner" style="background:#f3e8ff;color:#3b0764;text-align:center;padding:10px 12px;font-weight:600;">
-	  Check out our new <a href="/cats/index.html" style="color:#7e22ce;text-decoration:underline;">Purrfect Training for Cats</a>!
-	  <span id="close-cat-banner" style="float:right;margin-right:10px;cursor:pointer;">✕</span>
-	</div>
+
 	<script>
-	{ // isolate scope, prevent variable collisions
+	{ // keep scope isolated
 	  const banner = document.getElementById('cat-banner');
+	  const header = document.querySelector('header');
 	  const closeBtn = document.getElementById('close-cat-banner');
 
-	  // Always show the banner when loading the page
-	  banner.style.display = 'block';
+	  function showBanner(){
+		banner.style.transform = 'translateY(0)';
+		header.style.top = '40px';
+	  }
+	  function hideBanner(){
+		banner.style.transform = 'translateY(-100%)';
+		header.style.top = '0';
+	  }
 
-	  // Hide it only for this browsing session (not permanent)
+	  if (sessionStorage.getItem('hideCatBanner') === '1') {
+		hideBanner();
+	  } else {
+		showBanner();
+	  }
+
 	  closeBtn.addEventListener('click', () => {
-		banner.style.display = 'none';
+		hideBanner();
 		sessionStorage.setItem('hideCatBanner', '1');
 	  });
-
-	  // If the user already closed it during this session, keep it hidden
-	  if (sessionStorage.getItem('hideCatBanner') === '1') {
-		banner.style.display = 'none';
-	  }
 	}
 	</script>
+
 
     <!-- HOME PAGE -->
     <div id="home" class="page active">
