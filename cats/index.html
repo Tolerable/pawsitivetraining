@@ -160,6 +160,61 @@
 	#training-list .card:nth-child(3n+2){background:linear-gradient(145deg,#f8f5ff,#f1f5f9);}
 	#training-list .card:nth-child(3n+3){background:linear-gradient(145deg,#faf5ff,#eef2ff);}
 
+	/* Match dog site 3×3 grid look */
+	.purple-areas {
+	  background: linear-gradient(180deg, #5b46e3 0%, #5030e5 100%);
+	  color: #fff;
+	  padding: 60px 0;
+	  text-align: center;
+	}
+
+	.purple-areas h2 {
+	  font-size: 2rem;
+	  font-weight: 700;
+	  margin-bottom: 8px;
+	}
+
+	.cards-grid {
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr);
+	  gap: 22px;
+	  max-width: 1000px;
+	  margin: 0 auto;
+	}
+
+	.purple-areas .card {
+	  background: rgba(255, 255, 255, 0.1);
+	  border: 2px solid rgba(255, 255, 255, 0.15);
+	  border-radius: 12px;
+	  padding: 20px;
+	  text-align: left;
+	  color: #fff;
+	  position: relative;
+	  transition: 0.25s ease;
+	  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+	}
+
+	.purple-areas .card:hover {
+	  transform: translateY(-4px);
+	  border-color: rgba(255, 255, 255, 0.3);
+	}
+
+	.purple-areas .card.locked {
+	  opacity: 0.6;
+	  cursor: not-allowed;
+	}
+
+	.purple-areas .card.locked::after {
+	  content: "🔒 Premium";
+	  position: absolute;
+	  bottom: 10px;
+	  right: 12px;
+	  font-size: 0.85rem;
+	  color: #ffd580;
+	  opacity: 0.9;
+	}
+
+
 	/* Responsive to match dog site */
 	@media (max-width: 900px){
 	  #training-list .grid{ grid-template-columns: repeat(2, minmax(220px,1fr)); }
@@ -241,13 +296,13 @@
     </section>
 
 	<!-- NEW SECTION: Common Training Areas -->
-	<section class="areas">
+	<section class="areas purple-areas">
 	  <div class="container">
 		<h2>Common Training Areas</h2>
-		<p style="text-align:center;color:#e5e7eb;margin-bottom:20px">
+		<p style="text-align:center;color:#e5e7eb;margin-bottom:24px">
 		  Choose a topic to get a step-by-step plan with progress tracking.
 		</p>
-		<div class="grid">
+		<div class="cards-grid">
 		  <div class="card" onclick="showTrainingPage('litter')">
 			<h4>🧺 Litter Habits</h4>
 			<p>Box size, number, substrate, location</p>
@@ -287,6 +342,7 @@
 		</div>
 	  </div>
 	</section>
+
 
     <!-- NEW SECTION: LIMA Approach -->
     <section class="section" style="background:white">
