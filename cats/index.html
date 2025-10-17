@@ -1048,7 +1048,7 @@
 
   <!-- Unlock Modal (Cat version matching Dog layout) -->
   <div id="unlock-modal" class="modal" role="dialog" aria-modal="true">
-    <div class="panel">
+    <div class="modal-content">
       <button class="close" onclick="closeUnlock()">✕</button>
       <h2>🐈 Unlock Premium Cat Topics</h2>
       <p style="opacity:.9;margin-bottom:10px">
@@ -1079,7 +1079,7 @@
 
   <!-- Progress Tracker Modal -->
   <div id="tracker-modal" class="modal" role="dialog" aria-modal="true">
-    <div class="panel" id="tracker-panel">
+    <div class="modal-content" id="tracker-panel">
       <button class="close" onclick="closeTracker()">✕</button>
       <h2 id="trk-title">Progress Tracker</h2>
       <div id="trk-list"></div>
@@ -1216,14 +1216,18 @@
     }
     function openUnlock(){ document.getElementById('unlock-modal').style.display='block'; }
     function closeUnlock(){ document.getElementById('unlock-modal').style.display='none'; }
-    function applyUnlock(){
-      const v = (document.getElementById('unlock-code').value || '').trim().toUpperCase();
-      if(v.length!==6){ alert('Enter a 6-character code.'); return; }
-      // Simple accept for demo; replace with server verification if desired
-      localStorage.setItem(STORAGE_KEY_UNLOCK,'1');
-      closeUnlock();
-      alert('Premium topics unlocked on the cat site only.');
-    }
+	function applyUnlock(){
+	  const v = (document.getElementById('unlock-code').value || '').trim().toUpperCase();
+	  if(v.length!==6){ alert('Enter a 6-character code.'); return; }
+	  // Simple accept for demo; replace with server verification if desired
+	  localStorage.setItem(STORAGE_KEY_UNLOCK,'1');
+	  alert('✅ Premium topics unlocked on the cat site only.');
+	  closeUnlock();
+	  // immediately refresh UI
+	  updateCatUnlockButton();
+	  unlockPremiumCardsNow();
+	}
+
     function generateDemoCode(){
       const code = Math.random().toString(36).slice(2,8).toUpperCase();
       document.getElementById('unlock-code').value = code;
