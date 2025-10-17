@@ -365,16 +365,13 @@
           </p>
         </div>
   
-        <!-- Scientific Guidelines (Cats) -->
-        <div class="feature">
-          <div class="ico">🔬</div>
-          <h3>Scientific Guidelines</h3>
-          <p>
-            <strong>AAHA/AAFP Life Stage (2021):</strong> preventive behavior & environment by age.<br>
-            <strong>AAFP/ISFM Env. Needs (2020):</strong> 5 pillars—resources, safety, scent, play, and routine.<br>
-            <strong>Clicker studies:</strong> shelter/home research shows faster learning & more affiliative behavior.
-          </p>
-        </div>
+		<!-- Cat FAQ (replaces Scientific Guidelines card) -->
+		<div class="feature" onclick="showPage('cat-faq')" role="button" aria-label="Open Cat FAQ" style="cursor:pointer">
+		  <div class="ico">❓</div>
+		  <h3>Cat FAQ</h3>
+		  <p>Common questions on litter, scratching, handling, harness/leash, training & troubleshooting.</p>
+		</div>
+
       </div>
     </div>
   </section>
@@ -434,6 +431,80 @@
       <p>Zero force • Fear-reduction • Welfare-first</p>
     </div>
   </footer>
+
+  <!-- CAT FAQ PAGE -->
+  <section id="cat-faq" class="page training">
+    <div class="container">
+      <button class="back" onclick="showPage('resources')">← Back to Resources</button>
+  
+      <div class="t-head">
+        <h1>Cat Training FAQ</h1>
+        <p>Quick answers about reward-based feline training, husbandry, and common issues.</p>
+      </div>
+  
+      <div class="steps">
+        <h2>Training Basics</h2>
+  
+        <div class="step">
+          <h3><span class="n">1</span> Do cats even respond to training?</h3>
+          <p>Yes. Cats learn through consequences just like dogs. Use tiny, high-value rewards and short (30–60s) sessions.</p>
+        </div>
+  
+        <div class="step">
+          <h3><span class="n">2</span> My cat isn’t food-motivated — now what?</h3>
+          <p>Try lickable treats, warmed soft foods, play bursts, access to window perches, or ending the session as the reward.</p>
+        </div>
+  
+        <div class="step">
+          <h3><span class="n">3</span> How fast will I see progress?</h3>
+          <p>Simple behaviors (target, station) can improve within days; desensitization (carrier, handling) takes weeks of bite-sized reps.</p>
+        </div>
+      </div>
+  
+      <div class="steps">
+        <h2>Litter & Scratching</h2>
+  
+        <div class="step">
+          <h3><span class="n">1</span> Best litter box setup?</h3>
+          <p>One box per cat + one extra; very large box; unscented clumping litter; 2–3" depth; quiet, separate locations.</p>
+        </div>
+  
+        <div class="step">
+          <h3><span class="n">2</span> How do I stop furniture scratching?</h3>
+          <p>Give posts of multiple textures/angles, put them where the cat wants them, reinforce use, and temporarily protect furniture.</p>
+        </div>
+      </div>
+  
+      <div class="steps">
+        <h2>Handling, Harness & Vet Prep</h2>
+  
+        <div class="step">
+          <h3><span class="n">1</span> Carrier training essentials?</h3>
+          <p>Keep the carrier out, feed inside, close briefly while feeding, then lift/move in tiny increments; always below fear threshold.</p>
+        </div>
+  
+        <div class="step">
+          <h3><span class="n">2</span> Safe harness/leash intro?</h3>
+          <p>Pair harness on/off with treats, build duration, practice indoors, then short, calm outdoor sessions at the cat’s pace.</p>
+        </div>
+      </div>
+  
+      <div class="steps">
+        <h2>Troubleshooting</h2>
+  
+        <div class="step">
+          <h3><span class="n">1</span> Works at home but not elsewhere</h3>
+          <p>Cats generalize poorly. Re-teach in new rooms/contexts, start easy, and raise criteria slowly.</p>
+        </div>
+  
+        <div class="step">
+          <h3><span class="n">2</span> When to get professional help?</h3>
+          <p>Bites, sustained aggression, severe fear/anxiety, or litter issues with medical signs → contact your vet/behavior pro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <script>
     /* ========= Router ========= */
