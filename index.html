@@ -796,32 +796,37 @@
 
 
 	<script>
-	{ // scoped
+	{ // scoped and fixed logic
 	  const banner = document.getElementById('cat-banner');
 	  const header = document.querySelector('header');
 	  const closeBtn = document.getElementById('close-cat-banner');
 
-	  function showBanner(){
+	  // make sure session doesn't persist hiding across reloads
+	  window.addEventListener('beforeunload', () => {
+		sessionStorage.removeItem('catBannerClosed');
+	  });
+
+	  function showBanner() {
 		banner.style.transform = 'translateY(0)';
 		header.style.top = '40px';
 	  }
-	  function hideBanner(){
+
+	  function hideBanner() {
 		banner.style.transform = 'translateY(-100%)';
 		header.style.top = '0';
 	  }
 
-	  // Show the banner on every new page load.
-	  showBanner();
+	  // show banner if not manually closed this session
+	  if (!sessionStorage.getItem('catBannerClosed')) {
+		showBanner();
+	  } else {
+		hideBanner();
+	  }
 
-	  // When ✕ is clicked, hide it for this session (until next reload)
 	  closeBtn.addEventListener('click', () => {
 		hideBanner();
-		// only remember during this single open tab life
-		window.name = 'bannerClosed';
+		sessionStorage.setItem('catBannerClosed', 'true');
 	  });
-
-	  // If user reopens tab without full reload, check if it was hidden
-	  if (window.name === 'bannerClosed') hideBanner();
 	}
 	</script>
 
