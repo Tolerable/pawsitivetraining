@@ -122,36 +122,47 @@
     /* Footer */
     footer{background:#111827;color:#e5e7eb;text-align:center;padding:26px 0}
 
-	/* --- CAT TRAINING LIST: make it 3-up cards like dog --- */
-	#training-list .grid{
-	  display:grid;
-	  grid-template-columns:repeat(3, minmax(260px, 1fr)); /* 3 across on desktop */
-	  gap:20px;
+	/* === CAT TRAINING LIST === */
+	#training-list .grid {
+	  display: grid;
+	  grid-template-columns: repeat(3, minmax(260px, 1fr));
+	  gap: 24px;
+	  margin-top: 2rem;
 	}
 
-	/* responsive breakpoints to match dog layout */
+	#training-list .card {
+	  background: #fff;
+	  border: 1px solid rgba(0,0,0,0.08);
+	  border-radius: 16px;
+	  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+	  padding: 24px;
+	  height: 180px;                /* MATCH DOG SITE HEIGHT */
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  transition: transform 0.2s, box-shadow 0.2s;
+	}
+	#training-list .card:hover {
+	  transform: translateY(-4px);
+	  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+	}
+	#training-list .card h4 {
+	  font-weight: 700;
+	  font-size: 1.1rem;
+	  margin-bottom: 0.5rem;
+	}
+	#training-list .card p {
+	  color: #374151;
+	  font-size: 0.95rem;
+	}
+
+	/* Responsive to match dog site */
 	@media (max-width: 900px){
-	  #training-list .grid{ grid-template-columns:repeat(2, minmax(220px,1fr)); }
+	  #training-list .grid{ grid-template-columns: repeat(2, minmax(220px,1fr)); }
 	}
 	@media (max-width: 600px){
-	  #training-list .grid{ grid-template-columns:1fr; }
+	  #training-list .grid{ grid-template-columns: 1fr; }
 	}
-
-	/* use light card style in the TRAINING page (not the glass/“Start →” style) */
-	#training-list .card{
-	  background:linear-gradient(135deg,#f7fafc,#eef2ff);
-	  border:1px solid rgba(124,58,237,.15);
-	  color:#111827;
-	  box-shadow:0 4px 15px rgba(0,0,0,.06);
-	}
-	#training-list .card:hover{
-	  transform:translateY(-4px);
-	  background:linear-gradient(135deg,#eef2ff,#e5e7eb);
-	}
-
-	/* remove the glass-section pseudo label */
-	#training-list .card::after{ content:""; }
-
 
     /* Responsive */
     @media (max-width:768px){
@@ -374,7 +385,7 @@
   <!-- CONTACT -->
   <section id="contact" class="page training">
     <div class="container">
-      <button class="back" onclick="showPage('home')">← Back to Home</button>
+      <button class="back" onclick="goCatHome(event)">← Back to Home</button>
       <div class="t-head">
         <h1>Website Support</h1>
         <p>Report issues or suggest improvements for this free educational site.</p>
@@ -707,5 +718,22 @@
     };
   })();
   </script> 
+  <script>
+    // Always keep "Back to Home" inside the cat site
+    function goCatHome(e){
+      if (e) e.preventDefault();
+      // If we're not already under /cats/, hard-redirect to the cat home
+      if (!/\/cats(\/|$)/i.test(location.pathname)) {
+        location.href = '/cats/index.html';
+        return;
+      }
+      // SPA-style: just show the home page section
+      showPage('home');
+      // (Optional) normalize the URL if someone deep-linked a cat subpage
+      if (!/\/cats\/index\.html$/i.test(location.pathname)) {
+        history.replaceState(null, '', '/cats/index.html');
+      }
+    }
+  </script>  
 </body>
 </html>
