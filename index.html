@@ -2254,23 +2254,28 @@
 
 				// Page navigation system
 		function showPage(pageId) {
-		  // Hide all pages
+		  // Hide all .page sections and their child <section> blocks
 		  const pages = document.querySelectorAll('.page');
 		  pages.forEach(page => {
 			page.classList.remove('active');
 			page.style.display = 'none';
+			// Also hide all inner sections
+			page.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
 		  });
 
-		  // Show selected page only
+		  // Show only the target page
 		  const targetPage = document.getElementById(pageId);
 		  if (targetPage) {
 			targetPage.classList.add('active');
 			targetPage.style.display = 'block';
+			// Show that page’s own sections
+			targetPage.querySelectorAll('section').forEach(sec => sec.style.display = 'block');
 		  }
 
-		  // Scroll to top smoothly
+		  // Scroll to top
 		  window.scrollTo({ top: 0, behavior: 'smooth' });
 		}
+
 
         function showTrainingPage(trainingType) {
             showPage(trainingType);
@@ -2538,7 +2543,21 @@
 
 		// Show banner on page load
 		document.addEventListener('DOMContentLoaded', showCookieBanner);
-		</script>
+	
+		document.addEventListener('DOMContentLoaded', () => {
+		  const pages = document.querySelectorAll('.page');
+		  pages.forEach(p => {
+			if (!p.classList.contains('active')) {
+			  p.style.display = 'none';
+			  p.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
+			} else {
+			  p.querySelectorAll('section').forEach(sec => sec.style.display = 'block');
+			}
+		  });
+		});
+	
+		
+	</script>
 	
 	<div id="cookie-banner">
 		<div class="cookie-content">
