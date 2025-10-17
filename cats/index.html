@@ -248,39 +248,39 @@
 		  Choose a topic to get a step-by-step plan with progress tracking.
 		</p>
 		<div class="grid">
-		  <div class="card" onclick="showTraining('litter')">
+		  <div class="card" onclick="showTrainingPage('litter')">
 			<h4>🧺 Litter Habits</h4>
 			<p>Box size, number, substrate, location</p>
 		  </div>
-		  <div class="card" onclick="showTraining('scratching')">
+		  <div class="card" onclick="showTrainingPage('scratching')">
 			<h4>🪵 Scratching</h4>
 			<p>Post types, placement, reinforcement</p>
 		  </div>
-		  <div class="card" onclick="showTraining('carrier')">
+		  <div class="card" onclick="showTrainingPage('carrier')">
 			<h4>🧳 Carrier/Handling</h4>
 			<p>Desensitization steps</p>
 		  </div>
-		  <div class="card" onclick="showTraining('harness')">
+		  <div class="card locked" data-premium="1" onclick="showTrainingPage('harness')">
 			<h4>🪢 Harness & Leash</h4>
 			<p>Indoor → yard → quiet routes</p>
 		  </div>
-		  <div class="card" onclick="showTraining('clicker')">
+		  <div class="card locked" data-premium="1" onclick="showTrainingPage('clicker')">
 			<h4>🔊 Clicker Basics</h4>
 			<p>Charge the marker, shape skills</p>
 		  </div>
-		  <div class="card" onclick="showTraining('intro')">
+		  <div class="card locked" data-premium="1" onclick="showTrainingPage('intro')">
 			<h4>🐈‍⬛ Introductions</h4>
 			<p>Scent swap, gates, gradients</p>
 		  </div>
-		  <div class="card locked" data-premium="1" onclick="guardPremium(event)">
+		  <div class="card locked" data-premium="1" onclick="showTrainingPage('husbandry')">
 			<h4>🍽️ Husbandry</h4>
 			<p>Meds, brush, teeth, trim</p>
 		  </div>
-		  <div class="card locked" data-premium="1" onclick="guardPremium(event)">
+		  <div class="card locked" data-premium="1" onclick="showTrainingPage('target')">
 			<h4>🎯 Target & Recall</h4>
 			<p>Target stick, station, come</p>
 		  </div>
-		  <div class="card locked" data-premium="1" onclick="guardPremium(event)">
+		  <div class="card locked" data-premium="1" onclick="showTrainingPage('fear')">
 			<h4>😿 Fear & Aggression</h4>
 			<p>CC/DS below threshold</p>
 		  </div>
@@ -853,18 +853,45 @@
       btn.style.color = '#fff';
     }
   }
-  
-  document.addEventListener('DOMContentLoaded', updateCatUnlockButton);
-  
-  /* Patch applyUnlock to update UI immediately, without changing your original name */
+
+  function unlockPremiumCardsNow() {
+    document.querySelectorAll('.card.locked').forEach(c => c.classList.remove('locked'));
+  }
+
+  function initCatLocks() {
+    const unlocked = localStorage.getItem('feline_training_unlock_v1') === '1';
+    updateCatUnlockButton();
+    if (unlocked) {
+      unlockPremiumCardsNow();
+    } else {
+      const ids = ['harness','clicker','intro','husbandry','target','fear'];
+      ids.forEach(id => {
+        document.querySelectorAll(`[onclick*="${id}"]`).forEach(c => c.classList.add('locked'));
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initCatLocks);
+
+  /* Patch applyUnlock to update UI immediately and unlock cards */
   (function(){
     var origApply = window.applyUnlock;
     window.applyUnlock = function () {
       if (typeof origApply === 'function') origApply();
       updateCatUnlockButton();
+      unlockPremiumCardsNow();
     };
   })();
-  </script> 
+
+  /* Listen for cross-tab unlock events */
+  window.addEventListener('storage', e => {
+    if (e.key === 'feline_training_unlock_v1' && e.newValue === '1') {
+      updateCatUnlockButton();
+      unlockPremiumCardsNow();
+    }
+  });
+  </script>
+
   <script>
     // Always keep "Back to Home" inside the cat site
     function goCatHome(e){
