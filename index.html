@@ -2253,20 +2253,24 @@
 		}
 
 				// Page navigation system
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-            
-            // Show selected page
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
+		function showPage(pageId) {
+		  // Hide all pages
+		  const pages = document.querySelectorAll('.page');
+		  pages.forEach(page => {
+			page.classList.remove('active');
+			page.style.display = 'none';
+		  });
+
+		  // Show selected page only
+		  const targetPage = document.getElementById(pageId);
+		  if (targetPage) {
+			targetPage.classList.add('active');
+			targetPage.style.display = 'block';
+		  }
+
+		  // Scroll to top smoothly
+		  window.scrollTo({ top: 0, behavior: 'smooth' });
+		}
 
         function showTrainingPage(trainingType) {
             showPage(trainingType);
