@@ -1,174 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Pawsitive Training — Science-Based Animal Learning</title>
-  <meta name="description" content="Choose Dog or Cat training — evidence-based positive reinforcement for happier pets and stronger bonds." />
-  <meta name="theme-color" content="#10b981" />
-  <style>
-	:root {
-	  --bg: #f9fafb;
-	  --panel: #ffffff;
-	  --ink: #1e293b;
-	  --muted: #64748b;
-	  --acc: #667eea;
-	  --dog: #f59e0b;
-	  --cat: #a78bfa;
-	  --gradient: linear-gradient(135deg, #667eea, #764ba2);
-	}
-
-	* {
-	  box-sizing: border-box;
-	  margin: 0;
-	  padding: 0;
-	}
-
-	body {
-	  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	  background: var(--bg);
-	  color: var(--ink);
-	  min-height: 100vh;
-	  display: flex;
-	  flex-direction: column;
-	}
-
-	/* Header */
-	header {
-	  background: #ffffff;
-	  border-bottom: 1px solid #e5e7eb;
-	  text-align: center;
-	  padding: 20px 10px;
-	  font-size: 1.8rem;
-	  font-weight: 700;
-	  color: var(--acc);
-	  letter-spacing: 0.5px;
-	  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-	}
-
-	/* Main layout */
-	main {
-	  flex: 1;
-	  text-align: center;
-	  padding: 60px 20px 100px;
-	}
-
-	h1 {
-	  font-size: 2.8rem;
-	  background: var(--gradient);
-	  -webkit-background-clip: text;
-	  -webkit-text-fill-color: transparent;
-	  margin-bottom: 14px;
-	}
-
-	p {
-	  color: var(--muted);
-	  max-width: 680px;
-	  margin: 0 auto 2.5rem;
-	  font-size: 1.1rem;
-	  line-height: 1.6;
-	}
-
-	/* Choice cards */
-	.choices {
-	  display: flex;
-	  flex-wrap: wrap;
-	  justify-content: center;
-	  gap: 2rem;
-	}
-
-	.choice {
-	  flex: 1 1 300px;
-	  background: var(--panel);
-	  border: 1px solid #e2e8f0;
-	  border-radius: 16px;
-	  padding: 2.2rem 1.5rem;
-	  transition: all 0.3s ease;
-	  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-	}
-
-	.choice:hover {
-	  transform: translateY(-6px);
-	  box-shadow: 0 10px 24px rgba(102,126,234,0.15);
-	}
-
-	.choice h2 {
-	  font-size: 1.6rem;
-	  margin-bottom: 8px;
-	}
-
-	.choice p {
-	  font-size: 0.95rem;
-	  margin-bottom: 1.3rem;
-	  color: var(--muted);
-	}
-
-	.choice button {
-	  background: var(--gradient);
-	  color: white;
-	  border: none;
-	  padding: 12px 26px;
-	  border-radius: 50px;
-	  font-weight: 600;
-	  cursor: pointer;
-	  transition: transform 0.2s ease, box-shadow 0.2s ease;
-	  box-shadow: 0 4px 12px rgba(102,126,234,0.3);
-	}
-
-	.choice button:hover {
-	  transform: translateY(-2px);
-	  box-shadow: 0 6px 18px rgba(118,75,162,0.4);
-	}
-
-	/* Dog/Cat accent variants */
-	.dog h2 { color: var(--dog); }
-	.cat h2 { color: var(--cat); }
-
-	footer {
-	  background: #f8fafc;
-	  border-top: 1px solid #e5e7eb;
-	  text-align: center;
-	  font-size: 0.9rem;
-	  padding: 24px 12px;
-	  color: var(--muted);
-	}
-
-	@media (max-width: 700px) {
-	  h1 { font-size: 2rem; }
-	  .choice { padding: 1.8rem; }
-	}
-
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Pawsitive Training — Science-Based Animal Learning</title>
+<meta name="description" content="Choose Dog or Cat training — evidence-based positive reinforcement for happier pets and stronger bonds." />
+<meta name="theme-color" content="#667eea" />
+<style>
+  :root {
+    --ink: #1e293b;
+    --muted: #64748b;
+    --dog: #f59e0b;
+    --cat: #a78bfa;
+    --gradient: linear-gradient(135deg, #667eea, #764ba2);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    color:var(--ink);
+    background:#ffffff;
+  }
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#ffffff;
+    border-bottom:1px solid #e5e7eb;
+    padding:16px 10%;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    position:sticky;top:0;z-index:10;
+  }
+  .logo{
+    font-size:1.4rem;
+    font-weight:700;
+    color:#374151;
+  }
+  nav a{
+    margin:0 12px;
+    text-decoration:none;
+    color:#374151;
+    font-weight:500;
+  }
+  nav a:hover{color:#667eea}
+  .hero{
+    background:var(--gradient);
+    color:#fff;
+    text-align:center;
+    padding:80px 20px;
+  }
+  .hero h1{font-size:2.8rem;margin-bottom:8px}
+  .hero p{font-size:1.2rem;max-width:700px;margin:0 auto;opacity:0.9}
+  main{
+    max-width:1000px;
+    margin:-60px auto 0;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:2rem;
+    padding:0 20px 80px;
+  }
+  .panel{
+    flex:1 1 400px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.1);
+    padding:40px 30px;
+    text-align:center;
+    cursor:pointer;
+    transition:transform 0.25s,box-shadow 0.25s;
+  }
+  .panel:hover{
+    transform:translateY(-6px);
+    box-shadow:0 8px 24px rgba(102,126,234,0.3);
+  }
+  .panel h2{
+    font-size:1.8rem;
+    margin-bottom:10px;
+  }
+  .panel p{
+    color:var(--muted);
+    line-height:1.6;
+    font-size:1rem;
+    margin-bottom:0;
+  }
+  .dog h2{color:var(--dog)}
+  .cat h2{color:var(--cat)}
+  footer{
+    background:#f9fafb;
+    border-top:1px solid #e5e7eb;
+    text-align:center;
+    padding:24px 10px;
+    color:var(--muted);
+    font-size:0.9rem;
+  }
+</style>
 </head>
 <body>
-  <header>
-    🐾 Pawsitive Training
-  </header>
-  <main>
-    <h1>Choose Your Learning Path</h1>
-    <p>
-      Pawsitive Training offers free, science-based guides to help you build a stronger bond with your pet.
-      Our approach is rooted in positive reinforcement, humane behavior science, and real-world results.
-      Select whether you’d like to explore <strong>dog</strong> or <strong>cat</strong> training to get started.
-    </p>
+<header>
+  <div class="logo">🐾 PawsitiveTraining.app</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="/dogs/index.html">🐕 Dog Training</a>
+    <a href="/cats/index.html">🐈 Cat Training</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
 
-    <div class="choices">
-      <div class="choice dog">
-        <h2>🐕 Dog Training</h2>
-        <p>Step-by-step positive methods for obedience, manners, enrichment, and behavior issues.</p>
-        <button onclick="location.href='/dogs/index.html'">Start Dog Training</button>
-      </div>
+<section class="hero">
+  <h1>Welcome to 🐾 PawsitiveTraining.app</h1>
+  <p>Science-based, fear-free education for 😺 cats and 🐶 dogs — learn with kindness and evidence-driven methods for lasting success.</p>
+</section>
 
-      <div class="choice cat">
-        <h2>🐈 Cat Training</h2>
-        <p>Fear-free litter, scratching, harness, clicker, and confidence training for every feline friend.</p>
-        <button onclick="location.href='/cats/index.html'">Start Cat Training</button>
-      </div>
-    </div>
-  </main>
+<main>
+  <div class="panel dog" onclick="location.href='/dogs/index.html'">
+    <h2>🐕 Dog Training</h2>
+    <p>Build trust, confidence, and obedience using humane reinforcement-based methods. From basic manners to behavior challenges — everything you need for a happier dog.</p>
+  </div>
 
-  <footer>
-    &copy; 2025 Pawsitive Training — Humane, reward-based education for pets and people.
-  </footer>
+  <div class="panel cat" onclick="location.href='/cats/index.html'">
+    <h2>🐈 Cat Training</h2>
+    <p>Discover stress-free techniques for litter habits, scratching, harness, clicker training, and more — for confident, well-adjusted cats.</p>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 PawsitiveTraining.app — Building better relationships through science-based methods.
+</footer>
 </body>
 </html>
