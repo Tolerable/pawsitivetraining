@@ -796,7 +796,7 @@
 
 
 	<script>
-	{ // keep scope isolated
+	{ // scoped
 	  const banner = document.getElementById('cat-banner');
 	  const header = document.querySelector('header');
 	  const closeBtn = document.getElementById('close-cat-banner');
@@ -810,19 +810,20 @@
 		header.style.top = '0';
 	  }
 
-	  if (sessionStorage.getItem('hideCatBanner') === '1') {
-		hideBanner();
-	  } else {
-		showBanner();
-	  }
+	  // Show the banner on every new page load.
+	  showBanner();
 
+	  // When ✕ is clicked, hide it for this session (until next reload)
 	  closeBtn.addEventListener('click', () => {
 		hideBanner();
-		sessionStorage.setItem('hideCatBanner', '1');
+		// only remember during this single open tab life
+		window.name = 'bannerClosed';
 	  });
+
+	  // If user reopens tab without full reload, check if it was hidden
+	  if (window.name === 'bannerClosed') hideBanner();
 	}
 	</script>
-
 
     <!-- HOME PAGE -->
     <div id="home" class="page active">
