@@ -791,43 +791,52 @@
 	</div>
 
 	<style>
-	  /* Core header and body adjustment when banner is visible */
-	  :root {
-		--banner-offset: 0px;
-	  }
+	  /* Cat banner integration (do NOT touch hero margin) */
+	  :root { --banner-offset: 0px; }
 
 	  header {
 		top: var(--banner-offset);
 		transition: top 0.25s ease;
 	  }
 
-	  main, .page, .hero {
-		margin-top: var(--banner-offset);
-		transition: margin-top 0.25s ease;
+	  /* Push document flow down under the fixed banner without
+		 overriding section-specific margins like .hero’s 80px */
+	  body {
+		padding-top: var(--banner-offset);
+		transition: padding-top 0.25s ease;
 	  }
 	</style>
+
 
 	<script>
 	  (function () {
 		const root = document.documentElement;
 		const banner = document.getElementById('cat-banner');
 		const closeBtn = document.getElementById('close-cat-banner');
-		const offset = '40px';
 
-		// Show banner unless user closed it this session
-		const closed = sessionStorage.getItem('catBannerClosed') === 'true';
-		if (!closed) {
-		  banner.style.display = 'flex';
-		  root.style.setProperty('--banner-offset', offset);
-		} else {
-		  banner.style.display = 'none';
-		  root.style.setProperty('--banner-offset', '0px');
+		function setOffset(px) {
+		  root.style.setProperty('--banner-offset', px);
 		}
 
-		closeBtn.addEventListener('click', () => {
+		function showBanner() {
+		  banner.style.display = 'flex';
+		  // measure actual height in case you tweak styles
+		  const h = banner.getBoundingClientRect().height || 40;
+		  setOffset(h + 'px');
+		}
+
+		function hideBanner() {
 		  banner.style.display = 'none';
-		  root.style.setProperty('--banner-offset', '0px');
+		  setOffset('0px');
+		}
+
+		// Visible unless closed this session
+		const closed = sessionStorage.getItem('catBannerClosed') === 'true';
+		closed ? hideBanner() : showBanner();
+
+		closeBtn.addEventListener('click', () => {
 		  sessionStorage.setItem('catBannerClosed', 'true');
+		  hideBanner();
 		});
 	  })();
 	</script>
