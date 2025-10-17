@@ -1457,7 +1457,7 @@
   }
 
   function unlockPremiumCardsNow() {
-    document.querySelectorAll('.card.locked').forEach(c => c.classList.remove('locked'));
+    document.querySelectorAll('.area-card.locked, .card.locked').forEach(c => c.classList.remove('locked'));
   }
 
   function initCatLocks() {
