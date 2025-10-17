@@ -122,6 +122,37 @@
     /* Footer */
     footer{background:#111827;color:#e5e7eb;text-align:center;padding:26px 0}
 
+	/* --- CAT TRAINING LIST: make it 3-up cards like dog --- */
+	#training-list .grid{
+	  display:grid;
+	  grid-template-columns:repeat(3, minmax(260px, 1fr)); /* 3 across on desktop */
+	  gap:20px;
+	}
+
+	/* responsive breakpoints to match dog layout */
+	@media (max-width: 900px){
+	  #training-list .grid{ grid-template-columns:repeat(2, minmax(220px,1fr)); }
+	}
+	@media (max-width: 600px){
+	  #training-list .grid{ grid-template-columns:1fr; }
+	}
+
+	/* use light card style in the TRAINING page (not the glass/“Start →” style) */
+	#training-list .card{
+	  background:linear-gradient(135deg,#f7fafc,#eef2ff);
+	  border:1px solid rgba(124,58,237,.15);
+	  color:#111827;
+	  box-shadow:0 4px 15px rgba(0,0,0,.06);
+	}
+	#training-list .card:hover{
+	  transform:translateY(-4px);
+	  background:linear-gradient(135deg,#eef2ff,#e5e7eb);
+	}
+
+	/* remove the glass-section pseudo label */
+	#training-list .card::after{ content:""; }
+
+
     /* Responsive */
     @media (max-width:768px){
       .nav-links{display:none}
