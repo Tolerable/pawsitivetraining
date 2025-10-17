@@ -544,5 +544,38 @@
       }
     });
   </script>
+<script>
+/* --- CAT SITE UNLOCK BUTTON STATUS FIX --- */
+function updateCatUnlockButton() {
+  const btn = document.querySelector('.unlock-chip');
+  if (!btn) return;
+  if (localStorage.getItem('feline_training_unlock_v1') === '1') {
+    btn.textContent = '✅ Registered';
+    btn.style.background = '#22c55e';
+    btn.style.color = '#fff';
+  } else {
+    btn.textContent = '🔓 UNLOCK';
+    btn.style.background = '#ec4899';
+    btn.style.color = '#fff';
+  }
+}
+
+/* After a successful unlock, re-check button */
+function applyUnlock() {
+  const v = (document.getElementById('unlock-code').value || '').trim().toUpperCase();
+  if (v.length !== 6) {
+    alert('Enter a 6-character code.');
+    return;
+  }
+  localStorage.setItem('feline_training_unlock_v1', '1');
+  closeUnlock();
+  updateCatUnlockButton();  // <-- refresh header immediately
+  alert('Premium topics unlocked for Purrfect Training!');
+}
+
+/* Run check on load */
+document.addEventListener('DOMContentLoaded', updateCatUnlockButton);
+</script>
+  
 </body>
 </html>
