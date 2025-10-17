@@ -790,10 +790,19 @@
 	  <span id="close-cat-banner" style="float:right;margin-right:10px;cursor:pointer;">✕</span>
 	</div>
 	<script>
-	  const banner=document.getElementById('cat-banner');
-	  const closeBtn=document.getElementById('close-cat-banner');
-	  if(localStorage.getItem('hideCatBanner')==='1'){banner.style.display='none';}
-	  closeBtn.onclick=()=>{banner.style.display='none';localStorage.setItem('hideCatBanner','1');};
+	{ // scoped to avoid const collisions with your modal code
+	  const banner = document.getElementById('cat-banner');
+	  const closeBtn = document.getElementById('close-cat-banner');
+	  if (banner && localStorage.getItem('hideCatBanner') === '1') {
+		banner.style.display = 'none';
+	  }
+	  if (banner && closeBtn) {
+		closeBtn.addEventListener('click', function () {
+		  banner.style.display = 'none';
+		  localStorage.setItem('hideCatBanner', '1');
+		});
+	  }
+	}
 	</script>
 
 
