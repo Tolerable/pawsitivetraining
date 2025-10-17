@@ -1,0 +1,2585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-2H87VH629N"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-2H87VH629N');
+	</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Free science-based dog training guides using LIMA methods. Learn housebreaking, leash training, basic obedience, and behavior modification with positive reinforcement techniques.">
+    <meta name="keywords" content="dog training, LIMA training, positive reinforcement, puppy training, housebreaking, leash training, behavior modification, science-based dog training">
+    <meta name="author" content="Pawsitive Training">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pawsitivetraining.app/">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pawsitivetraining.app/">
+    <meta property="og:title" content="Pawsitive Training - Science-Based Dog Training">
+    <meta property="og:description" content="Build a stronger bond with your dog using proven, humane LIMA training methods. No fear, force, or intimidation - just positive results.">
+    <meta property="og:image" content="https://pawsitivetraining.app/social_preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Pawsitive Training">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pawsitivetraining.app/">
+    <meta property="twitter:title" content="Pawsitive Training - Science-Based Dog Training">
+    <meta property="twitter:description" content="Build a stronger bond with your dog using proven, humane LIMA training methods. No fear, force, or intimidation - just positive results.">
+    <meta property="twitter:image" content="https://pawsitivetraining.app/social_preview.png">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Page Title -->
+    <title>Pawsitive Training - Science-Based Dog Training</title>
+    
+    <!-- Structured Data for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Pawsitive Training",
+      "url": "https://pawsitivetraining.app",
+      "description": "Science-based dog training education using LIMA methods",
+      "educationalCredentialAwarded": "Dog Training Knowledge",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Dog Training Courses",
+        "itemListElement": [
+          {
+            "@type": "Course",
+            "name": "Housebreaking Training",
+            "description": "Establish reliable potty habits with positive reinforcement"
+          },
+          {
+            "@type": "Course", 
+            "name": "Leash Training",
+            "description": "Enjoy peaceful walks without pulling or reactivity"
+          },
+          {
+            "@type": "Course",
+            "name": "Basic Obedience",
+            "description": "Sit, stay, down, and essential life skills"
+          },
+          {
+            "@type": "Course",
+            "name": "Behavioral Modification",
+            "description": "Address jumping, barking, separation anxiety, and aggression"
+          }
+        ]
+      }
+    }
+    </script>
+    <style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			line-height: 1.6;
+			color: #333;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 20px;
+		}
+
+		/* Page visibility */
+		.page {
+			display: none !important;
+			height: 0;
+			overflow: hidden;
+		}
+
+		.page.active {
+			display: block !important;
+			height: auto;
+			overflow: visible;
+		}
+
+		/* Header */
+		header {
+			background: rgba(255, 255, 255, 0.95);
+			backdrop-filter: blur(10px);
+			padding: 1rem 0;
+			position: fixed;
+			width: 100%;
+			top: var(--banner-offset, 0px);
+			z-index: 1000;
+			box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+			transition: top 0.3s ease; /* added safely */
+		}
+
+		nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.logo {
+			font-size: 1.8rem;
+			font-weight: bold;
+			color: #4a5568;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			cursor: pointer;
+		}
+
+		.logo::before {
+			content: "🐕";
+			font-size: 2rem;
+		}
+
+		.nav-links {
+			display: flex;
+			list-style: none;
+			gap: 2rem;
+		}
+
+		.nav-links a {
+			text-decoration: none;
+			color: #4a5568;
+			font-weight: 500;
+			transition: color 0.3s ease;
+			cursor: pointer;
+		}
+
+		.nav-links a:hover {
+			color: #667eea;
+		}
+
+		/* Hero Section */
+		.hero {
+			margin-top: 80px;
+			padding: 4rem 0;
+			text-align: center;
+			color: white;
+		}
+
+		.hero h1 {
+			font-size: 3.5rem;
+			margin-bottom: 1rem;
+			background: linear-gradient(45deg, #fff, #f0f8ff);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+
+		.hero p {
+			font-size: 1.3rem;
+			margin-bottom: 2rem;
+			opacity: 0.9;
+		}
+
+		.cta-button {
+			display: inline-block;
+			background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+			color: white;
+			padding: 1rem 2rem;
+			text-decoration: none;
+			border-radius: 50px;
+			font-weight: bold;
+			font-size: 1.1rem;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+			cursor: pointer;
+			border: none;
+		}
+
+		.cta-button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+		}
+
+		/* Features Section */
+		.features {
+			background: white;
+			padding: 4rem 0;
+		}
+
+		.features h2 {
+			text-align: center;
+			font-size: 2.5rem;
+			margin-bottom: 3rem;
+			color: #2d3748;
+		}
+
+		.features-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
+		}
+
+		.feature-card {
+			background: linear-gradient(135deg, #f7fafc, #edf2f7);
+			padding: 2rem;
+			border-radius: 15px;
+			text-align: center;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			border: 1px solid rgba(102, 126, 234, 0.1);
+		}
+
+		.feature-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+		}
+
+		.feature-icon {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+		}
+
+		.feature-card h3 {
+			font-size: 1.4rem;
+			margin-bottom: 1rem;
+			color: #2d3748;
+		}
+
+		.feature-card p {
+			color: #4a5568;
+			line-height: 1.6;
+		}
+
+		/* Training Areas */
+		.training-areas {
+			background: linear-gradient(135deg, #667eea, #764ba2);
+			padding: 4rem 0;
+			color: white;
+		}
+
+		.training-page .training-areas {
+			background: white;
+			color: #333;
+		}
+
+		.training-areas h2 {
+			text-align: center;
+			font-size: 2.5rem;
+			margin-bottom: 3rem;
+		}
+
+		.areas-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.5rem;
+			max-width: 900px;
+			margin: 0 auto;
+		}
+
+		.area-card {
+			background: rgba(255, 255, 255, 0.1);
+			backdrop-filter: blur(10px);
+			padding: 1.5rem;
+			border-radius: 15px;
+			text-align: center;
+			transition: all 0.3s ease;
+			border: 2px solid rgba(255, 255, 255, 0.2);
+			cursor: pointer;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.area-card::after {
+			content: "Click to Start →";
+			position: absolute;
+			bottom: 8px;
+			right: 12px;
+			font-size: 11px;
+			color: rgba(255, 255, 255, 0.7);
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+
+		.area-card:hover {
+			transform: translateY(-3px);
+			background: rgba(255, 255, 255, 0.2);
+			border-color: rgba(255, 255, 255, 0.4);
+			box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+		}
+
+		.area-card:hover::after {
+			opacity: 1;
+		}
+
+		.area-card.locked {
+			background: rgba(255, 255, 255, 0.05);
+			border: 2px dashed rgba(255, 107, 107, 0.5);
+			cursor: not-allowed;
+		}
+
+		.area-card.locked::after {
+			content: "🔒 PREMIUM";
+			opacity: 1;
+			color: #ff6b6b;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.area-card.locked h4,
+		.area-card.locked p {
+			opacity: 0.5;
+		}
+
+		.training-page .area-card {
+			background: linear-gradient(135deg, #f7fafc, #edf2f7);
+			border: 1px solid rgba(102, 126, 234, 0.2);
+			box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+			color: #2d3748;
+			backdrop-filter: none;
+		}
+
+		.training-page .area-card:hover {
+			background: linear-gradient(135deg, #edf2f7, #e2e8f0);
+			box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+			transform: translateY(-5px);
+		}
+
+		.training-page .area-card h4 {
+			color: #2d3748;
+		}
+
+		.training-page .area-card p {
+			color: #4a5568;
+			opacity: 1;
+		}
+
+		.area-card h4 {
+			font-size: 1.2rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.area-card p {
+			font-size: 0.9rem;
+			opacity: 0.9;
+		}
+
+		/* LIMA Section */
+		.lima-section {
+			background: white;
+			padding: 4rem 0;
+		}
+
+		.lima-content {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 3rem;
+			align-items: center;
+		}
+
+		.lima-text h2 {
+			font-size: 2.5rem;
+			margin-bottom: 1rem;
+			color: #2d3748;
+		}
+
+		.lima-text p {
+			margin-bottom: 1rem;
+			color: #4a5568;
+			font-size: 1.1rem;
+		}
+
+		.lima-principles {
+			list-style: none;
+		}
+
+		.lima-principles li {
+			background: linear-gradient(135deg, #f7fafc, #edf2f7);
+			padding: 1rem;
+			margin: 0.5rem 0;
+			border-radius: 10px;
+			border-left: 4px solid #667eea;
+		}
+
+		.lima-visual {
+			text-align: center;
+		}
+
+		.hierarchy-pyramid {
+			background: linear-gradient(45deg, #667eea, #764ba2);
+			color: white;
+			padding: 2rem;
+			border-radius: 15px;
+			position: relative;
+		}
+
+		.pyramid-level {
+			padding: 0.8rem;
+			margin: 0.5rem 0;
+			background: rgba(255, 255, 255, 0.1);
+			border-radius: 8px;
+			backdrop-filter: blur(5px);
+		}
+
+		/* Training Page Styles */
+		.training-page {
+			background: white;
+			padding: 6rem 0 4rem 0;
+			min-height: 100vh;
+		}
+
+		.training-header {
+			text-align: center;
+			margin-bottom: 3rem;
+		}
+
+		.training-header h1 {
+			font-size: 2.8rem;
+			color: #2d3748;
+			margin-bottom: 1rem;
+		}
+
+		.training-header p {
+			font-size: 1.2rem;
+			color: #4a5568;
+			max-width: 600px;
+			margin: 0 auto;
+		}
+
+		.back-button {
+			background: #667eea;
+			color: white;
+			padding: 0.8rem 1.5rem;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			font-size: 1rem;
+			margin-bottom: 2rem;
+			transition: background 0.3s ease;
+		}
+
+		.back-button:hover {
+			background: #5a67d8;
+		}
+
+		.training-steps {
+			background: #f7fafc;
+			padding: 2rem;
+			border-radius: 15px;
+			margin: 2rem 0;
+		}
+
+		.step {
+			background: white;
+			padding: 1.5rem;
+			margin: 1rem 0;
+			border-radius: 10px;
+			border-left: 4px solid #667eea;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+		}
+
+		.step h3 {
+			color: #2d3748;
+			margin-bottom: 0.5rem;
+		}
+
+		.step-number {
+			background: #667eea;
+			color: white;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-right: 1rem;
+			font-weight: bold;
+		}
+
+		.tips-section {
+			background: linear-gradient(135deg, #e6fffa, #f0fff4);
+			padding: 2rem;
+			border-radius: 15px;
+			margin: 2rem 0;
+			border: 1px solid #4fd1c7;
+		}
+
+		.troubleshooting {
+			background: linear-gradient(135deg, #fef5e7, #fefcbf);
+			padding: 2rem;
+			border-radius: 15px;
+			margin: 2rem 0;
+			border: 1px solid #f6ad55;
+		}
+
+		/* Modal Styles */
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 1000;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.7);
+		}
+
+		.modal-content {
+			background-color: #2d3748;
+			margin: 10% auto;
+			padding: 30px;
+			border: 2px solid #667eea;
+			border-radius: 15px;
+			width: 450px;
+			max-width: 90vw;
+			position: relative;
+			color: white;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+		}
+
+		#progress-modal .modal-content {
+			width: 600px;
+			max-width: 90vw;
+			max-height: 85vh;
+			overflow-y: auto;
+			padding: 20px;
+		}
+
+		.close {
+			position: absolute;
+			top: 15px;
+			right: 20px;
+			color: #aaa;
+			font-size: 24px;
+			font-weight: bold;
+			cursor: pointer;
+			background: rgba(255,255,255,0.1);
+			border: 1px solid rgba(255,255,255,0.2);
+			border-radius: 6px;
+			width: 32px;
+			height: 32px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.3s ease;
+		}
+
+		.close:hover {
+			color: white;
+			background: rgba(255,255,255,0.2);
+			border-color: #667eea;
+		}
+
+		.modal-content h2 {
+			color: #667eea;
+			margin-bottom: 20px;
+			font-size: 24px;
+		}
+
+		.modal-content input {
+			width: 100%;
+			padding: 12px;
+			margin: 15px 0;
+			background: #4a5568;
+			border: 1px solid #667eea;
+			border-radius: 8px;
+			color: white;
+			font-size: 16px;
+			text-align: center;
+			letter-spacing: 2px;
+		}
+
+		.modal-content button {
+			background: #667eea;
+			color: white;
+			border: none;
+			padding: 12px 20px;
+			border-radius: 8px;
+			cursor: pointer;
+			width: 100%;
+			margin-top: 10px;
+			font-size: 16px;
+			transition: background 0.3s ease;
+		}
+
+		.modal-content button:hover {
+			background: #5a67d8;
+		}
+
+		.secondary-btn {
+			background: #4a5568;
+			border: 1px solid #667eea;
+		}
+
+		.secondary-btn:hover {
+			background: #667eea;
+		}
+
+		.premium-info {
+			background: rgba(102, 126, 234, 0.1);
+			border-left: 3px solid #667eea;
+			padding: 15px;
+			margin: 15px 0;
+			border-radius: 8px;
+		}
+
+		.premium-features {
+			list-style: none;
+			padding: 0;
+			margin: 10px 0;
+		}
+
+		.premium-features li {
+			margin: 8px 0;
+			padding-left: 5px;
+		}
+
+		/* Progress Tracker Styles */
+		.skill-item {
+			background: white;
+			padding: 1rem;
+			margin: 0.5rem 0;
+			border-radius: 10px;
+			border-left: 4px solid #667eea;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+		}
+
+		.star-rating {
+			display: flex;
+			gap: 0.2rem;
+			justify-content: center;
+		}
+
+		.star {
+			cursor: pointer;
+			font-size: 2.5rem;
+			color: #e2e8f0;
+			transition: color 0.2s;
+			user-select: none;
+		}
+
+		.star:hover, .star.active {
+			color: #ffd700;
+		}
+
+		/* Footer */
+		footer {
+			background: #2d3748;
+			color: white;
+			text-align: center;
+			padding: 2rem 0;
+		}
+
+		#cookie-banner {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: #2d3748;
+			color: white;
+			padding: 15px 20px;
+			z-index: 10000;
+			border-top: 2px solid #667eea;
+			display: none;
+		}
+
+		#cookie-banner.show {
+			display: block;
+		}
+
+		.cookie-content {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 20px;
+		}
+
+		.cookie-text {
+			flex: 1;
+			font-size: 14px;
+			line-height: 1.4;
+		}
+
+		.cookie-buttons {
+			display: flex;
+			gap: 10px;
+		}
+
+		.cookie-btn {
+			padding: 8px 16px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: bold;
+		}
+
+		.cookie-accept {
+			background: #667eea;
+			color: white;
+		}
+
+		.cookie-decline {
+			background: #4a5568;
+			color: white;
+			border: 1px solid #667eea;
+		}
+
+		@media (max-width: 768px) {
+			.cookie-content {
+				flex-direction: column;
+				text-align: center;
+			}
+
+			.hero h1 {
+				font-size: 2.5rem;
+			}
+
+			.nav-links {
+				display: none;
+			}
+
+			.lima-content {
+				grid-template-columns: 1fr;
+				gap: 2rem;
+			}
+
+			.features-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.areas-grid {
+				grid-template-columns: 1fr;
+			}
+			
+			.modal-content {
+				width: 350px;
+				padding: 25px;
+			}
+		}		
+    </style>
+</head>
+<body>
+	<!-- Cat banner -->
+	<div id="cat-banner" style="background:#f3e8ff;color:#3b0764;text-align:center;
+	  padding:10px 12px;font-weight:600;position:fixed;top:0;left:0;right:0;
+	  z-index:2000;box-shadow:0 2px 5px rgba(0,0,0,0.1);display:flex;gap:8px;
+	  align-items:center;justify-content:center;height:40px;">
+	  <span>Check out our new 
+		<a href="/cats/index.html" style="color:#7e22ce;text-decoration:underline;">
+		  Purrfect Training for Cats
+		</a>!
+	  </span>
+	  <button id="close-cat-banner" aria-label="Close"
+		style="margin-left:12px;background:transparent;border:0;cursor:pointer;
+		font-size:18px;line-height:1;">✕</button>
+	</div>
+
+	<style>
+	  /* Cat banner integration (do NOT touch hero margin) */
+	  :root { --banner-offset: 0px; }
+
+	  header {
+		top: var(--banner-offset);
+		transition: top 0.25s ease;
+	  }
+
+	  /* Push document flow down under the fixed banner without
+		 overriding section-specific margins like .hero’s 80px */
+	  body {
+		padding-top: var(--banner-offset);
+		transition: padding-top 0.25s ease;
+	  }
+	</style>
+
+
+	<script>
+	  (function () {
+		const root = document.documentElement;
+		const banner = document.getElementById('cat-banner');
+		const closeBtn = document.getElementById('close-cat-banner');
+
+		function setOffset(px) {
+		  root.style.setProperty('--banner-offset', px);
+		}
+
+		function showBanner() {
+		  banner.style.display = 'flex';
+		  // measure actual height in case you tweak styles
+		  const h = banner.getBoundingClientRect().height || 40;
+		  setOffset(h + 'px');
+		}
+
+		function hideBanner() {
+		  banner.style.display = 'none';
+		  setOffset('0px');
+		}
+
+		// Visible unless closed this session
+		const closed = sessionStorage.getItem('catBannerClosed') === 'true';
+		closed ? hideBanner() : showBanner();
+
+		closeBtn.addEventListener('click', () => {
+		  sessionStorage.setItem('catBannerClosed', 'true');
+		  hideBanner();
+		});
+	  })();
+	</script>
+
+    <header>
+        <nav class="container">
+            <div class="logo" onclick="showPage('home')">Pawsitive Training</div>
+			<ul class="nav-links">
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('training-list')">Training Areas</a></li>
+                <li><a onclick="showPage('about')">About LIMA</a></li>
+                <li><a onclick="showPage('resources')">Resources</a></li>
+                <li><a onclick="showPage('contact')">Contact</a></li>
+				<li><a href="/cats/index.html">🐈 Cat Training</a></li>
+                <li><a href="#" onclick="showRegistrationModal(); return false;" style="background: #ff6b6b; padding: 5px 10px; border-radius: 15px; color: white;">🔓 UNLOCK</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="container">
+                <h1>Science-Based Dog Training</h1>
+                <p>Build a stronger bond with your dog using proven, humane training methods</p>
+                <button class="cta-button" onclick="showPage('training-list')">Start Training Now</button>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose Pawsitive Training?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>LIMA Methodology</h3>
+                        <p>We use Least Intrusive, Minimally Aversive methods endorsed by veterinary behaviorists worldwide. No fear, force, or intimidation—just positive results.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Science-Based</h3>
+                        <p>Our training methods are grounded in the latest behavioral science and learning theory, ensuring effective and humane approaches to dog training.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Stronger Bonds</h3>
+                        <p>Positive reinforcement builds trust, confidence, and a deeper connection between you and your dog that lasts a lifetime.</p>
+                    </div>
+					<div class="feature-card" onclick="openAIAssistant()">
+						<div class="feature-icon">🤖</div>
+						<h3>AI Training Assistant</h3>
+						<p>Get personalized training advice and solutions for your specific dog training challenges using AI guidance.</p>
+					</div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Step-by-Step Plans</h3>
+                        <p>Break down complex behaviors into simple, manageable steps that lead to lasting results and success.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">❤️</div>
+                        <h3>Stress-Free Learning</h3>
+                        <p>Create a positive learning environment where your dog feels safe, confident, and eager to participate in training.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="training-areas">
+            <div class="container">
+                <h2>Common Training Areas</h2>
+                <div class="areas-grid">
+					<div class="area-card" onclick="showTrainingPage('housebreaking')">
+						<h4>🏠 Housebreaking</h4>
+						<p>Establish reliable potty habits with positive reinforcement techniques</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('leash')">
+						<h4>🚶‍♂️ Leash Training</h4>
+						<p>Enjoy peaceful walks without pulling or reactivity</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('basic')">
+						<h4>📚 Basic Obedience</h4>
+						<p>Sit, stay, down, and essential life skills</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('jumping')">
+						<h4>🐕 Jumping on People</h4>
+						<p>Teach polite greetings and appropriate social behavior</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('barking')">
+						<h4>🔊 Excessive Barking</h4>
+						<p>Address barking with positive alternatives and management</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('separation')">
+						<h4>😰 Separation Anxiety</h4>
+						<p>Build confidence and reduce stress when left alone</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('aggression')">
+						<h4>⚠️ Reactivity & Aggression</h4>
+						<p>Safe, systematic approaches to behavioral challenges</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('recall')">
+						<h4>📞 Recall Training</h4>
+						<p>Reliable come-when-called for safety and freedom</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('resource-guarding')">
+						<h4>🦴 Resource Guarding</h4>
+						<p>Teach your dog to share food, toys, and spaces safely</p>
+					</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lima-section">
+            <div class="container">
+                <div class="lima-content">
+                    <div class="lima-text">
+                        <h2>The LIMA Approach</h2>
+                        <p><strong>Least Intrusive, Minimally Aversive</strong> training is the gold standard endorsed by professional organizations worldwide.</p>
+                        <p>Instead of using fear, force, or dominance, we follow a humane hierarchy that prioritizes your dog's well-being while achieving reliable results.</p>
+                        <ul class="lima-principles">
+                            <li><strong>Health First:</strong> Rule out medical causes</li>
+                            <li><strong>Management:</strong> Prevent practice of unwanted behaviors</li>
+                            <li><strong>Positive Reinforcement:</strong> Reward desired behaviors</li>
+                            <li><strong>Negative Punishment:</strong> Remove privileges when needed</li>
+                            <li><strong>Force-Free:</strong> No shock collars, choke chains, or intimidation</li>
+                        </ul>
+                    </div>
+                    <div class="lima-visual">
+                        <div class="hierarchy-pyramid">
+                            <h3>LIMA Hierarchy</h3>
+                            <div class="pyramid-level">🩺 Health & Environment</div>
+                            <div class="pyramid-level">🚧 Management & Prevention</div>
+                            <div class="pyramid-level">✅ Positive Reinforcement</div>
+                            <div class="pyramid-level">⏸️ Negative Punishment</div>
+                            <div class="pyramid-level">↗️ Negative Reinforcement</div>
+                            <div class="pyramid-level">⚠️ Positive Punishment (Last Resort)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TRAINING LIST PAGE -->
+    <div id="training-list" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+                <div class="training-header">
+                    <h1>Training Areas</h1>
+                    <p>Choose your training focus area to get detailed, step-by-step guidance using proven LIMA methods.</p>
+                </div>
+				<div class="areas-grid">
+					<div class="area-card" onclick="showTrainingPage('housebreaking')">
+						<h4>🏠 Housebreaking</h4>
+						<p>Establish reliable potty habits with positive reinforcement techniques</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('leash')">
+						<h4>🚶‍♂️ Leash Training</h4>
+						<p>Enjoy peaceful walks without pulling or reactivity</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('basic')">
+						<h4>📚 Basic Obedience</h4>
+						<p>Sit, stay, down, and essential life skills</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('jumping')">
+						<h4>🐕 Jumping on People</h4>
+						<p>Teach polite greetings and appropriate social behavior</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('barking')">
+						<h4>🔊 Excessive Barking</h4>
+						<p>Address barking with positive alternatives and management</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('separation')">
+						<h4>😰 Separation Anxiety</h4>
+						<p>Build confidence and reduce stress when left alone</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('aggression')">
+						<h4>⚠️ Reactivity & Aggression</h4>
+						<p>Safe, systematic approaches to behavioral challenges</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('recall')">
+						<h4>📞 Recall Training</h4>
+						<p>Reliable come-when-called for safety and freedom</p>
+					</div>
+					<div class="area-card" onclick="showTrainingPage('resource-guarding')">
+						<h4>🦴 Resource Guarding</h4>
+						<p>Teach your dog to share food, toys, and spaces safely</p>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOUSEBREAKING TRAINING PAGE -->
+    <div id="housebreaking" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+                <div class="training-header">
+                    <h1>🏠 Housebreaking Training</h1>
+                    <p>Build reliable potty habits using positive reinforcement and consistent management.</p>
+                </div>
+
+				<div style="text-align: center; margin: 2rem 0;">
+					<button class="cta-button" onclick="showProgressTracker('housebreaking')">
+						📊 Track My Progress
+					</button>
+					<p style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">
+						Log practice sessions and track skill mastery
+					</p>
+				</div>
+
+                <div class="training-steps">
+                    <h2>Step-by-Step Training Plan</h2>
+                    
+                    <div class="step">
+                        <h3><span class="step-number">1</span>Establish a Schedule</h3>
+                        <p>Take your dog outside first thing in the morning, after meals, after naps, after play sessions, and last thing at night. Puppies need to go out every 1-2 hours.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">2</span>Choose a Potty Spot</h3>
+                        <p>Take your dog to the same area each time. Stay with them and wait quietly. The familiar scent will help trigger the behavior.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">3</span>Use a Cue Word</h3>
+                        <p>While your dog is eliminating, quietly say a cue word like "potty" or "go bathroom." Eventually, they'll associate this word with the action.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">4</span>Reward Immediately</h3>
+                        <p>The moment your dog finishes going potty outside, give enthusiastic praise and a high-value treat. Make it the best thing that happens all day!</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">5</span>Supervise Indoors</h3>
+                        <p>Watch for signs like sniffing, circling, or heading to the door. Immediately take them outside if you see these behaviors.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">6</span>Manage When You Can't Watch</h3>
+                        <p>Use a crate, playpen, or tether your dog to you. Dogs naturally avoid soiling their sleeping area when properly sized.</p>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <h3>💡 Pro Tips</h3>
+                    <ul>
+                        <li>Clean accidents with enzymatic cleaner to remove odor completely</li>
+                        <li>Never punish accidents - just clean up and increase supervision</li>
+                        <li>Gradually increase freedom as success rate improves</li>
+                        <li>Adult dogs should be able to hold it for their age in months + 1 hour</li>
+                    </ul>
+                </div>
+
+                <div class="troubleshooting">
+                    <h3>🔧 Troubleshooting Common Issues</h3>
+                    <p><strong>Still having accidents after weeks:</strong> Check with your vet to rule out medical issues. Increase supervision and return to more frequent potty breaks.</p>
+                    <p><strong>Goes outside but also inside:</strong> You may be giving too much freedom too soon. Restrict access to areas where accidents happen.</p>
+                    <p><strong>Won't go outside:</strong> Make sure the outdoor area feels safe and comfortable. Try different locations or times of day.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEASH TRAINING PAGE -->
+    <div id="leash" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+                <div class="training-header">
+                    <h1>🚶‍♂️ Leash Training</h1>
+                    <p>Teach your dog to walk politely on leash without pulling using positive methods.</p>
+                </div>
+
+				<div style="text-align: center; margin: 2rem 0;">
+					<button class="cta-button" onclick="showProgressTracker('leash')">
+						📊 Track My Progress
+					</button>
+					<p style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">
+						Log practice sessions and track skill mastery
+					</p>
+				</div>
+
+                <div class="training-steps">
+                    <h2>Step-by-Step Training Plan</h2>
+                    
+                    <div class="step">
+                        <h3><span class="step-number">1</span>Choose the Right Equipment</h3>
+                        <p>Use a standard 6-foot leash and a properly fitted flat collar or front-clip harness. Avoid retractable leashes during training.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">2</span>Start Indoors</h3>
+                        <p>Practice walking with the leash attached inside your home. Let your dog get comfortable with the feeling before going outside.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">3</span>Be a Tree</h3>
+                        <p>When your dog pulls, immediately stop moving and stand still. Don't move forward until the leash is loose. No jerking or pulling back.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">4</span>Reward Position</h3>
+                        <p>The moment your dog returns to your side or the leash becomes loose, praise and reward with treats. Mark the position you want.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">5</span>Use Direction Changes</h3>
+                        <p>When your dog pulls, turn and walk in the opposite direction. Reward when they catch up and the leash is loose.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3><span class="step-number">6</span>Practice "Check-ins"</h3>
+                        <p>Reward your dog whenever they look at you during the walk. This builds attention and connection.</p>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <h3>💡 Pro Tips</h3>
+                    <ul>
+                        <li>Keep training sessions short (5-10 minutes) to prevent frustration</li>
+                        <li>Use high-value treats that your dog only gets during leash training</li>
+                        <li>Practice in low-distraction areas before increasing difficulty</li>
+                        <li>Be patient - loose leash walking takes time to master</li>
+                    </ul>
+                </div>
+
+                <div class="troubleshooting">
+                    <h3>🔧 Troubleshooting Common Issues</h3>
+                    <p><strong>Still pulls after weeks:</strong> Make sure you're being 100% consistent. Any forward movement while the leash is tight rewards the pulling.</p>
+                    <p><strong>Gets too excited outside:</strong> Practice more indoors and in your yard before tackling walks in stimulating environments.</p>
+                    <p><strong>Pulls toward other dogs:</strong> Increase distance from triggers and work on the "look at me" command for redirecting attention.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<!-- JUMPING TRAINING PAGE -->
+	<div id="jumping" class="page">
+		<div class="training-page">
+			<div class="container">
+				<button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+				<div class="training-header">
+					<h1>🐕 Jumping on People</h1>
+					<p>Teach your dog to greet people politely without jumping up.</p>
+				</div>
+
+				<div style="text-align: center; margin: 2rem 0;">
+					<button class="cta-button" onclick="showProgressTracker('jumping')">📊 Track My Progress</button>
+					<p style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Log practice sessions and track skill mastery</p>
+				</div>
+
+				<div class="training-steps">
+					<h2>Step-by-Step Training Plan</h2>
+					
+					<div class="step">
+						<h3><span class="step-number">1</span>Ignore the Jumping</h3>
+						<p>When your dog jumps, immediately turn away, fold your arms, and avoid eye contact. Don't push them down or say "no" - this can be rewarding attention.</p>
+					</div>
+
+					<div class="step">
+						<h3><span class="step-number">2</span>Reward Four Paws on Floor</h3>
+						<p>The moment all four paws are on the ground, immediately give attention, praise, and treats. Make keeping paws down more rewarding than jumping.</p>
+					</div>
+
+					<div class="step">
+						<h3><span class="step-number">3</span>Teach an Alternative Behavior</h3>
+						<p>Train your dog to sit for greetings. Practice having them sit before you pet them, before meals, and before going outside.</p>
+					</div>
+
+					<div class="step">
+						<h3><span class="step-number">4</span>Practice with Family</h3>
+						<p>Have family members practice the same routine. Everyone must be consistent - no exceptions or the behavior will continue.</p>
+					</div>
+
+					<div class="step">
+						<h3><span class="step-number">5</span>Gradually Add Strangers</h3>
+						<p>Once your dog reliably sits for family greetings, practice with friends and neighbors. Ask them to follow the same protocol.</p>
+					</div>
+				</div>
+
+				<div class="tips-section">
+					<h3>💡 Pro Tips</h3>
+					<ul>
+						<li>Keep greetings calm and low-key to prevent over-excitement</li>
+						<li>Practice when your dog is not overly excited for better success</li>
+						<li>Use a leash during training to prevent jumping on guests</li>
+						<li>Reward calm behavior throughout the day, not just during greetings</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- BARKING TRAINING PAGE -->
+	<div id="barking" class="page">
+		<div class="training-page">
+			<div class="container">
+				<button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+				<div class="training-header">
+					<h1>🔊 Excessive Barking</h1>
+					<p>Address barking issues by understanding the cause and providing positive alternatives.</p>
+				</div>
+
+				<div style="text-align: center; margin: 2rem 0;">
+					<button class="cta-button" onclick="showProgressTracker('barking')">📊 Track My Progress</button>
+					<p style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Log practice sessions and track skill mastery</p>
+				</div>
+
+				<div class="training-steps">
+					<h2>Step-by-Step Training Plan</h2>
+					
+					<div class="step">
+						<h3><span class="step-number">1</span>Identify the Trigger</h3>
+						<p>Determine what causes the barking: boredom, alerting, attention-seeking, fear, or excitement. The solution depends on the cause.</p>
+					</div>
+
+					<div class="step">
+						<h3><span class="step-number">2</span>Manage the Environment</h3>
+						<p>Remove or reduce exposure to triggers when possible. Use curtains to block visual triggers, provide mental stimulation for boredom barking.</p>
+					</div>
+
+					<div class="step">
+						<h3><span class="step-number">3</span>Teach "Quiet" Command</h3>
+						<p>When your dog barks, wait for a natural pause, then say "quiet" and immediately reward the silence with treats and praise.</p>
+					</div>
+
+					<div class="step">
+						<h3><span class="step-number">4</span>Increase Mental Stimulation</h3>
+						<p>Provide puzzle toys, training sessions, and adequate exercise to reduce boredom-related barking.</p>
+					</div>
+
+					<div class="step">
+						<h3><span class="step-number">5</span>Don't Reinforce Attention Barking</h3>
+						<p>If your dog barks for attention, completely ignore them until they're quiet. Any attention (even negative) can reinforce the behavior.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- BASIC OBEDIENCE PAGE -->
+	<div id="basic" class="page">
+		<div class="training-page">
+			<div class="container">
+				<button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+				<div class="training-header">
+					<h1>📚 Basic Obedience</h1>
+					<p>Teach essential life skills: sit, stay, down, and come when called.</p>
+				</div>
+				<div style="text-align: center; margin: 2rem 0;">
+					<button class="cta-button" onclick="showProgressTracker('basic')">📊 Track My Progress</button>
+					<p style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Log practice sessions and track skill mastery</p>
+				</div>
+				<div class="training-steps">
+					<h2>Step-by-Step Training Plan</h2>
+					<div class="step">
+						<h3><span class="step-number">1</span>Start with Treats Ready</h3>
+						<p>Have high-value treats ready and work in a quiet space with minimal distractions.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">2</span>Teach "Sit"</h3>
+						<p>Hold treat above dog's nose, slowly move up and back. As head follows treat, bottom naturally goes down. Say "sit" and reward immediately.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">3</span>Add "Stay"</h3>
+						<p>With dog in sit, hold hand up in "stop" gesture, take one step back. Return immediately and reward. Gradually increase distance and duration.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">4</span>Practice "Down"</h3>
+						<p>From sit position, bring treat slowly to ground between front paws. As dog follows, say "down" and reward when elbows touch ground.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">5</span>Work on "Come"</h3>
+						<p>Start close, say "come" in happy voice, reward enthusiastically when dog approaches. Gradually increase distance in safe, enclosed areas.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- SEPARATION ANXIETY PAGE -->
+	<div id="separation" class="page">
+		<div class="training-page">
+			<div class="container">
+				<button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+				<div class="training-header">
+					<h1>😰 Separation Anxiety</h1>
+					<p>Help your dog feel calm and confident when left alone.</p>
+				</div>
+				<div style="text-align: center; margin: 2rem 0;">
+					<button class="cta-button" onclick="showProgressTracker('separation')">📊 Track My Progress</button>
+					<p style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Log practice sessions and track skill mastery</p>
+				</div>
+				<div class="training-steps">
+					<h2>Step-by-Step Training Plan</h2>
+					<div class="step">
+						<h3><span class="step-number">1</span>Start Very Small</h3>
+						<p>Begin with departures of just 30 seconds. Leave calmly, return calmly. No big greetings or goodbyes.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">2</span>Practice Departure Cues</h3>
+						<p>Pick up keys, put on shoes, touch door handle throughout the day without leaving. Desensitize to departure signals.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">3</span>Gradually Increase Time</h3>
+						<p>Very slowly increase alone time: 1 minute, 2 minutes, 5 minutes. Only progress when dog is completely calm at current level.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">4</span>Create Positive Associations</h3>
+						<p>Give special toy or treat puzzle only when leaving. Make alone time the best part of dog's day.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">5</span>Build Independence</h3>
+						<p>Practice having dog in separate room while you're home. Teach that being apart is normal and safe.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- AGGRESSION PAGE -->
+	<div id="aggression" class="page">
+		<div class="training-page">
+			<div class="container">
+				<button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+				<div class="training-header">
+					<h1>⚠️ Reactivity & Aggression</h1>
+					<p>Address reactive behaviors with safe, systematic approaches. Consult a professional trainer for serious aggression.</p>
+				</div>
+				<div style="text-align: center; margin: 2rem 0;">
+					<button class="cta-button" onclick="showProgressTracker('aggression')">📊 Track My Progress</button>
+					<p style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Log practice sessions and track skill mastery</p>
+				</div>
+				<div class="training-steps">
+					<h2>Step-by-Step Training Plan</h2>
+					<div class="step">
+						<h3><span class="step-number">1</span>Identify Triggers</h3>
+						<p>Note what causes reactive behavior: other dogs, strangers, loud noises, etc. Know your dog's threshold distance.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">2</span>Work at Distance</h3>
+						<p>Practice with trigger visible but far enough away that dog notices but stays calm. This is your training zone.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">3</span>Counter-Conditioning</h3>
+						<p>When dog sees trigger and looks at you instead of reacting, mark with "yes" and give high-value treats. Change emotional response.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">4</span>Teach "Look at Me"</h3>
+						<p>Train a strong attention cue. When dog can focus on you despite mild distractions, you have a powerful redirection tool.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">5</span>Gradually Decrease Distance</h3>
+						<p>Very slowly work closer to triggers, only progressing when dog shows relaxed body language and can take treats.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- RECALL PAGE -->
+	<div id="recall" class="page">
+		<div class="training-page">
+			<div class="container">
+				<button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+				<div class="training-header">
+					<h1>📞 Recall Training</h1>
+					<p>Teach reliable come-when-called for safety and freedom.</p>
+				</div>
+				<div style="text-align: center; margin: 2rem 0;">
+					<button class="cta-button" onclick="showProgressTracker('recall')">📊 Track My Progress</button>
+					<p style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Log practice sessions and track skill mastery</p>
+				</div>
+				<div class="training-steps">
+					<h2>Step-by-Step Training Plan</h2>
+					<div class="step">
+						<h3><span class="step-number">1</span>Start Indoors</h3>
+						<p>Call dog's name from across the room in happy voice. When they come, reward enthusiastically with treats and praise.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">2</span>Add Distance Gradually</h3>
+						<p>Practice in hallways, then fenced yard. Always use long line outdoors for safety. Never call if you can't enforce it.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">3</span>Make It a Game</h3>
+						<p>Have family members take turns calling dog back and forth. Make coming to you the most exciting thing ever.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">4</span>Add Mild Distractions</h3>
+						<p>Practice recall with toys on ground, during play with other dogs, or when squirrels are visible. Start easy and build up.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">5</span>Proof in New Locations</h3>
+						<p>Practice in different parks, trails, and environments. Always use long line until recall is 100% reliable in that location.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- RESOURCE GUARDING PAGE -->
+	<div id="resource-guarding" class="page">
+		<div class="training-page">
+			<div class="container">
+				<button class="back-button" onclick="showPage('training-list')">← Back to Training Areas</button>
+				<div class="training-header">
+					<h1>🦴 Resource Guarding</h1>
+					<p>Teach your dog to share food, toys, and spaces willingly and safely.</p>
+				</div>
+				<div style="text-align: center; margin: 2rem 0;">
+					<button class="cta-button" onclick="showProgressTracker('resource-guarding')">📊 Track My Progress</button>
+					<p style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Log practice sessions and track skill mastery</p>
+				</div>
+				<div class="training-steps">
+					<h2>Step-by-Step Training Plan</h2>
+					<div class="step">
+						<h3><span class="step-number">1</span>Don't Take Things Away</h3>
+						<p>Avoid confrontation. Trade for something better instead of taking items directly. Teach that humans approaching means good things happen.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">2</span>Practice "Drop It"</h3>
+						<p>Offer high-value treat near dog's nose while they hold toy. Say "drop it" as they release. Immediately give treat AND return toy.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">3</span>Work Around Food Bowl</h3>
+						<p>While dog eats, approach calmly and drop extra treats in bowl. Teach that humans near food means bonus items appear.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">4</span>Practice Hand Feeding</h3>
+						<p>Occasionally feed meals by hand or from puzzle toys. Build positive associations with human hands around food.</p>
+					</div>
+					<div class="step">
+						<h3><span class="step-number">5</span>Teach "Wait"</h3>
+						<p>Have dog wait before eating meals. Release with "okay." Builds impulse control and shows you control resources fairly.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <div class="training-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+                <div class="training-header">
+                    <h1>About LIMA Training</h1>
+                    <p>Learn about the science-based approach that prioritizes your dog's well-being while achieving reliable results.</p>
+                </div>
+
+                <div class="lima-content">
+                    <div class="lima-text">
+                        <h2>What is LIMA?</h2>
+                        <p><strong>LIMA</strong> stands for <strong>Least Intrusive, Minimally Aversive</strong>. It's a training philosophy endorsed by leading animal behavior organizations worldwide, including the International Association of Animal Behavior Consultants (IAABC) and the Association of Professional Dog Trainers (APDT).</p>
+                        
+                        <h2>The Science Behind LIMA</h2>
+                        <p>Modern research shows that dogs learn best through positive reinforcement. Studies consistently demonstrate that reward-based training:</p>
+                        <ul class="lima-principles">
+                            <li>Creates stronger human-dog bonds</li>
+                            <li>Reduces stress and anxiety</li>
+                            <li>Leads to more reliable behavior</li>
+                            <li>Prevents fear-based aggression</li>
+                            <li>Results in happier, more confident dogs</li>
+                        </ul>
+
+                        <h2>Why Not Dominance Training?</h2>
+                        <p>The old "alpha dog" theory has been thoroughly debunked by modern science. Dominance-based training can actually increase aggression, anxiety, and fear while damaging the trust between you and your dog.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<!-- RESOURCES PAGE -->
+	<div id="resources" class="page">
+		<div class="training-page">
+			<div class="container">
+				<button class="back-button" onclick="showPage('home')">← Back to Home</button>
+				<div class="training-header">
+					<h1>Training Resources</h1>
+					<p>Recommended books, equipment, and organizations that support LIMA training methods.</p>
+				</div>
+
+				<div class="features-grid">
+					<div class="feature-card">
+						<div class="feature-icon">📚</div>
+						<h3>Essential Reading</h3>
+						<p><strong>"Don't Shoot the Dog!"</strong> by Karen Pryor<br>
+						<strong>"The Other End of the Leash"</strong> by Patricia McConnell<br>
+						<strong>"The Power of Positive Dog Training"</strong> by Pat Miller</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">🏢</div>
+						<h3>Professional Organizations</h3>
+						<p><strong>CCPDT</strong> - Certification Council for Professional Dog Trainers<br>
+						<strong>IAABC</strong> - International Association of Animal Behavior Consultants<br>
+						<strong>APDT</strong> - Association of Professional Dog Trainers</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">🛒</div>
+						<h3>Training Equipment</h3>
+						<p><strong>Front-clip harnesses:</strong> Freedom, Easy Walk<br>
+						<strong>Treats:</strong> Small, high-value rewards<br>
+						<strong>Clickers:</strong> For precise timing</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">🧠</div>
+						<h3>Learning Theory</h3>
+						<p>Positive reinforcement increases behavior<br>
+						Negative punishment decreases behavior<br>
+						Timing and consistency are crucial</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">⚠️</div>
+						<h3>Avoid These Methods</h3>
+						<p>Shock/e-collars, prong collars, alpha rolls, dominance theory, punishment-based training</p>
+					</div>
+					<div class="feature-card" onclick="showPage('faq')">
+						<div class="feature-icon">❓</div>
+						<h3>FAQ</h3>
+						<p>Common questions about positive reinforcement training methods and troubleshooting tips</p>
+					</div>			
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- FAQ PAGE -->
+	<div id="faq" class="page">
+		<div class="training-page">
+			<div class="container">
+				<button class="back-button" onclick="showPage('resources')">← Back to Resources</button>
+				<div class="training-header">
+					<h1>Frequently Asked Questions</h1>
+					<p>Common questions about positive reinforcement dog training</p>
+				</div>
+
+				<div class="training-steps">
+					<h2>Training Basics</h2>
+					
+					<div class="step">
+						<h3>How long does it take to see results?</h3>
+						<p>Simple behaviors like "sit" can be learned in a few sessions. Complex behaviors like loose leash walking may take weeks or months. Consistency matters more than speed.</p>
+					</div>
+
+					<div class="step">
+						<h3>What if my dog doesn't respond to treats?</h3>
+						<p>Not all dogs are food motivated. Try different rewards: praise, play, toys, or even access to things they want (like going outside). Find what YOUR dog values most.</p>
+					</div>
+
+					<div class="step">
+						<h3>Can you train an old dog?</h3>
+						<p>Absolutely. Dogs can learn at any age. Older dogs may take slightly longer but often have better attention spans than puppies.</p>
+					</div>
+
+					<div class="step">
+						<h3>Why isn't punishment-based training recommended?</h3>
+						<p>Punishment can increase fear, anxiety, and aggression. It may suppress behavior temporarily but doesn't teach what you want. Positive methods are more effective long-term.</p>
+					</div>
+				</div>
+
+				<div class="tips-section">
+					<h3>Troubleshooting</h3>
+					
+					<div class="step">
+						<h3>My dog knows the command but won't do it</h3>
+						<p>This usually means the behavior isn't fully trained yet. Practice in easier environments, use higher-value rewards, and ensure you're being consistent.</p>
+					</div>
+
+					<div class="step">
+						<h3>Training works at home but not outside</h3>
+						<p>Dogs don't generalize well. You need to practice the same behaviors in different locations, starting with low-distraction areas and gradually increasing difficulty.</p>
+					</div>
+
+					<div class="step">
+						<h3>How do I stop unwanted behaviors?</h3>
+						<p>Redirect to a wanted behavior and reward that instead. Remove the dog from situations where they practice unwanted behaviors. Management prevents practice.</p>
+					</div>
+				</div>
+
+				<div class="troubleshooting">
+					<h3>When to Seek Professional Help</h3>
+					<p><strong>Aggression:</strong> Any growling, snapping, or biting toward people or animals</p>
+					<p><strong>Severe anxiety:</strong> Destructive behavior, excessive vocalization, or panic when left alone</p>
+					<p><strong>No progress:</strong> If you've been consistent for several weeks without improvement</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- CONTACT PAGE -->
+	<div id="contact" class="page">
+		<div class="training-page">
+			<div class="container">
+				<button class="back-button" onclick="showPage('home')">← Back to Home</button>
+				<div class="training-header">
+					<h1>Website Support</h1>
+					<p>Report issues or suggest improvements for this educational resource.</p>
+				</div>
+
+				<div class="lima-content">
+					<div class="lima-text">
+						<h2>Educational Resource</h2>
+						<p>This website provides educational information about science-based dog training methods using the LIMA approach.</p>
+						
+						<div class="tips-section">
+							<h3>🐕 Website Issues or Suggestions</h3>
+							<p>Found a bug, broken link, or have ideas for additional training content?</p>
+							<p><strong>Email:</strong> support@pawsitivetraining.app</p>
+						</div>
+
+						<div class="tips-section">
+							<h3>🐕 Website Issues or Suggestions</h3>
+							<p>Found a bug, broken link, or have ideas for additional training content?</p>
+							<p><strong>Email:</strong> <span id="email-address"></span></p>
+						</div>
+					</div>
+					<div class="lima-visual">
+						<div class="hierarchy-pyramid">
+							<h3>Important Notice</h3>
+							<div class="pyramid-level">This site provides educational content only</div>
+							<div class="pyramid-level">For serious behavioral issues, consult a professional trainer</div>
+							<div class="pyramid-level">Always prioritize safety for both humans and dogs</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="training-modal" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeTrainingModal()">&times;</span>
+			<h2>Unlock Premium Training</h2>
+			<div class="premium-info">
+				<p class="premium-header">🔓 Get Access To:</p>
+				<ul class="premium-features">
+					<li>✨ 6 Additional Training Areas</li>
+					<li>😰 Separation Anxiety Training</li>
+					<li>⚠️ Reactivity & Aggression Guide</li>
+					<li>📞 Recall Training Program</li>
+					<li>🦴 Resource Guarding Solutions</li>
+					<li>📚 Complete Training Library</li>
+				</ul>
+			</div>
+			<input type="text" id="training-unlock-code" maxlength="6" placeholder="Enter 6-character code">
+			<button onclick="submitTrainingCode()">Unlock Now</button>
+			<button onclick="generateFreeCode()" class="secondary-btn">Get Free Code</button>
+			<button onclick="openDonation()" class="secondary-btn">❤️ Support Development</button>
+		</div>
+	</div>
+	
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pawsitive Training. Building better relationships through science-based methods.</p>
+            <p>LIMA is Endorsed by veterinary behaviorists • No force, fear, or intimidation</p>
+        </div>
+    </footer>
+
+	<div id="ai-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8);">
+		<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #2d3748; z-index: 2001;">
+			<!-- Header -->
+			<div style="background: #4a5568; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #667eea;">
+				<h2 style="margin: 0; color: white; font-size: 18px;">🤖 AI Training Assistant</h2>
+				<button onclick="closeAIModal()" style="background: #667eea; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 16px;">Close</button>
+			</div>
+			
+			<!-- Chat Area -->
+			<div id="chat-container" style="height: calc(100vh - 140px); overflow-y: auto; padding: 20px; background: #2d3748;">
+				<div style="background: #4a5568; padding: 15px; border-radius: 8px; margin-bottom: 15px; color: white; max-width: 80%;">
+					<strong style="color: #667eea;">AI Assistant:</strong><br>
+					Hello! I'm here to help with your dog training questions using science-based LIMA methods. What training challenge can I help you with today?
+				</div>
+			</div>
+			
+			<!-- Input Area -->
+			<div style="position: absolute; bottom: 0; left: 0; right: 0; background: #4a5568; padding: 20px; border-top: 2px solid #667eea;">
+				<div style="display: flex; gap: 15px; max-width: 1200px; margin: 0 auto;">
+					<input type="text" id="user-input" placeholder="Type your dog training question here..." style="flex: 1; padding: 15px; border: 2px solid #667eea; border-radius: 8px; font-size: 16px; background: white; color: #333;">
+					<button onclick="sendMessage()" style="background: #667eea; color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold;">Send</button>
+					<button onclick="clearChat()" style="background: #4a5568; color: white; border: 1px solid #667eea; padding: 15px 20px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-left: 10px;">Clear</button>
+				</div>
+				<div style="text-align: center; margin-top: 10px; font-size: 12px; color: #a0aec0;">
+					AI by Pollinations.ai • Press Enter to send • AI can make mistakes • Consult professionals for serious issues
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="progress-modal" class="modal">
+		<div class="modal-content" style="width: 700px; max-width: 90vw;">
+			<span class="close" onclick="closeProgressModal()">&times;</span>
+			<h2 id="progress-title">Track Your Progress</h2>
+			<div id="skills-container"></div>
+		</div>
+	</div>
+
+    <script>
+
+	const TRAINING_SKILLS = {
+		'housebreaking': [
+			'Goes to designated potty spot',
+			'Uses verbal cue reliably', 
+			'7 consecutive days accident-free'
+		],
+		'leash': [
+			'Walks 50 steps without pulling',
+			'Stops when handler stops',
+			'Makes eye contact during walk'
+		],
+		'basic': [
+			'Sits on first command',
+			'Stays for 30 seconds',
+			'Comes when called from 10 feet'
+		],
+		'jumping': [
+			'Sits for greetings',
+			'Keeps paws down for 10 seconds',
+			'Greets 3 people politely'
+		],
+		'barking': [
+			'Responds to "quiet" command',
+			'Calm for 5 minutes alone',
+			'Ignores trigger for 30 seconds'
+		],
+		'separation': [
+			'Calm when left for 5 minutes',
+			'No destructive behavior for 1 hour',
+			'Relaxed when owner returns'
+		],
+		'aggression': [
+			'Calm around trigger at distance',
+			'Responds to redirect command',
+			'Shows relaxed body language'
+		],
+		'recall': [
+			'Comes when called from 10 feet',
+			'Returns despite distractions',
+			'Reliable recall in new locations'
+		],
+		'resource-guarding': [
+			'Allows approach during meals',
+			'Trades objects willingly',
+			'Calm when toys are touched'
+		]
+	};
+
+	function showProgressTracker(area) {
+		const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
+		const isDemo = DEMO_TRAINING_AREAS.includes(area);
+		
+		if (!isRegistered && !isDemo) {
+			showRegistrationModal();
+			return;
+		}
+		
+		document.getElementById('progress-title').textContent = `${area.charAt(0).toUpperCase() + area.slice(1)} Progress Tracker`;
+		loadSkillsInterface(area);
+		document.getElementById('progress-modal').style.display = 'block';
+	}
+
+	function closeProgressModal() {
+		document.getElementById('progress-modal').style.display = 'none';
+	}
+
+	function loadSkillsInterface(area) {
+		const skills = TRAINING_SKILLS[area];
+		const container = document.getElementById('skills-container');
+		
+		container.innerHTML = skills.map((skill, index) => {
+			const progress = getSkillProgress(area, index);
+			
+			return `
+				<div class="skill-item" data-skill="${index}" data-current="0" data-pending-rating="0">
+					<div style="text-align: center; margin-bottom: 0.5rem;">
+						<span style="background: #667eea; color: white; padding: 0.1rem 0.4rem; border-radius: 10px; font-size: 0.8rem; margin-right: 0.5rem;" class="session-counter">1</span>
+						<span style="font-size: 1rem; color: #2d3748; font-weight: bold; white-space: nowrap;">${skill}</span>
+					</div>
+					
+					<div style="display: flex; align-items: center; justify-content: space-between;">
+						<button onclick="navigateSession('${area}', ${index}, -1)" 
+								style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #ccc; padding: 0;" 
+								disabled>◀</button>
+						
+						<div class="star-rating" style="flex: 1; display: flex; justify-content: center; margin: 0 1rem;">
+							${[1,2,3,4,5].map(i => `<span class="star" onclick="setStarRating('${area}', ${index}, ${i})" style="font-size: 2.5rem; margin: 0 0.4rem; cursor: pointer;">☆</span>`).join('')}
+						</div>
+						
+						<button onclick="navigateSession('${area}', ${index}, 1)" 
+								style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #667eea; padding: 0;">▶</button>
+					</div>
+					
+					<div style="text-align: center; font-size: 0.7rem; color: #666; margin-top: 0.3rem;">
+						Sessions: ${progress.attempts}/7 | 
+						<span onclick="saveCurrentRating('${area}', ${index})" style="color: #ff6b6b; cursor: pointer;">Save</span> | 
+						<span onclick="resetRating(${index})" style="color: #4a5568; cursor: pointer;">Reset</span>
+					</div>
+				</div>
+			`;
+		}).join('');
+	}
+
+	function setStarRating(area, skillIndex, rating) {
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		skillItem.dataset.pendingRating = rating;
+		
+		// Update stars - fill up to clicked star
+		const stars = skillItem.querySelectorAll('.star');
+		stars.forEach((star, i) => {
+			if (i < rating) {
+				star.textContent = '★';
+				star.style.color = '#ffd700';
+			} else {
+				star.textContent = '☆';
+				star.style.color = '#e2e8f0';
+			}
+		});
+	}
+
+	function resetRating(skillIndex) {
+		// Get the area from the modal title
+		const area = document.getElementById('progress-title').textContent.toLowerCase().split(' ')[0];
+		
+		// Reset ONLY this specific skill's data
+		const key = `progress_${area}_${skillIndex}`;
+		const emptyProgress = { attempts: 0, sessions: [] };
+		localStorage.setItem(key, JSON.stringify(emptyProgress));
+		
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		
+		// Reset display elements
+		skillItem.dataset.pendingRating = 0;
+		skillItem.dataset.current = 0;
+		
+		// Reset session counter to 1
+		const sessionCounter = skillItem.querySelector('.session-counter');
+		sessionCounter.textContent = '1';
+		
+		// Clear all stars
+		const stars = skillItem.querySelectorAll('.star');
+		stars.forEach(star => {
+			star.textContent = '☆';
+			star.style.color = '#e2e8f0';
+		});
+		
+		// Update session count display to 0/7
+		const sessionText = skillItem.querySelector('div:last-child');
+		sessionText.innerHTML = `Sessions: 0/7 | <span onclick="saveCurrentRating('${area}', ${skillIndex})" style="color: #ff6b6b; cursor: pointer;">Save</span> | <span onclick="resetRating(${skillIndex})" style="color: #4a5568; cursor: pointer;">Reset</span>`;
+		
+		// Disable arrows
+		const leftBtn = skillItem.querySelector('button:first-child');
+		const rightBtn = skillItem.querySelector('button:last-child');
+		
+		leftBtn.disabled = true;
+		leftBtn.style.color = '#ccc';
+		rightBtn.disabled = true;
+		rightBtn.style.color = '#ccc';
+	}
+
+	function saveCurrentRating(area, skillIndex) {
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		const rating = parseInt(skillItem.dataset.pendingRating);
+		
+		if (rating > 0) {
+			const progress = getSkillProgress(area, skillIndex);
+			
+			// Add new session
+			progress.sessions.push({
+				date: new Date().toISOString(),
+				rating: rating
+			});
+			
+			if (progress.sessions.length > 7) {
+				progress.sessions = progress.sessions.slice(-7);
+			}
+			
+			progress.attempts = progress.sessions.length;
+			saveSkillProgress(area, skillIndex, progress);
+			
+			// Reset for next rating
+			skillItem.dataset.pendingRating = 0;
+			
+			// Show we're on the next session number for new entry
+			let nextSessionNumber = progress.sessions.length + 1;
+			if (nextSessionNumber > 7) nextSessionNumber = 7;
+			
+			// Set current to point to the next empty slot
+			skillItem.dataset.current = progress.sessions.length;
+			skillItem.querySelector('.session-counter').textContent = nextSessionNumber;
+			
+			// Clear stars for next rating
+			const stars = skillItem.querySelectorAll('.star');
+			stars.forEach(star => {
+				star.textContent = '☆';
+				star.style.color = '#e2e8f0';
+			});
+			
+			// Update session count
+			const sessionText = skillItem.querySelector('div:last-child');
+			sessionText.innerHTML = `Sessions: ${progress.attempts}/7 | <span onclick="saveCurrentRating('${area}', ${skillIndex})" style="color: #ff6b6b; cursor: pointer;">Save</span> | <span onclick="resetRating(${skillIndex})" style="color: #4a5568; cursor: pointer;">Reset</span>`;
+			
+			// Arrow logic: left should be enabled after first save
+			const leftBtn = skillItem.querySelector('button:first-child');
+			const rightBtn = skillItem.querySelector('button:last-child');
+			
+			leftBtn.disabled = false; // Can go back to see the saved session
+			leftBtn.style.color = '#667eea';
+			
+			rightBtn.disabled = true; // Can't go forward from empty session
+			rightBtn.style.color = '#ccc';
+		}
+	}
+
+	function navigateSession(area, skillIndex, direction) {
+		const progress = getSkillProgress(area, skillIndex);
+		const sessions = progress.sessions;
+		if (sessions.length === 0) return;
+		
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		let current = parseInt(skillItem.dataset.current);
+		
+		current += direction;
+		
+		// Bounds: can go from 0 to sessions.length (where sessions.length is the next empty slot)
+		if (current < 0) current = 0;
+		if (current > sessions.length) current = sessions.length;
+		
+		skillItem.dataset.current = current;
+		skillItem.querySelector('.session-counter').textContent = current + 1;
+		
+		// Show stars: if we're at a saved session, show those stars; if at empty slot, show empty
+		if (current < sessions.length) {
+			const session = sessions[current];
+			const stars = skillItem.querySelectorAll('.star');
+			stars.forEach((star, i) => {
+				if (i < session.rating) {
+					star.textContent = '★';
+					star.style.color = '#ffd700';
+				} else {
+					star.textContent = '☆';
+					star.style.color = '#e2e8f0';
+				}
+			});
+		} else {
+			// At empty slot - clear stars
+			const stars = skillItem.querySelectorAll('.star');
+			stars.forEach(star => {
+				star.textContent = '☆';
+				star.style.color = '#e2e8f0';
+			});
+		}
+		
+		// Update arrows
+		const leftBtn = skillItem.querySelector('button:first-child');
+		const rightBtn = skillItem.querySelector('button:last-child');
+		
+		leftBtn.disabled = current <= 0;
+		leftBtn.style.color = current <= 0 ? '#ccc' : '#667eea';
+		
+		rightBtn.disabled = current >= sessions.length;
+		rightBtn.style.color = current >= sessions.length ? '#ccc' : '#667eea';
+	}
+
+	function previewStars(skillIndex, rating) {
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		const stars = skillItem.querySelectorAll('.star');
+		stars.forEach((star, i) => {
+			star.textContent = i < rating ? '★' : '☆';
+			star.style.color = i < rating ? '#ffd700' : '#e2e8f0';
+		});
+	}
+
+
+	function resetStarDisplay(area, skillIndex) {
+		const skillItem = document.querySelector(`[data-skill="${skillIndex}"]`);
+		const pendingRating = parseInt(skillItem.dataset.pendingRating) || 0;
+		if (pendingRating > 0) {
+			previewStars(skillIndex, pendingRating);
+		} else {
+			const stars = skillItem.querySelectorAll('.star');
+			stars.forEach(star => {
+				star.textContent = '☆';
+				star.style.color = '#e2e8f0';
+			});
+		}
+	}
+
+	function rateSkill(area, skillIndex, rating) {
+		const progress = getSkillProgress(area, skillIndex);
+		progress.attempts++;
+		progress.sessions.push({
+			date: new Date().toISOString(),
+			rating: rating
+		});
+		
+		saveSkillProgress(area, skillIndex, progress);
+		loadSkillsInterface(area);
+	}
+
+	function getSkillProgress(area, skillIndex) {
+		const key = `progress_${area}_${skillIndex}`;
+		const saved = localStorage.getItem(key);
+		let progress = saved ? JSON.parse(saved) : { attempts: 0, sessions: [] };
+		
+		// Fix any data over the 7 session limit
+		if (progress.sessions.length > 7) {
+			progress.sessions = progress.sessions.slice(-7);
+			progress.attempts = progress.sessions.length;
+			saveSkillProgress(area, skillIndex, progress);
+		}
+		
+		return progress;
+	}
+
+	function saveSkillProgress(area, skillIndex, progress) {
+		const key = `progress_${area}_${skillIndex}`;
+		localStorage.setItem(key, JSON.stringify(progress));
+	}
+
+	function getSkillStatus(progress) {
+		const avgRating = progress.sessions.length > 0 
+			? progress.sessions.reduce((sum, s) => sum + s.rating, 0) / progress.sessions.length 
+			: 0;
+		
+		if (progress.attempts >= 5 && avgRating >= 4) return 'MASTERED';
+		if (progress.attempts >= 3 && avgRating >= 3) return 'IMPROVING';
+		return 'LEARNING';
+	}
+
+	function getProgressPercentage(progress) {
+		const avgRating = progress.sessions.length > 0 
+			? progress.sessions.reduce((sum, s) => sum + s.rating, 0) / progress.sessions.length 
+			: 0;
+		return Math.min(100, (progress.attempts * 10) + (avgRating * 15));
+	}
+
+	function logAttempt(area, skillIndex) {
+		// Create inline star rating in the modal
+		const container = document.getElementById('skills-container');
+		const skillItem = container.children[skillIndex];
+		
+		// Remove any existing rating interface
+		const existingRating = skillItem.querySelector('.inline-rating');
+		if (existingRating) existingRating.remove();
+		
+		// Add star rating interface
+		const ratingDiv = document.createElement('div');
+		ratingDiv.className = 'inline-rating';
+		ratingDiv.innerHTML = `
+			<div style="background: #667eea; color: white; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+				<p style="margin: 0 0 1rem 0; text-align: center;">Rate this practice session:</p>
+				<div class="star-rating" style="justify-content: center; font-size: 2rem;">
+					${[1,2,3,4,5].map(i => `<span class="star" data-rating="${i}" onclick="submitRating('${area}', ${skillIndex}, ${i})">☆</span>`).join('')}
+				</div>
+				<div style="text-align: center; margin-top: 1rem;">
+					<button onclick="cancelRating(${skillIndex})" style="background: #4a5568; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Cancel</button>
+				</div>
+			</div>
+		`;
+		
+		skillItem.appendChild(ratingDiv);
+		
+		// Add hover effects
+		const stars = ratingDiv.querySelectorAll('.star');
+		stars.forEach((star, index) => {
+			star.addEventListener('mouseover', () => {
+				stars.forEach((s, i) => {
+					s.textContent = i <= index ? '★' : '☆';
+					s.style.color = i <= index ? '#ffd700' : '#e2e8f0';
+				});
+			});
+			
+			star.addEventListener('mouseout', () => {
+				stars.forEach(s => {
+					s.textContent = '☆';
+					s.style.color = '#e2e8f0';
+				});
+			});
+		});
+	}
+
+	function submitRating(area, skillIndex, rating) {
+		const progress = getSkillProgress(area, skillIndex);
+		progress.attempts++;
+		progress.sessions.push({
+			date: new Date().toISOString(),
+			rating: rating
+		});
+		
+		saveSkillProgress(area, skillIndex, progress);
+		loadSkillsInterface(area);
+	}
+
+	function cancelRating(skillIndex) {
+		const container = document.getElementById('skills-container');
+		const skillItem = container.children[skillIndex];
+		const ratingDiv = skillItem.querySelector('.inline-rating');
+		if (ratingDiv) ratingDiv.remove();
+	}
+
+	// Close modal when clicking outside
+	window.addEventListener('click', function(event) {
+		const modal = document.getElementById('progress-modal');
+		if (event.target === modal) {
+			closeProgressModal();
+		}
+	});
+	
+		const DEMO_TRAINING_AREAS = ['housebreaking', 'leash', 'basic'];
+
+		function initializeTrainingAreas() {
+			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
+			const areaCards = document.querySelectorAll('.area-card');
+			
+			areaCards.forEach(card => {
+				const onclick = card.getAttribute('onclick') || card.dataset.originalOnclick;
+				if (!onclick) return;
+				
+				const areaName = onclick.match(/showTrainingPage\('([^']+)'\)/)?.[1];
+				if (!areaName) return;
+				
+				if (!isRegistered && !DEMO_TRAINING_AREAS.includes(areaName)) {
+					card.classList.add('locked');
+					if (!card.dataset.originalOnclick) {
+						card.dataset.originalOnclick = onclick;
+					}
+					card.removeAttribute('onclick');
+					card.addEventListener('click', function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+						showRegistrationModal();
+					});
+				} else if (isRegistered) {
+					card.classList.remove('locked');
+					const originalOnclick = card.dataset.originalOnclick || onclick;
+					card.setAttribute('onclick', originalOnclick);
+					// Remove the modal click listener
+					card.replaceWith(card.cloneNode(true));
+				}
+			});
+		}
+
+		const AI_SYSTEM_PROMPT = "You are a professional dog training assistant specializing in LIMA (Least Intrusive, Minimally Aversive) methods. Provide helpful, science-based advice using positive reinforcement techniques. Always prioritize the dog's wellbeing and never recommend punishment-based methods. Keep responses concise and practical. If someone asks about serious aggression or complex behavioral issues, recommend consulting a professional trainer.";
+
+		function openAIAssistant() {
+			document.getElementById('ai-modal').style.display = 'block';
+		}
+
+		function closeAIModal() {
+			document.getElementById('ai-modal').style.display = 'none';
+		}
+
+		async function sendMessage() {
+			const input = document.getElementById('user-input');
+			const message = input.value.trim();
+			if (!message) return;
+			
+			const chatContainer = document.getElementById('chat-container');
+			
+			// Add user message
+			const userDiv = document.createElement('div');
+			userDiv.innerHTML = `<div style="background: #667eea; color: white; padding: 15px; border-radius: 8px; margin: 10px 0; max-width: 80%; margin-left: auto;"><strong>You:</strong> ${message}</div>`;
+			chatContainer.appendChild(userDiv);
+			input.value = '';
+			
+			// Add loading indicator
+			const loadingDiv = document.createElement('div');
+			loadingDiv.id = 'loading';
+			loadingDiv.innerHTML = `<div style="background: #4a5568; padding: 15px; border-radius: 8px; margin-bottom: 15px; color: white; max-width: 80%;"><strong style="color: #667eea;">AI Assistant:</strong> <em>Thinking...</em></div>`;
+			chatContainer.appendChild(loadingDiv);
+			chatContainer.scrollTop = chatContainer.scrollHeight;
+			
+			try {
+				const response = await fetch('https://text.pollinations.ai/openai', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						model: 'openai-fast',
+						messages: [
+							{ role: 'system', content: AI_SYSTEM_PROMPT },
+							{ role: 'user', content: message }
+						]
+					})
+				});
+				
+				const data = await response.json();
+				loadingDiv.remove();
+				
+				const responseDiv = document.createElement('div');
+				responseDiv.innerHTML = `<div style="background: #4a5568; padding: 15px; border-radius: 8px; margin-bottom: 15px; color: white; max-width: 80%;"><strong style="color: #667eea;">AI Assistant:</strong> ${data.choices[0].message.content}</div>`;
+				chatContainer.appendChild(responseDiv);
+			} catch (error) {
+				loadingDiv.remove();
+				const errorDiv = document.createElement('div');
+				errorDiv.innerHTML = `<div style="background: #4a5568; padding: 15px; border-radius: 8px; margin-bottom: 15px; color: #ff6b6b; max-width: 80%;"><strong>AI Assistant:</strong> Sorry, I'm having trouble connecting right now. Please try again.</div>`;
+				chatContainer.appendChild(errorDiv);
+			}
+			
+			chatContainer.scrollTop = chatContainer.scrollHeight;
+		}
+
+		// Allow Enter key to send message
+		document.addEventListener('DOMContentLoaded', function() {
+			document.getElementById('user-input').addEventListener('keypress', function(e) {
+				if (e.key === 'Enter') {
+					sendMessage();
+				}
+			});
+		});
+
+		function clearChat() {
+			const chatContainer = document.getElementById('chat-container');
+			chatContainer.innerHTML = `
+				<div style="background: #4a5568; padding: 15px; border-radius: 8px; margin-bottom: 15px; color: white; max-width: 80%;">
+					<strong style="color: #667eea;">AI Assistant:</strong><br>
+					Hello! I'm here to help with your dog training questions using science-based LIMA methods. What training challenge can I help you with today?
+				</div>
+			`;
+		}
+
+				// Page navigation system
+		function showPage(pageId) {
+		  // Hide all .page sections and their child <section> blocks
+		  const pages = document.querySelectorAll('.page');
+		  pages.forEach(page => {
+			page.classList.remove('active');
+			page.style.display = 'none';
+			// Also hide all inner sections
+			page.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
+		  });
+
+		  // Show only the target page
+		  const targetPage = document.getElementById(pageId);
+		  if (targetPage) {
+			targetPage.classList.add('active');
+			targetPage.style.display = 'block';
+			// Show that page’s own sections
+			targetPage.querySelectorAll('section').forEach(sec => sec.style.display = 'block');
+		  }
+
+		  // Scroll to top
+		  window.scrollTo({ top: 0, behavior: 'smooth' });
+		}
+
+
+        function showTrainingPage(trainingType) {
+            showPage(trainingType);
+        }
+
+        // Add animation triggers on page load
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards for animation
+            document.querySelectorAll('.feature-card, .area-card, .step').forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+		// Modal event handlers
+		document.addEventListener('DOMContentLoaded', function() {
+			const modal = document.getElementById('training-modal');
+			const closeBtn = modal?.querySelector('.close');
+			
+			if (closeBtn) {
+				closeBtn.onclick = closeTrainingModal;
+			}
+			
+			window.onclick = function(event) {
+				if (event.target === modal) {
+					closeTrainingModal();
+				}
+			};
+		});
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', initAnimations);
+
+		document.addEventListener('DOMContentLoaded', () => {
+			document.querySelectorAll('.area-card').forEach(card => {
+				const onclick = card.getAttribute('onclick');
+				if (onclick) card.dataset.originalOnclick = onclick;
+			});
+			
+			initializeTrainingAreas();
+			updateUnlockButton();
+			
+			// Modal event handlers
+			const modal = document.getElementById('training-modal');
+			const closeBtn = modal?.querySelector('.close');
+			
+			if (closeBtn) {
+				closeBtn.onclick = closeTrainingModal;
+			}
+			
+			window.onclick = function(event) {
+				if (event.target === modal) {
+					closeTrainingModal();
+				}
+			};
+		});
+
+		function updateUnlockButton() {
+			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
+			const unlockBtn = document.querySelector('.nav-links a[onclick*="showRegistrationModal"]');
+			
+			if (unlockBtn) {
+				if (isRegistered) {
+					unlockBtn.textContent = '✅ REGISTERED';
+					unlockBtn.style.background = '#4fd1c7';
+				} else {
+					unlockBtn.textContent = '🔓 UNLOCK';
+					unlockBtn.style.background = '#ff6b6b';
+				}
+			}
+		}
+		
+        // Add interactive hover effects
+        document.querySelectorAll('.area-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+		
+		function showRegistrationModal() {
+			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
+			const modal = document.getElementById('training-modal');
+			const unlockButton = modal.querySelector('button[onclick="submitTrainingCode()"]') || modal.querySelector('button[onclick="unregister()"]');
+			const codeInput = document.getElementById('training-unlock-code');
+			
+			if (isRegistered) {
+				// Show current code and unregister option
+				const currentCode = localStorage.getItem('dogTrainingCode') || 'Unknown';
+				if (codeInput) {
+					codeInput.value = currentCode;
+				}
+				
+				if (unlockButton) {
+					unlockButton.textContent = 'Unregister';
+					unlockButton.style.background = '#ff6b6b';
+					unlockButton.onclick = unregister;
+				}
+			} else {
+				// Show empty field and unlock option
+				if (codeInput) {
+					codeInput.value = '';
+					codeInput.placeholder = 'Enter 6-character code';
+				}
+				
+				if (unlockButton) {
+					unlockButton.textContent = 'Unlock Now';
+					unlockButton.style.background = '#667eea';
+					unlockButton.onclick = submitTrainingCode;
+				}
+			}
+			
+			modal.style.display = 'block';
+		}
+
+		function closeTrainingModal() {
+			document.getElementById('training-modal').style.display = 'none';
+		}
+
+		// Modal functionality
+		const modal = document.getElementById('training-modal');
+		const unlockBtn = document.querySelector('.nav-links a[onclick="showRegistrationModal()"]');
+		const closeBtn = document.querySelector('#training-modal .close');
+		const submitBtn = document.querySelector('#training-modal button[onclick="submitTrainingCode()"]');
+		const codeInput = document.getElementById('training-unlock-code');
+
+		// Close modal when clicking X or outside
+		if (closeBtn) {
+			closeBtn.onclick = closeTrainingModal;
+		}
+
+		window.onclick = (event) => {
+			if (event.target === modal) {
+				closeTrainingModal();
+			}
+		};
+
+		function generateFreeCode() {
+			const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			let code = '';
+			for(let i = 0; i < 6; i++) {
+				code += chars[Math.floor(Math.random() * chars.length)];
+			}
+			document.getElementById('training-unlock-code').value = code;
+		}
+
+		function submitTrainingCode() {
+			const code = document.getElementById('training-unlock-code').value;
+			if (code.length === 6) {
+				localStorage.setItem('dogTrainingRegistered', 'true');
+				localStorage.setItem('dogTrainingCode', code);
+				updateUnlockButton();
+				initializeTrainingAreas();
+				
+				// Update modal to show unregister state
+				const unlockButton = document.querySelector('#training-modal button');
+				unlockButton.textContent = 'Unregister';
+				unlockButton.style.background = '#ff6b6b';
+				unlockButton.onclick = unregister;
+				
+				document.getElementById('training-unlock-code').placeholder = 'Features unlocked!';
+				document.getElementById('training-unlock-code').style.borderColor = '#4fd1c7';
+			} else {
+				document.getElementById('training-unlock-code').style.borderColor = '#ff6b6b';
+				document.getElementById('training-unlock-code').placeholder = 'Enter 6 characters';
+			}
+		}
+
+		function unregister() {
+			localStorage.removeItem('dogTrainingRegistered');
+			localStorage.removeItem('dogTrainingCode');
+			updateUnlockButton();
+			initializeTrainingAreas();
+			
+			// Reset modal to unlock state
+			const codeInput = document.getElementById('training-unlock-code');
+			const unlockButton = document.querySelector('#training-modal button');
+			
+			codeInput.value = '';
+			codeInput.placeholder = 'Enter 6-character code';
+			codeInput.style.borderColor = '';
+			
+			unlockButton.textContent = 'Unlock Now';
+			unlockButton.style.background = '#667eea';
+			unlockButton.onclick = submitTrainingCode;
+		}
+
+		function openDonation() {
+			window.open('https://paypal.me/ReverendDrTolerant?country.x=US&locale.x=en_US', '_blank');
+		}
+
+		// Obfuscated email
+		function showEmail() {
+			const user = 'support';
+			const domain = 'pawsitivetraining.app';
+			document.getElementById('email-address').innerHTML = user + '@' + domain;
+		}
+
+		// Show email when page loads
+		document.addEventListener('DOMContentLoaded', showEmail);
+		
+
+		// Cookie banner functionality
+		function showCookieBanner() {
+			const consent = localStorage.getItem('cookieConsent');
+			if (!consent) {
+				document.getElementById('cookie-banner').classList.add('show');
+			}
+		}
+
+		function acceptCookies() {
+			localStorage.setItem('cookieConsent', 'accepted');
+			document.getElementById('cookie-banner').classList.remove('show');
+			// Google Analytics is already loaded, so just note consent
+			gtag('consent', 'update', {
+				'analytics_storage': 'granted'
+			});
+		}
+
+		function declineCookies() {
+			localStorage.setItem('cookieConsent', 'declined');
+			document.getElementById('cookie-banner').classList.remove('show');
+			// Disable Google Analytics
+			gtag('consent', 'update', {
+				'analytics_storage': 'denied'
+			});
+			// Optionally redirect or just disable tracking
+			console.log('Analytics disabled per user request');
+		}
+
+		function showPrivacyInfo() {
+			alert('We only use Google Analytics to track page views and improve our content. No personal information is collected or shared. You can opt out anytime by clearing your browser data.');
+		}
+
+		// Show banner on page load
+		document.addEventListener('DOMContentLoaded', showCookieBanner);
+	
+		document.addEventListener('DOMContentLoaded', () => {
+		  const pages = document.querySelectorAll('.page');
+		  pages.forEach(p => {
+			if (!p.classList.contains('active')) {
+			  p.style.display = 'none';
+			  p.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
+			} else {
+			  p.querySelectorAll('section').forEach(sec => sec.style.display = 'block');
+			}
+		  });
+		});
+	
+		
+	</script>
+	
+	<div id="cookie-banner">
+		<div class="cookie-content">
+			<div class="cookie-text">
+				We use Google Analytics to understand how visitors use our site and improve your experience. 
+				<a href="#" onclick="showPrivacyInfo()" style="color: #667eea;">Learn more</a>
+			</div>
+			<div class="cookie-buttons">
+				<button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+				<button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
