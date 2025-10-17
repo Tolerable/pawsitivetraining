@@ -779,10 +779,23 @@
                 <li><a onclick="showPage('about')">About LIMA</a></li>
                 <li><a onclick="showPage('resources')">Resources</a></li>
                 <li><a onclick="showPage('contact')">Contact</a></li>
+				<li><a href="/cats/index.html">🐈 Cat Training</a></li>
                 <li><a href="#" onclick="showRegistrationModal(); return false;" style="background: #ff6b6b; padding: 5px 10px; border-radius: 15px; color: white;">🔓 UNLOCK</a></li>
             </ul>
         </nav>
     </header>
+
+	<div id="cat-banner" style="background:#f3e8ff;color:#3b0764;text-align:center;padding:10px 12px;font-weight:600;">
+	  Check out our new <a href="/cats/index.html" style="color:#7e22ce;text-decoration:underline;">Purrfect Training for Cats</a>!
+	  <span id="close-cat-banner" style="float:right;margin-right:10px;cursor:pointer;">✕</span>
+	</div>
+	<script>
+	  const banner=document.getElementById('cat-banner');
+	  const closeBtn=document.getElementById('close-cat-banner');
+	  if(localStorage.getItem('hideCatBanner')==='1'){banner.style.display='none';}
+	  closeBtn.onclick=()=>{banner.style.display='none';localStorage.setItem('hideCatBanner','1');};
+	</script>
+
 
     <!-- HOME PAGE -->
     <div id="home" class="page active">
