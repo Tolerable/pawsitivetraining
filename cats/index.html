@@ -131,12 +131,12 @@
 	}
 
 	#training-list .card {
-	  background: #fff;
-	  border: 1px solid rgba(0,0,0,0.08);
+	  background: linear-gradient(145deg, #f8fafc, #eef2ff); /* soft gradient tint */
+	  border: 1px solid rgba(124,58,237,0.12);               /* lavender border */
 	  border-radius: 16px;
-	  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+	  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
 	  padding: 24px;
-	  height: 180px;                /* MATCH DOG SITE HEIGHT */
+	  height: 180px;
 	  display: flex;
 	  flex-direction: column;
 	  justify-content: center;
@@ -144,7 +144,7 @@
 	}
 	#training-list .card:hover {
 	  transform: translateY(-4px);
-	  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+	  box-shadow: 0 8px 20px rgba(124,58,237,0.15);          /* purple-tinted hover shadow */
 	}
 	#training-list .card h4 {
 	  font-weight: 700;
@@ -155,6 +155,10 @@
 	  color: #374151;
 	  font-size: 0.95rem;
 	}
+
+	#training-list .card:nth-child(3n+1){background:linear-gradient(145deg,#f9fafb,#eef2ff);}
+	#training-list .card:nth-child(3n+2){background:linear-gradient(145deg,#f8f5ff,#f1f5f9);}
+	#training-list .card:nth-child(3n+3){background:linear-gradient(145deg,#faf5ff,#eef2ff);}
 
 	/* Responsive to match dog site */
 	@media (max-width: 900px){
