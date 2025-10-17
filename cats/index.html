@@ -45,7 +45,24 @@
     .section h2{text-align:center;font-size:2.2rem;margin-bottom:28px;color:#1f2937}
 
     .grid{display:grid;gap:20px}
-    .features-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .features-grid {
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr); /* always 3 across */
+	  gap: 20px;
+	  justify-items: stretch;
+	}
+
+	@media (max-width: 900px) {
+	  .features-grid {
+		grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+	  }
+	}
+
+	@media (max-width: 600px) {
+	  .features-grid {
+		grid-template-columns: 1fr; /* single column on phones */
+	  }
+	}
     .feature{background:linear-gradient(135deg,#f7fafc,#eef2ff);border:1px solid rgba(124,58,237,.15);padding:22px;border-radius:14px;text-align:center;transition:.2s}
     .feature:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(0,0,0,.08)}
     .feature .ico{font-size:2rem;margin-bottom:8px}
