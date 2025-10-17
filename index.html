@@ -123,7 +123,7 @@
 			padding: 1rem 0;
 			position: fixed;
 			width: 100%;
-			top: 40px;
+			top: var(--banner-offset, 0px);
 			z-index: 1000;
 			box-shadow: 0 2px 20px rgba(0,0,0,0.1);
 			transition: top 0.3s ease; /* added safely */
@@ -771,14 +771,40 @@
     </style>
 </head>
 <body>
+	<!-- Cat banner -->
 	<div id="cat-banner" style="background:#f3e8ff;color:#3b0764;text-align:center;
 	  padding:10px 12px;font-weight:600;position:fixed;top:0;left:0;right:0;
-	  z-index:2000;box-shadow:0 2px 5px rgba(0,0,0,0.1);
-	  transform:translateY(0);transition:transform 0.3s ease;">
-	  Check out our new <a href="/cats/index.html" style="color:#7e22ce;text-decoration:underline;">Purrfect Training for Cats</a>!
-	  <span id="close-cat-banner" style="float:right;margin-right:10px;cursor:pointer;">✕</span>
+	  z-index:2000;box-shadow:0 2px 5px rgba(0,0,0,0.1);display:flex;gap:8px;
+	  align-items:center;justify-content:center;height:40px;">
+	  <span>Check out our new <a href="/cats/index.html" style="color:#7e22ce;text-decoration:underline;">Purrfect Training for Cats</a>!</span>
+	  <button id="close-cat-banner" aria-label="Close" style="margin-left:12px;background:transparent;border:0;cursor:pointer;font-size:18px;line-height:1;">✕</button>
 	</div>
-	
+
+	<script>
+	  (function () {
+		const root = document.documentElement;
+		const banner = document.getElementById('cat-banner');
+		const closeBtn = document.getElementById('close-cat-banner');
+		const H = '40px';
+
+		// Only show if not closed in this session
+		const closed = sessionStorage.getItem('catBannerClosed') === 'true';
+		if (!closed) {
+		  banner.style.display = 'flex';
+		  root.style.setProperty('--banner-offset', H); // push header down
+		} else {
+		  banner.style.display = 'none';
+		  root.style.setProperty('--banner-offset', '0px');
+		}
+
+		closeBtn.addEventListener('click', () => {
+		  banner.style.display = 'none';
+		  root.style.setProperty('--banner-offset', '0px');
+		  sessionStorage.setItem('catBannerClosed', 'true');
+		});
+	  }());
+	</script>
+
     <header>
         <nav class="container">
             <div class="logo" onclick="showPage('home')">Pawsitive Training</div>
