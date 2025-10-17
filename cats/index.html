@@ -961,13 +961,14 @@
   </div>
 
 
-	<section id="resources" class="page training">
-	  <div class="container">
-		<button class="back" onclick="showPage('home')">← Back to Home</button>
-		<div class="t-head">
-		  <h1>Training Resources</h1>
-		  <p>Recommended books, equipment, and organizations that support reward-based feline training and welfare.</p>
-		</div>
+  <div id="resources" class="page">
+  	<div class="training-page">
+  		<div class="container">
+  			<button class="back-button" onclick="showPage('home')">← Back to Home</button>
+  			<div class="training-header">
+  				<h1>Training Resources</h1>
+  				<p>Recommended books, equipment, and organizations that support reward-based feline training and welfare.</p>
+			</div>
 
 		<div class="features-grid">
 		  <div class="feature-card">
@@ -1029,35 +1030,37 @@
 			<p>Common questions on litter, scratching, handling, harness/leash, training & troubleshooting.</p>
 		  </div>
 		</div>
-	  </div>
-	</section>
+		</div>
+	</div>
+  </div>
 
 
 
-  <!-- CONTACT -->
-  <section id="contact" class="page training">
-    <div class="container">
-      <button class="back" onclick="goCatHome(event)">← Back to Home</button>
-      <div class="t-head">
-        <h1>Website Support</h1>
-        <p>Report issues or suggest improvements for this free educational site.</p>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <h3>Send Feedback</h3>
-          <form id="feedbackForm" onsubmit="handleFeedback(event)">
-            <label>Message<br><textarea id="fb-msg" required style="width:100%;height:110px;border:1px solid #7c3aed;border-radius:10px;padding:10px"></textarea></label>
-            <button class="cta-button" style="margin-top:10px">Submit</button>
-          </form>
-          <p id="fb-status" style="margin-top:8px;color:#7c3aed;font-weight:700"></p>
+  <div id="contact" class="page">
+    <div class="training-page">
+      <div class="container">
+        <button class="back-button" onclick="goCatHome(event)">← Back to Home</button>
+        <div class="training-header">
+          <h1>Website Support</h1>
+          <p>Report issues or suggest improvements for this free educational site.</p>
         </div>
-        <div class="warn">
-          <h3>Important</h3>
-          <p>This site is educational only. For serious behavior issues, consult a qualified feline behavior professional or your veterinarian.</p>
+        <div class="training-steps">
+          <div class="step">
+            <h3>Send Feedback</h3>
+            <form id="feedbackForm" onsubmit="handleFeedback(event)">
+              <label>Message<br><textarea id="fb-msg" required style="width:100%;height:110px;border:1px solid #7c3aed;border-radius:10px;padding:10px"></textarea></label>
+              <button class="cta-button" style="margin-top:10px">Submit</button>
+            </form>
+            <p id="fb-status" style="margin-top:8px;color:#7c3aed;font-weight:700"></p>
+          </div>
+          <div class="troubleshooting">
+            <h3>Important</h3>
+            <p>This site is educational only. For serious behavior issues, consult a qualified feline behavior professional or your veterinarian.</p>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Unlock Modal (Cat version matching Dog layout) -->
   <div id="unlock-modal" class="modal" role="dialog" aria-modal="true">
@@ -1106,77 +1109,65 @@
   </footer>
 
   <!-- CAT FAQ PAGE -->
-  <section id="cat-faq" class="page training">
-    <div class="container">
-      <button class="back" onclick="showPage('resources')">← Back to Resources</button>
-  
-      <div class="t-head">
-        <h1>Cat Training FAQ</h1>
-        <p>Quick answers about reward-based feline training, husbandry, and common issues.</p>
-      </div>
-  
-      <div class="steps">
-        <h2>Training Basics</h2>
-  
-        <div class="step">
-          <h3><span class="n">1</span> Do cats even respond to training?</h3>
-          <p>Yes. Cats learn through consequences just like dogs. Use tiny, high-value rewards and short (30–60s) sessions.</p>
+  <div id="cat-faq" class="page">
+    <div class="training-page">
+      <div class="container">
+        <button class="back-button" onclick="showPage('resources')">← Back to Resources</button>
+        <div class="training-header">
+          <h1>Cat Training FAQ</h1>
+          <p>Quick answers about reward-based feline training, husbandry, and common issues.</p>
         </div>
-  
-        <div class="step">
-          <h3><span class="n">2</span> My cat isn’t food-motivated — now what?</h3>
-          <p>Try lickable treats, warmed soft foods, play bursts, access to window perches, or ending the session as the reward.</p>
+        <div class="training-steps">
+          <h2>Training Basics</h2>
+          <div class="step">
+            <h3><span class="step-number">1</span> Do cats even respond to training?</h3>
+            <p>Yes. Cats learn through consequences just like dogs. Use tiny, high-value rewards and short (30–60s) sessions.</p>
+          </div>
+          <div class="step">
+            <h3><span class="step-number">2</span> My cat isn't food-motivated — now what?</h3>
+            <p>Try lickable treats, warmed soft foods, play bursts, access to window perches, or ending the session as the reward.</p>
+          </div>
+          <div class="step">
+            <h3><span class="step-number">3</span> How fast will I see progress?</h3>
+            <p>Simple behaviors (target, station) can improve within days; desensitization (carrier, handling) takes weeks of bite-sized reps.</p>
+          </div>
         </div>
-  
-        <div class="step">
-          <h3><span class="n">3</span> How fast will I see progress?</h3>
-          <p>Simple behaviors (target, station) can improve within days; desensitization (carrier, handling) takes weeks of bite-sized reps.</p>
+        <div class="training-steps">
+          <h2>Litter & Scratching</h2>
+          <div class="step">
+            <h3><span class="step-number">1</span> Best litter box setup?</h3>
+            <p>One box per cat + one extra; very large box; unscented clumping litter; 2–3" depth; quiet, separate locations.</p>
+          </div>
+          <div class="step">
+            <h3><span class="step-number">2</span> How do I stop furniture scratching?</h3>
+            <p>Give posts of multiple textures/angles, put them where the cat wants them, reinforce use, and temporarily protect furniture.</p>
+          </div>
         </div>
-      </div>
-  
-      <div class="steps">
-        <h2>Litter & Scratching</h2>
-  
-        <div class="step">
-          <h3><span class="n">1</span> Best litter box setup?</h3>
-          <p>One box per cat + one extra; very large box; unscented clumping litter; 2–3" depth; quiet, separate locations.</p>
+        <div class="training-steps">
+          <h2>Handling, Harness & Vet Prep</h2>
+          <div class="step">
+            <h3><span class="step-number">1</span> Carrier training essentials?</h3>
+            <p>Keep the carrier out, feed inside, close briefly while feeding, then lift/move in tiny increments; always below fear threshold.</p>
+          </div>
+          <div class="step">
+            <h3><span class="step-number">2</span> Safe harness/leash intro?</h3>
+            <p>Pair harness on/off with treats, build duration, practice indoors, then short, calm outdoor sessions at the cat's pace.</p>
+          </div>
         </div>
-  
-        <div class="step">
-          <h3><span class="n">2</span> How do I stop furniture scratching?</h3>
-          <p>Give posts of multiple textures/angles, put them where the cat wants them, reinforce use, and temporarily protect furniture.</p>
-        </div>
-      </div>
-  
-      <div class="steps">
-        <h2>Handling, Harness & Vet Prep</h2>
-  
-        <div class="step">
-          <h3><span class="n">1</span> Carrier training essentials?</h3>
-          <p>Keep the carrier out, feed inside, close briefly while feeding, then lift/move in tiny increments; always below fear threshold.</p>
-        </div>
-  
-        <div class="step">
-          <h3><span class="n">2</span> Safe harness/leash intro?</h3>
-          <p>Pair harness on/off with treats, build duration, practice indoors, then short, calm outdoor sessions at the cat’s pace.</p>
-        </div>
-      </div>
-  
-      <div class="steps">
-        <h2>Troubleshooting</h2>
-  
-        <div class="step">
-          <h3><span class="n">1</span> Works at home but not elsewhere</h3>
-          <p>Cats generalize poorly. Re-teach in new rooms/contexts, start easy, and raise criteria slowly.</p>
-        </div>
-  
-        <div class="step">
-          <h3><span class="n">2</span> When to get professional help?</h3>
-          <p>Bites, sustained aggression, severe fear/anxiety, or litter issues with medical signs → contact your vet/behavior pro.</p>
+        <div class="training-steps">
+          <h2>Troubleshooting</h2>
+          <div class="step">
+            <h3><span class="step-number">1</span> Works at home but not elsewhere</h3>
+            <p>Cats generalize poorly. Re-teach in new rooms/contexts, start easy, and raise criteria slowly.</p>
+          </div>
+          <div class="step">
+            <h3><span class="step-number">2</span> When to get professional help?</h3>
+            <p>Bites, sustained aggression, severe fear/anxiety, or litter issues with medical signs → contact your vet/behavior pro.</p>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
 
   <script>
