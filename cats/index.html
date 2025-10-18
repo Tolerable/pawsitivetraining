@@ -1301,20 +1301,20 @@
 		unlockButton.style.background = '#ff6b6b';
 		unlockButton.onclick = unregister;
 	  } else {
-	    codeInput.value = '';
-	    codeInput.disabled = false;
-	    codeInput.placeholder = 'Enter 6-character code';
-	    codeInput.style.color = 'white';
-	    unlockButton.textContent = 'Unlock Now';
-	    unlockButton.style.background = '#667eea';
-	    unlockButton.onclick = submitTrainingCode;
+		codeInput.value = '';
+		codeInput.disabled = false;
+		codeInput.placeholder = 'Enter 6-character code';
+		codeInput.style.color = 'white';
+		unlockButton.textContent = 'Unlock Now';
+		unlockButton.style.background = '#667eea';
+		unlockButton.onclick = submitTrainingCode;
 	  }
 	  
-	  modal.style.display = 'block';
+	  modal.classList.add('show');
 	}
 
 	function closeTrainingModal() {
-	  document.getElementById('unlock-modal').style.display = 'none';
+	  document.getElementById('unlock-modal').classList.remove('show');
 	}
 
 	function generateFreeCode() {
@@ -1402,17 +1402,19 @@
       }
       return out;
     }
-    document.addEventListener('click', (e)=>{
-      if(e.target.classList.contains('star')){
-        const i = +e.target.getAttribute('data-i');
-        const s = +e.target.getAttribute('data-step');
-        const k = trackerKey();
-        const data = JSON.parse(localStorage.getItem(k) || '[]');
-        data[s]=i; localStorage.setItem(k, JSON.stringify(data));
-        renderTracker();
-      }
-      if(e.target.classList.contains('modal')) e.target.style.display='none';
-    });
+	document.addEventListener('click', (e)=>{
+	  if(e.target.classList.contains('star')){
+		const i = +e.target.getAttribute('data-i');
+		const s = +e.target.getAttribute('data-step');
+		const k = trackerKey();
+		const data = JSON.parse(localStorage.getItem(k) || '[]');
+		data[s]=i; localStorage.setItem(k, JSON.stringify(data));
+		renderTracker();
+	  }
+	  if(e.target.classList.contains('modal')) {
+		e.target.classList.remove('show');  /* Changed this line */
+	  }
+	});
     function clearTracker(){
       localStorage.removeItem(trackerKey());
       renderTracker();
