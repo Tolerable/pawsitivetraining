@@ -723,7 +723,7 @@
         <li><a onclick="showPage('resources')">Resources</a></li>
         <li><a onclick="showPage('contact')">Contact</a></li>
 		<li><a href="/dogs/index.html">🐕 Dog Training</a></li>
-        <li><a class="unlock-chip" onclick="openUnlock()">🔓 UNLOCK</a></li>
+        <li><a class="unlock-chip" onclick="showRegistrationModal()">🔓 UNLOCK</a></li>
       </ul>
     </nav>
   </header>
@@ -1193,12 +1193,6 @@
 	  window.open('https://paypal.me/ReverendDrTolerant?country.x=US&locale.x=en_US','_blank','noopener');
 	}
 
-	function resetDemoLock(){
-	  localStorage.removeItem('feline_training_unlock_v1');
-	  alert('Demo reset — premium topics re-locked.');
-	  location.reload();
-	}
-
     function showTraining(id){
       const t = TRAINING[id];
       if(!t){alert('Missing topic');return;}
@@ -1223,29 +1217,83 @@
     }
 
     /* ========= Premium Guard (separate key from dog site) ========= */
-    const STORAGE_KEY_UNLOCK = 'feline_training_unlock_v1'; // unique key so sites don't cross-unlock
-    function isUnlocked(){ return localStorage.getItem(STORAGE_KEY_UNLOCK) === '1'; }
-    function guardPremium(e){
-      if(!isUnlocked()){ e.preventDefault(); openUnlock(); }
-    }
-    function openUnlock(){ document.getElementById('unlock-modal').style.display='block'; }
-    function closeUnlock(){ document.getElementById('unlock-modal').style.display='none'; }
-	function applyUnlock(){
-	  const v = (document.getElementById('unlock-code').value || '').trim().toUpperCase();
-	  if(v.length!==6){ alert('Enter a 6-character code.'); return; }
-	  // Simple accept for demo; replace with server verification if desired
-	  localStorage.setItem(STORAGE_KEY_UNLOCK,'1');
-	  alert('✅ Premium topics unlocked on the cat site only.');
-	  closeUnlock();
-	  // immediately refresh UI
-	  updateCatUnlockButton();
-	  unlockPremiumCardsNow();
+	function showRegistrationModal() {
+	  const isRegistered = localStorage.getItem('feline_training_unlock_v1') === '1';
+	  const modal = document.getElementById('unlock-modal');
+	  const unlockButton = modal.querySelector('button:nth-of-type(1)');
+	  const codeInput = document.getElementById('unlock-code');
+	  
+	  if (isRegistered) {
+		const currentCode = localStorage.getItem('feline_training_code') || 'Unknown';
+		codeInput.value = currentCode;
+		codeInput.disabled = true;
+		unlockButton.textContent = 'Unregister';
+		unlockButton.style.background = '#ff6b6b';
+		unlockButton.onclick = unregister;
+	  } else {
+		codeInput.value = '';
+		codeInput.disabled = false;
+		codeInput.placeholder = 'Enter 6-character code';
+		unlockButton.textContent = 'Unlock Now';
+		unlockButton.style.background = '#667eea';
+		unlockButton.onclick = submitTrainingCode;
+	  }
+	  
+	  modal.style.display = 'block';
 	}
 
-    function generateDemoCode(){
-      const code = Math.random().toString(36).slice(2,8).toUpperCase();
-      document.getElementById('unlock-code').value = code;
-    }
+	function closeTrainingModal() {
+	  document.getElementById('unlock-modal').style.display = 'none';
+	}
+
+	function generateFreeCode() {
+	  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	  let code = '';
+	  for(let i = 0; i < 6; i++) {
+		code += chars[Math.floor(Math.random() * chars.length)];
+	  }
+	  document.getElementById('unlock-code').value = code;
+	}
+
+	function submitTrainingCode() {
+	  const code = document.getElementById('unlock-code').value;
+	  if (code.length === 6) {
+		localStorage.setItem('feline_training_unlock_v1', '1');
+		localStorage.setItem('feline_training_code', code);
+		updateCatUnlockButton();
+		unlockPremiumCardsNow();
+		
+		const unlockButton = document.querySelector('#unlock-modal button:nth-of-type(1)');
+		unlockButton.textContent = 'Unregister';
+		unlockButton.style.background = '#ff6b6b';
+		unlockButton.onclick = unregister;
+		
+		document.getElementById('unlock-code').placeholder = 'Features unlocked!';
+		document.getElementById('unlock-code').style.borderColor = '#4fd1c7';
+	  } else {
+		document.getElementById('unlock-code').style.borderColor = '#ff6b6b';
+		document.getElementById('unlock-code').placeholder = 'Enter 6 characters';
+	  }
+	}
+
+	function unregister() {
+	  localStorage.removeItem('feline_training_unlock_v1');
+	  localStorage.removeItem('feline_training_code');
+	  updateCatUnlockButton();
+	  unlockPremiumCardsNow();
+	  
+	  const codeInput = document.getElementById('unlock-code');
+	  const unlockButton = document.querySelector('#unlock-modal button:nth-of-type(1)');
+	  
+	  codeInput.value = '';
+	  codeInput.placeholder = 'Enter 6-character code';
+	  codeInput.style.borderColor = '';
+	  codeInput.disabled = false;
+	  
+	  unlockButton.textContent = 'Unlock Now';
+	  unlockButton.style.background = '#667eea';
+	  unlockButton.onclick = submitTrainingCode;
+	}
 
     /* ========= Progress Tracker ========= */
     let CURRENT_TOPIC = null;
