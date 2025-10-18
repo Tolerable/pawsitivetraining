@@ -1104,30 +1104,37 @@
 
 
 
+  <!-- CONTACT PAGE -->
   <div id="contact" class="page">
-    <div class="training-page">
-      <div class="container">
-        <button class="back-button" onclick="goCatHome(event)">← Back to Home</button>
-        <div class="training-header">
-          <h1>Website Support</h1>
-          <p>Report issues or suggest improvements for this free educational site.</p>
-        </div>
-        <div class="training-steps">
-          <div class="step">
-            <h3>Send Feedback</h3>
-            <form id="feedbackForm" onsubmit="handleFeedback(event)">
-              <label>Message<br><textarea id="fb-msg" required style="width:100%;height:110px;border:1px solid #7c3aed;border-radius:10px;padding:10px"></textarea></label>
-              <button class="cta-button" style="margin-top:10px">Submit</button>
-            </form>
-            <p id="fb-status" style="margin-top:8px;color:#7c3aed;font-weight:700"></p>
-          </div>
-          <div class="troubleshooting">
-            <h3>Important</h3>
-            <p>This site is educational only. For serious behavior issues, consult a qualified feline behavior professional or your veterinarian.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  	<div class="training-page">
+  		<div class="container">
+  			<button class="back-button" onclick="goCatHome(event)">← Back to Home</button>
+  			<div class="training-header">
+  				<h1>Website Support</h1>
+  				<p>Report issues or suggest improvements for this educational resource.</p>
+  			</div>
+  			<div class="lima-content">
+  				<div class="lima-text">
+  					<h2>Educational Resource</h2>
+  					<p>This website provides educational information about science-based cat training methods using the LIMA approach.</p>
+  					
+  					<div class="tips-section">
+  						<h3>🐈 Website Issues or Suggestions</h3>
+  						<p>Found a bug, broken link, or have ideas for additional training content?</p>
+  						<p><strong>Email:</strong> <span id="email-address"></span></p>
+  					</div>
+  				</div>
+  				<div class="lima-visual">
+  					<div class="hierarchy-pyramid">
+  						<h3>Important Notice</h3>
+  						<div class="pyramid-level">This site provides educational content only</div>
+  						<div class="pyramid-level">For serious behavioral issues, consult a professional trainer</div>
+  						<div class="pyramid-level">Always prioritize safety for both humans and cats</div>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
   </div>
 
   <!-- Unlock Modal (Cat version matching Dog layout) -->
