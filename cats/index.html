@@ -1075,7 +1075,7 @@
   <!-- Unlock Modal (Cat version matching Dog layout) -->
   <div id="unlock-modal" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <span class="close" onclick="closeUnlock()">&times;</span>
+      <span class="close" onclick="closeTrainingModal()">&times;</span>
       <h2>🐈 Unlock Premium Cat Topics</h2>
       <p style="opacity:.9;margin-bottom:10px">
         Register to unlock <strong>advanced modules</strong> and progress tracking.
@@ -1229,12 +1229,13 @@
 		unlockButton.style.background = '#ff6b6b';
 		unlockButton.onclick = unregister;
 	  } else {
-		codeInput.value = '';
-		codeInput.disabled = false;
-		codeInput.placeholder = 'Enter 6-character code';
-		unlockButton.textContent = 'Unlock Now';
-		unlockButton.style.background = '#667eea';
-		unlockButton.onclick = submitTrainingCode;
+	    codeInput.value = '';
+	    codeInput.disabled = false;
+	    codeInput.placeholder = 'Enter 6-character code';
+	    codeInput.style.color = 'white';
+	    unlockButton.textContent = 'Unlock Now';
+	    unlockButton.style.background = '#667eea';
+	    unlockButton.onclick = submitTrainingCode;
 	  }
 	  
 	  modal.style.display = 'block';
