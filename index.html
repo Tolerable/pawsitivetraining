@@ -58,92 +58,244 @@
 	}
 	</script>	
 <style>
-  :root {
-    --ink: #1e293b;
-    --muted: #64748b;
-    --dog: #f59e0b;
-    --cat: #a78bfa;
-    --gradient: linear-gradient(135deg, #667eea, #764ba2);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-    color:var(--ink);
-    background:#ffffff;
-  }
-  header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#ffffff;
-    border-bottom:1px solid #e5e7eb;
-    padding:16px 10%;
-    box-shadow:0 2px 8px rgba(0,0,0,0.05);
-    position:sticky;top:0;z-index:10;
-  }
-  .logo{
-    font-size:1.4rem;
-    font-weight:700;
-    color:#374151;
-  }
-  nav a{
-    margin:0 12px;
-    text-decoration:none;
-    color:#374151;
-    font-weight:500;
-  }
-  nav a:hover{color:#667eea}
-  .hero{
-    background:var(--gradient);
-    color:#fff;
-    text-align:center;
-    padding:80px 20px;
-  }
-  .hero h1{font-size:2.8rem;margin-bottom:8px}
-  .hero p{font-size:1.2rem;max-width:700px;margin:0 auto;opacity:0.9}
-  main{
-    max-width:1000px;
-    margin:-60px auto 0;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:2rem;
-    padding:0 20px 80px;
-  }
-  .panel{
-    flex:1 1 400px;
-    background:#fff;
-    border-radius:16px;
-    box-shadow:0 4px 14px rgba(0,0,0,0.1);
-    padding:40px 30px;
-    text-align:center;
-    cursor:pointer;
-    transition:transform 0.25s,box-shadow 0.25s;
-  }
-  .panel:hover{
-    transform:translateY(-6px);
-    box-shadow:0 8px 24px rgba(102,126,234,0.3);
-  }
-  .panel h2{
-    font-size:1.8rem;
-    margin-bottom:10px;
-  }
-  .panel p{
-    color:var(--muted);
-    line-height:1.6;
-    font-size:1rem;
-    margin-bottom:0;
-  }
-  .dog h2{color:var(--dog)}
-  .cat h2{color:var(--cat)}
-  footer{
-    background:#f9fafb;
-    border-top:1px solid #e5e7eb;
-    text-align:center;
-    padding:24px 10px;
-    color:var(--muted);
-    font-size:0.9rem;
-  }
+	:root {
+	  --ink: #1e293b;
+	  --muted: #64748b;
+	  --dog: #f59e0b;
+	  --cat: #a78bfa;
+	  --gradient: linear-gradient(135deg, #667eea, #764ba2);
+	}
+	*{box-sizing:border-box;margin:0;padding:0}
+	body{
+	  font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+	  color:var(--ink);
+	  background:#ffffff;
+	}
+	header{
+	  display:flex;
+	  justify-content:space-between;
+	  align-items:center;
+	  background:#ffffff;
+	  border-bottom:1px solid #e5e7eb;
+	  padding:16px 10%;
+	  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+	  position:sticky;top:0;z-index:10;
+	}
+	.logo{
+	  font-size:1.4rem;
+	  font-weight:700;
+	  color:#374151;
+	}
+	nav a{
+	  margin:0 12px;
+	  text-decoration:none;
+	  color:#374151;
+	  font-weight:500;
+	}
+	nav a:hover{color:#667eea}
+	.hero{
+	  background:var(--gradient);
+	  color:#fff;
+	  text-align:center;
+	  padding:80px 20px;
+	}
+	.hero h1{font-size:2.8rem;margin-bottom:8px}
+	.hero p{font-size:1.2rem;max-width:700px;margin:0 auto;opacity:0.9}
+	main{
+	  max-width:1000px;
+	  margin:-60px auto 0;
+	  display:flex;
+	  flex-wrap:wrap;
+	  justify-content:center;
+	  gap:2rem;
+	  padding:0 20px 80px;
+	}
+	.panel{
+	  flex:1 1 400px;
+	  background:#fff;
+	  border-radius:16px;
+	  box-shadow:0 4px 14px rgba(0,0,0,0.1);
+	  padding:40px 30px;
+	  text-align:center;
+	  cursor:pointer;
+	  transition:transform 0.25s,box-shadow 0.25s;
+	}
+	.panel:hover{
+	  transform:translateY(-6px);
+	  box-shadow:0 8px 24px rgba(102,126,234,0.3);
+	}
+	.panel h2{
+	  font-size:1.8rem;
+	  margin-bottom:10px;
+	}
+	.panel p{
+	  color:var(--muted);
+	  line-height:1.6;
+	  font-size:1rem;
+	  margin-bottom:0;
+	}
+	.dog h2{color:var(--dog)}
+	.cat h2{color:var(--cat)}
+	footer{
+	  background:#f9fafb;
+	  border-top:1px solid #e5e7eb;
+	  text-align:center;
+	  padding:24px 10px;
+	  color:var(--muted);
+	  font-size:0.9rem;
+	}  
+	/* Cookie Banner Styles */
+	#cookie-banner {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: #2d3748;
+		color: white;
+		padding: 15px 20px;
+		z-index: 10000;
+		border-top: 2px solid #667eea;
+		display: none;
+	}
+
+	#cookie-banner.show {
+		display: block;
+	}
+
+	.cookie-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+	.cookie-text {
+		flex: 1;
+		font-size: 14px;
+		line-height: 1.4;
+	}
+
+	.cookie-buttons {
+		display: flex;
+		gap: 10px;
+	}
+
+	.cookie-btn {
+		padding: 8px 16px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 14px;
+		font-weight: bold;
+	}
+
+	.cookie-accept {
+		background: #667eea;
+		color: white;
+	}
+
+	.cookie-decline {
+		background: #4a5568;
+		color: white;
+		border: 1px solid #667eea;
+	}
+
+	/* Training Cards - Add shadow and depth */
+	.training-card {
+		background: white;
+		padding: 2rem;
+		border-radius: 15px;
+		text-align: center;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.training-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+	}
+
+	.training-card h2 {
+		font-size: 1.5rem;
+		color: #2d3748;
+		margin-bottom: 1rem;
+	}
+
+	.training-card p {
+		color: #4a5568;
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+	}
+
+	.training-card a {
+		display: inline-block;
+		background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+		color: white;
+		padding: 0.8rem 1.5rem;
+		text-decoration: none;
+		border-radius: 50px;
+		font-weight: bold;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+	}
+
+	.training-card a:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+	}
+
+	/* Main page container */
+	.main-content {
+		min-height: 100vh;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		padding: 4rem 2rem;
+	}
+
+	.hero-section {
+		text-align: center;
+		color: white;
+		margin-bottom: 3rem;
+	}
+
+	.hero-section h1 {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+	}
+
+	.hero-section p {
+		font-size: 1.2rem;
+		opacity: 0.9;
+		margin-bottom: 3rem;
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.cards-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+		gap: 2rem;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	@media (max-width: 768px) {
+		.cookie-content {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.cards-container {
+			grid-template-columns: 1fr;
+		}
+
+		.hero-section h1 {
+			font-size: 2rem;
+		}
+	}  
+  
 </style>
 </head>
 <body>
@@ -158,38 +310,39 @@
   </nav>
 </header>
 
-<section class="hero">
+<section class="hero-section">
   <h1>Welcome to 🐾 PawsitiveTraining.app</h1>
   <p>Science-based, fear-free education for 😺 cats and 🐶 dogs — learn with kindness and evidence-driven methods for lasting success.</p>
 </section>
 
-<main>
-  <div class="panel dog" onclick="location.href='/dogs/index.html'">
-    <h2>🐕 Dog Training</h2>
-    <p>Build trust, confidence, and obedience using humane reinforcement-based methods. From basic manners to behavior challenges — everything you need for a happier dog.</p>
-  </div>
-
-  <div class="panel cat" onclick="location.href='/cats/index.html'">
-    <h2>🐈 Cat Training</h2>
-    <p>Discover stress-free techniques for litter habits, scratching, harness, clicker training, and more — for confident, well-adjusted cats.</p>
+<main class="main-content">
+  <div class="cards-container">
+    <div class="training-card" onclick="location.href='/dogs/index.html'" style="cursor: pointer;">
+      <h2>🐕 Dog Training</h2>
+      <p>Build trust, confidence, and obedience using humane reinforcement-based methods. From basic manners to behavior challenges — everything you need for a happier dog.</p>
+    </div>
+    <div class="training-card" onclick="location.href='/cats/index.html'" style="cursor: pointer;">
+      <h2>🐈 Cat Training</h2>
+      <p>Discover stress-free techniques for litter habits, scratching, harness, clicker training, and more — for confident, well-adjusted cats.</p>
+    </div>
   </div>
 </main>
 
 <footer>
-  &copy; 2025 PawsitiveTraining.app — Building better relationships through science-based methods.
+  <p>&copy; 2025 PawsitiveTraining.app — Building better relationships through science-based methods.</p>
 </footer>
 
-	<div id="cookie-banner">
-		<div class="cookie-content">
-			<div class="cookie-text">
-				We use Google Analytics to understand how visitors use our site and improve your experience. 
-				<a href="#" onclick="showPrivacyInfo()" style="color: #667eea;">Learn more</a>
-			</div>
-			<div class="cookie-buttons">
-				<button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
-				<button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
-			</div>
-		</div>
-	</div>
+<div id="cookie-banner">
+  <div class="cookie-content">
+    <div class="cookie-text">
+      We use Google Analytics to understand how visitors use our site and improve your experience. 
+      <a href="#" onclick="showPrivacyInfo()" style="color: #667eea;">Learn more</a>
+    </div>
+    <div class="cookie-buttons">
+      <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+      <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
