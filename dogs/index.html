@@ -28,42 +28,42 @@
 	<title>Pawsitive Training - Science-Based Dog Training</title>
     
     <!-- Structured Data for Search Engines -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "name": "Pawsitive Training",
-      "url": "https://pawsitivetraining.app",
-      "description": "Science-based dog training education using LIMA methods",
-      "educationalCredentialAwarded": "Dog Training Knowledge",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Dog Training Courses",
-        "itemListElement": [
-          {
-            "@type": "Course",
-            "name": "Housebreaking Training",
-            "description": "Establish reliable potty habits with positive reinforcement"
-          },
-          {
-            "@type": "Course", 
-            "name": "Leash Training",
-            "description": "Enjoy peaceful walks without pulling or reactivity"
-          },
-          {
-            "@type": "Course",
-            "name": "Basic Obedience",
-            "description": "Sit, stay, down, and essential life skills"
-          },
-          {
-            "@type": "Course",
-            "name": "Behavioral Modification",
-            "description": "Address jumping, barking, separation anxiety, and aggression"
-          }
-        ]
-      }
-    }
-    </script>
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "EducationalOrganization",
+	  "name": "Pawsitive Training",
+	  "url": "https://pawsitivetraining.app/dogs/",
+	  "description": "Science-based dog training education using LIMA methods",
+	  "educationalCredentialAwarded": "Dog Training Knowledge",
+	  "hasOfferCatalog": {
+		"@type": "OfferCatalog",
+		"name": "Dog Training Courses",
+		"itemListElement": [
+		  {
+			"@type": "Course",
+			"name": "Housebreaking Training",
+			"description": "Establish reliable potty habits with positive reinforcement"
+		  },
+		  {
+			"@type": "Course", 
+			"name": "Leash Training",
+			"description": "Enjoy peaceful walks without pulling or reactivity"
+		  },
+		  {
+			"@type": "Course",
+			"name": "Basic Obedience",
+			"description": "Sit, stay, down, and essential life skills"
+		  },
+		  {
+			"@type": "Course",
+			"name": "Behavioral Modification",
+			"description": "Address jumping, barking, separation anxiety, and aggression"
+		  }
+		]
+	  }
+	}
+	</script>
     <style>
 		* {
 			margin: 0;
@@ -509,27 +509,33 @@
 
 		/* Modal Styles */
 		.modal {
-			display: none;
-			position: fixed;
-			z-index: 1000;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.7);
+		  display: none !important;
+		  position: fixed;
+		  z-index: 10001;
+		  left: 0;
+		  top: 0;
+		  width: 100%;
+		  height: 100%;
+		  background-color: rgba(0, 0, 0, 0.7);
+		}
+
+		.modal.show {
+		  display: flex !important;
+		  align-items: center;
+		  justify-content: center;
 		}
 
 		.modal-content {
-			background-color: #2d3748;
-			margin: 10% auto;
-			padding: 30px;
-			border: 2px solid #667eea;
-			border-radius: 15px;
-			width: 450px;
-			max-width: 90vw;
-			position: relative;
-			color: white;
-			box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+		  background-color: #2d3748;
+		  margin: auto;
+		  padding: 30px;
+		  border: 2px solid #667eea;
+		  border-radius: 15px;
+		  width: 450px;
+		  max-width: 90vw;
+		  position: relative;
+		  color: white;
+		  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 		}
 
 		#progress-modal .modal-content {
@@ -2330,48 +2336,33 @@
             });
         }
 
-		// Modal event handlers
-		document.addEventListener('DOMContentLoaded', function() {
-			const modal = document.getElementById('training-modal');
-			const closeBtn = modal?.querySelector('.close');
-			
-			if (closeBtn) {
-				closeBtn.onclick = closeTrainingModal;
+		document.addEventListener('DOMContentLoaded', () => {
+		  document.querySelectorAll('.area-card').forEach(card => {
+			const onclick = card.getAttribute('onclick');
+			if (onclick) card.dataset.originalOnclick = onclick;
+		  });
+		  
+		  initializeTrainingAreas();
+		  updateUnlockButton();
+		  
+		  const modal = document.getElementById('training-modal');
+		  const closeBtn = modal?.querySelector('.close');
+		  
+		  if (closeBtn) {
+			closeBtn.onclick = closeTrainingModal;
+		  }
+		  
+		  window.onclick = function(event) {
+			if (event.target === modal) {
+			  modal.classList.remove('show');
 			}
-			
-			window.onclick = function(event) {
-				if (event.target === modal) {
-					closeTrainingModal();
-				}
-			};
+		  };
 		});
 
         // Initialize animations when page loads
         document.addEventListener('DOMContentLoaded', initAnimations);
 
-		document.addEventListener('DOMContentLoaded', () => {
-			document.querySelectorAll('.area-card').forEach(card => {
-				const onclick = card.getAttribute('onclick');
-				if (onclick) card.dataset.originalOnclick = onclick;
-			});
-			
-			initializeTrainingAreas();
-			updateUnlockButton();
-			
-			// Modal event handlers
-			const modal = document.getElementById('training-modal');
-			const closeBtn = modal?.querySelector('.close');
-			
-			if (closeBtn) {
-				closeBtn.onclick = closeTrainingModal;
-			}
-			
-			window.onclick = function(event) {
-				if (event.target === modal) {
-					closeTrainingModal();
-				}
-			};
-		});
+
 
 		function updateUnlockButton() {
 			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
@@ -2416,43 +2407,40 @@
         document.head.appendChild(style);
 		
 		function showRegistrationModal() {
-			const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
-			const modal = document.getElementById('training-modal');
-			const unlockButton = modal.querySelector('button[onclick="submitTrainingCode()"]') || modal.querySelector('button[onclick="unregister()"]');
-			const codeInput = document.getElementById('training-unlock-code');
-			
-			if (isRegistered) {
-				// Show current code and unregister option
-				const currentCode = localStorage.getItem('dogTrainingCode') || 'Unknown';
-				if (codeInput) {
-					codeInput.value = currentCode;
-				}
-				
-				if (unlockButton) {
-					unlockButton.textContent = 'Unregister';
-					unlockButton.style.background = '#ff6b6b';
-					unlockButton.onclick = unregister;
-				}
-			} else {
-				// Show empty field and unlock option
-				if (codeInput) {
-					codeInput.value = '';
-					codeInput.placeholder = 'Enter 6-character code';
-				}
-				
-				if (unlockButton) {
-					unlockButton.textContent = 'Unlock Now';
-					unlockButton.style.background = '#667eea';
-					unlockButton.onclick = submitTrainingCode;
-				}
+		  const isRegistered = localStorage.getItem('dogTrainingRegistered') === 'true';
+		  const modal = document.getElementById('training-modal');
+		  const unlockButton = modal.querySelector('button[onclick="submitTrainingCode()"]');
+		  const codeInput = document.getElementById('training-unlock-code');
+		  
+		  if (isRegistered) {
+			const currentCode = localStorage.getItem('dogTrainingCode') || 'Unknown';
+			if (codeInput) {
+			  codeInput.value = currentCode;
 			}
-			
-			modal.style.display = 'block';
+			if (unlockButton) {
+			  unlockButton.textContent = 'Unregister';
+			  unlockButton.style.background = '#ff6b6b';
+			  unlockButton.onclick = unregister;
+			}
+		  } else {
+			if (codeInput) {
+			  codeInput.value = '';
+			  codeInput.placeholder = 'Enter 6-character code';
+			}
+			if (unlockButton) {
+			  unlockButton.textContent = 'Unlock Now';
+			  unlockButton.style.background = '#667eea';
+			  unlockButton.onclick = submitTrainingCode;
+			}
+		  }
+		  
+		  modal.classList.add('show');
 		}
 
 		function closeTrainingModal() {
-			document.getElementById('training-modal').style.display = 'none';
+		  document.getElementById('training-modal').classList.remove('show');
 		}
+
 
 		// Modal functionality
 		const modal = document.getElementById('training-modal');
